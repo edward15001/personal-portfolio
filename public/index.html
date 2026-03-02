@@ -104,61 +104,55 @@
   <section id="projects" class="section projects">
     <div class="section__inner">
       <h2 class="section__title fade-in">Proyectos<span class="accent">.</span></h2>
-      <div class="projects__grid">
+      <div class="projects__list">
 
-        <!-- Card 1 — NutroVia -->
-        <article class="project-card fade-in" id="project-1"
-          onclick="window.open('https://nutrovia-web-app.vercel.app/', '_blank')">
-          <div class="project-card__image">
+        <!-- Project 1 — NutroVia -->
+        <a href="https://nutrovia-web-app.vercel.app/" target="_blank" rel="noopener" class="project-item fade-in"
+          id="project-1">
+          <div class="project-item__content">
+            <div class="project-item__header">
+              <h3><span class="project-item__icon">✺</span> NutroVia</h3>
+              <span class="project-item__arrow">&nearr;</span>
+            </div>
+            <p class="project-item__desc">Plataforma web de nutrición y entrenamiento personalizado. Genera planes
+              nutricionales semanales, rutinas de entrenamiento y macros adaptados.</p>
+            <div class="project-item__meta">
+              <span>TypeScript</span>
+              <span class="meta-dot">&bull;</span>
+              <span>Express</span>
+              <span class="meta-dot">&bull;</span>
+              <object><a href="https://github.com/edward15001/nutrovia-web-app" target="_blank" rel="noopener"
+                  class="project-item__github" onclick="event.stopPropagation();">GitHub</a></object>
+            </div>
+          </div>
+          <div class="project-item__image">
             <img src="img/nutrovia.jfif" alt="Vista previa de NutroVia" />
           </div>
-          <div class="project-card__body">
-            <h3>NutroVia</h3>
-            <p>Plataforma web de nutrición y entrenamiento personalizado. Genera planes nutricionales semanales, rutinas
-              de entrenamiento y macros adaptados a cada usuario.</p>
-            <div class="project-card__tags">
-              <span class="tech-tag tech-tag--sm">TypeScript</span>
-              <span class="tech-tag tech-tag--sm">Express</span>
+        </a>
+
+        <!-- Project 2 — Angular Task Manager -->
+        <a href="https://angular-showcase-six.vercel.app/login" target="_blank" rel="noopener"
+          class="project-item fade-in" id="project-2">
+          <div class="project-item__content">
+            <div class="project-item__header">
+              <h3><span class="project-item__icon">❖</span> Angular Task Manager</h3>
+              <span class="project-item__arrow">&nearr;</span>
             </div>
-            <div class="project-card__links">
-              <a href="https://github.com/edward15001/nutrovia-web-app" target="_blank" rel="noopener"
-                class="project-link" aria-label="Ver código fuente" onclick="event.stopPropagation();">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-                </svg>
-                GitHub
-              </a>
+            <p class="project-item__desc">Aplicación de gestión de tareas. Permite organizar tu agenda diaria con una
+              interfaz moderna y autenticación de usuario completa.</p>
+            <div class="project-item__meta">
+              <span>Angular</span>
+              <span class="meta-dot">&bull;</span>
+              <span>TypeScript</span>
+              <span class="meta-dot">&bull;</span>
+              <object><a href="https://github.com/edward15001/angular-showcase" target="_blank" rel="noopener"
+                  class="project-item__github" onclick="event.stopPropagation();">GitHub</a></object>
             </div>
           </div>
-        </article>
-
-        <!-- Card 2 — Angular Task Manager -->
-        <article class="project-card fade-in" id="project-2"
-          onclick="window.open('https://angular-showcase-six.vercel.app/login', '_blank')">
-          <div class="project-card__image">
+          <div class="project-item__image">
             <img src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager" />
           </div>
-          <div class="project-card__body">
-            <h3>Angular Task Manager</h3>
-            <p>Aplicación de gestión de tareas construida con Angular. Permite organizar tu agenda diaria con una
-              interfaz moderna y autenticación de usuario.</p>
-            <div class="project-card__tags">
-              <span class="tech-tag tech-tag--sm">Angular</span>
-              <span class="tech-tag tech-tag--sm">TypeScript</span>
-            </div>
-            <div class="project-card__links">
-              <a href="https://github.com/edward15001/angular-showcase" target="_blank" rel="noopener"
-                class="project-link" aria-label="Ver código fuente" onclick="event.stopPropagation();">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-                </svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </article>
+        </a>
 
       </div>
     </div>

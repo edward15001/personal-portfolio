@@ -1,4 +1,4 @@
-# 🖤 Personal Portfolio
+# Personal Portfolio
 
 Portfolio personal minimalista con tema oscuro, efecto glass-text estilo Apple y acento verde lima.
 
@@ -6,7 +6,7 @@ Portfolio personal minimalista con tema oscuro, efecto glass-text estilo Apple y
 ![CSS](https://img.shields.io/badge/CSS3-0a0a0a?style=flat&logo=css3&logoColor=2965f1)
 ![TypeScript](https://img.shields.io/badge/TypeScript-0a0a0a?style=flat&logo=typescript)
 
-## � Estructura
+## Estructura
 
 ```
 ├── public/                 # Archivos estáticos (servidos por Vercel)

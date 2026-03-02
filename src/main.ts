@@ -52,15 +52,15 @@
         });
     });
 
-    /* ——— Subtle parallax on hero title ——— */
-    const heroTitle = document.querySelector<HTMLElement>('.glass-text');
+    /* ——— Subtle parallax on hero content ——— */
+    const heroContent = document.querySelector<HTMLElement>('.hero__content');
 
     const handleParallax = (): void => {
-        if (!heroTitle) return;
+        if (!heroContent) return;
         const scrollY = window.scrollY;
         const offset = scrollY * 0.25;
-        heroTitle.style.transform = `translateY(${offset}px)`;
-        heroTitle.style.opacity = `${Math.max(1 - scrollY / 600, 0)}`;
+        heroContent.style.transform = `translateY(${offset}px)`;
+        heroContent.style.opacity = `${Math.max(1 - scrollY / 600, 0)}`;
     };
 
     window.addEventListener('scroll', handleParallax, { passive: true });
