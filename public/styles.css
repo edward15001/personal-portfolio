@@ -542,11 +542,27 @@ img {
   background: var(--accent);
   border-radius: 999px;
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  margin-bottom: var(--space-md);
 }
 
 .contact__btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 30px rgba(184, 255, 87, 0.25);
+  box-shadow: 0 8px 24px rgba(184, 255, 87, 0.25);
+}
+
+.contact__fallback {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+  user-select: all;
+  /* Allows easy copying */
+}
+
+.contact__fallback strong {
+  color: var(--text);
+  font-weight: 500;
+  user-select: all;
 }
 
 .contact__socials {
