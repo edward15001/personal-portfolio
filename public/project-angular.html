@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Detalle del proyecto Angular Task Manager" />
+    <title>Angular Task Manager | Edward Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ========== NAV ========== -->
+    <nav id="main-nav" class="nav">
+        <div class="nav__logo"><a href="index.html" style="color: inherit; text-decoration: none;">E<span
+                    class="accent">.</span></a></div>
+        <ul class="nav__links">
+            <li><a href="index.html#projects">Volver a Proyectos</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== PROJECT DETAIL ========== -->
+    <main class="section project-detail fade-in">
+        <div class="section__inner">
+            <a href="index.html#projects" class="project-detail__back">&larr; Volver</a>
+
+            <header class="project-detail__header">
+                <h1 class="project-detail__title">Angular Task Manager</h1>
+                <p class="project-detail__subtitle">Gestión de agenda y autenticación avanzada</p>
+            </header>
+
+            <div class="project-detail__content">
+                <img src="img/angular-showcase.jfif" alt="Angular Task Manager"
+                    style="width:100%; border-radius:var(--radius-md); border:1px solid var(--border); margin-bottom:var(--space-md); aspect-ratio:16/9; object-fit:cover;">
+
+                <h2>Descripción del Proyecto</h2>
+                <p>
+                    Este showcase de Angular fue diseñado no solo como una herramienta funcional para la organización
+                    diaria web,
+                    sino también como un lienzo técnico para demostrar competencia en el ecosistema
+                    <strong>Angular</strong> y <strong>TypeScript</strong>. Permite crear flujos de trabajo eficientes
+                    controlando estados complejos y gestión de usuarios.
+                </p>
+
+                <h2>Proceso Creativo y Desarrollo</h2>
+                <p>
+                    En este proyecto enfrenté el desafío de integrar una autenticación robusta manteniendo un diseño
+                    responsivo impecable.
+                    El proceso técnico implicó:
+                </p>
+                <ul>
+                    <li><strong>Manejo de estados</strong> a través de servicios inyectables (RxJS observables)
+                        garantizando tiempos de respuesta inmediatos.</li>
+                    <li><strong>Guards (canActivate) y JWT</strong>: Protección total de las rutas de usuario según su
+                        sesión.</li>
+                    <li><strong>Modularización</strong>: Arquitectura escalable y mantenible mediante la "Angular Way"
+                        utilizando Componentes y Módulos.</li>
+                </ul>
+
+                <h2>Identidad Visual y Colores (Pantone)</h2>
+                <p>
+                    Dado que se trataba de una herramienta orientada a la productividad corporativa, se decidió
+                    prescindir de colores eléctricos excesivos (excepto para los botones de acción primarios) optando
+                    por azules profundos característicos de la marca de Google (Angular).
+                </p>
+
+                <div class="color-palette">
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #DD0031;"></div>
+                        <span class="color-swatch__info">#DD0031</span>
+                        <span class="color-swatch__pantone">Pantone 186 C (Angular Red)</span>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #1a1a1a;"></div>
+                        <span class="color-swatch__info">#1A1A1A</span>
+                        <span class="color-swatch__pantone">Pantone Black 6 C</span>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #f7f7f7;"></div>
+                        <span class="color-swatch__info">#F7F7F7</span>
+                        <span class="color-swatch__pantone">Pantone Cool Gray 1 C</span>
+                    </div>
+                </div>
+
+                <h2>Enlaces</h2>
+                <p>
+                    <a href="https://angular-showcase-six.vercel.app/login" target="_blank" rel="noopener"
+                        class="contact__btn" style="margin-right: 1rem; margin-bottom: 0;">Ver Proyecto En Vivo
+                        &rarr;</a>
+                    <a href="https://github.com/edward15001/angular-showcase" target="_blank" rel="noopener"
+                        class="project-item__github">Código en GitHub</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Eduardo. Construido con código propio.
+        </p>
+    </footer>
+
+    <script src="dist/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Detalle del proyecto TFG - IA Ciberseguridad" />
+    <title>Ciberseguridad IA | Edward Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ========== NAV ========== -->
+    <nav id="main-nav" class="nav">
+        <div class="nav__logo"><a href="index.html" style="color: inherit; text-decoration: none;">E<span
+                    class="accent">.</span></a></div>
+        <ul class="nav__links">
+            <li><a href="index.html#projects">Volver a Proyectos</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== PROJECT DETAIL ========== -->
+    <main class="section project-detail fade-in">
+        <div class="section__inner">
+            <a href="index.html#projects" class="project-detail__back">&larr; Volver</a>
+
+            <header class="project-detail__header">
+                <h1 class="project-detail__title">Ciberseguridad IA (TFG)</h1>
+                <p class="project-detail__subtitle">Detección de Phishing en tiempo real</p>
+            </header>
+
+            <div class="project-detail__content">
+                <img src="img/cybersecurity_mockup.png" alt="Mockup Ciberseguridad"
+                    style="width:100%; border-radius:var(--radius-md); border:1px solid var(--border); margin-bottom:var(--space-md); aspect-ratio:16/9; object-fit:contain; background: var(--surface-2);">
+
+                <h2>El Problema y la Solución</h2>
+                <p>
+                    Los grupos corporativos de Telegram son a menudo blanco de ataques <em>Zero-day</em> de ingeniería
+                    social, spam invasivo y links de phishing.
+                    Este <strong>Trabajo de Fin de Grado</strong> soluciona el problema interceptando cada mensaje
+                    entrante en los grupos mediante un bot centinela y delegando su comprensión semántica a grandes
+                    modelos de lenguaje (LLMs como DeepSeek o OpenAI) para determinar si un mensaje es peligroso antes
+                    de que los empleados puedan interactuar con él.
+                </p>
+
+                <h2>Arquitectura en Raspberry Pi y Docker</h2>
+                <p>
+                    El núcleo del proyecto debía ser portátil y ejecutarse en entornos controlados por empresas.
+                    La solución completa fue orquestada sobre una <strong>Raspberry Pi 4</strong> (arquitectura ARM
+                    Cortex-A72).
+                </p>
+                <ul>
+                    <li><strong>Contenedorización Docker:</strong> Cada servicio (API del bot, base de datos MongoDB
+                        para registros de incidentes, y módulo de evaluación AI) está encapsulado en contenedores
+                        independientes.</li>
+                    <li><strong>Pipeline Asíncrono:</strong> Escrito íntegramente en Python utilizando
+                        <code>asyncio</code>, permitiendo a la Raspberry procesar cientos de mensajes por segundo sin
+                        encolar eventos bloqueantes.</li>
+                    <li><strong>MongoDB Local:</strong> Persistencia ultralígera de perfiles atacantes penalizados para
+                        construir un firewall temporal por <em>User ID</em>.</li>
+                </ul>
+
+                <h2>Identidad Visual y Colores (Pantone)</h2>
+                <p>
+                    La ausencia de una interfaz GUI de usuario final nos llevó a diseñar los esquemas de alerta
+                    (dashboard mockups y logs de consola) apoyados en la tensión visual del ciberespacio: el contraste
+                    puro del fósforo verde (terminales hacker) alertando sobre la nada (el vacío total del negro
+                    absoluto).
+                </p>
+
+                <div class="color-palette">
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #b8ff57;"></div>
+                        <span class="color-swatch__info">#B8FF57</span>
+                        <span class="color-swatch__pantone">Pantone 802 C (Hacker Green)</span>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #050505;"></div>
+                        <span class="color-swatch__info">#050505</span>
+                        <span class="color-swatch__pantone">Pantone Black 6 C (Void Black)</span>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #2F2F2F;"></div>
+                        <span class="color-swatch__info">#2F2F2F</span>
+                        <span class="color-swatch__pantone">Pantone 426 C (Terminal Gray)</span>
+                    </div>
+                </div>
+
+                <h2>Enlaces</h2>
+                <p>
+                    <a href="https://github.com/edward15001" target="_blank" rel="noopener" class="contact__btn"
+                        style="margin-right: 1rem; margin-bottom: 0;">Código en GitHub &rarr;</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Eduardo. Construido con código propio.
+        </p>
+    </footer>
+
+    <script src="dist/main.js"></script>
+</body>
+
+</html>

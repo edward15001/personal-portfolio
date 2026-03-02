@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Detalle del proyecto NutroVia - Plataforma web de nutrición y entrenamiento" />
+    <title>NutroVia | Edward Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ========== NAV ========== -->
+    <nav id="main-nav" class="nav">
+        <div class="nav__logo"><a href="index.html" style="color: inherit; text-decoration: none;">E<span
+                    class="accent">.</span></a></div>
+        <ul class="nav__links">
+            <li><a href="index.html#projects">Volver a Proyectos</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== PROJECT DETAIL ========== -->
+    <main class="section project-detail fade-in">
+        <div class="section__inner">
+            <a href="index.html#projects" class="project-detail__back">&larr; Volver</a>
+
+            <header class="project-detail__header">
+                <h1 class="project-detail__title">NutroVia</h1>
+                <p class="project-detail__subtitle">Plataforma integral de Nutrición y Entrenamiento</p>
+            </header>
+
+            <div class="project-detail__content">
+                <img src="img/nutrovia.jfif" alt="Vista previa de NutroVia"
+                    style="width:100%; border-radius:var(--radius-md); border:1px solid var(--border); margin-bottom:var(--space-md); aspect-ratio:16/9; object-fit:cover;">
+
+                <h2>Descripción del Proyecto</h2>
+                <p>
+                    NutroVia nació con la idea de democratizar el acceso a planes de salud personalizados.
+                    A diferencia de otras aplicaciones genéricas, este sistema analiza parámetros físicos
+                    del usuario para calcular macros exactos y generar rutinas adaptadas al nivel de experiencia,
+                    disponibilidad de material y objetivos específicos (volumen, definición, mantenimiento).
+                </p>
+
+                <h2>Proceso Creativo y Desarrollo</h2>
+                <p>
+                    El desarrollo comenzó definiendo la lógica del negocio en el backend mediante
+                    <strong>TypeScript</strong> y <strong>Express</strong>.
+                    Un reto importante fue el algoritmo de generación de dietas, que debía cuadrar alimentos de una base
+                    de datos
+                    nutricional con los requerimientos calóricos exactos de cada perfil, sin caer en la monotonía de
+                    recomendar siempre lo mismo.
+                </p>
+                <p>
+                    Para el frontend, se buscó una interfaz sumamente limpia que no agobiara al usuario con un exceso de
+                    datos numéricos.
+                    Se implementaron dashboards intuitivos donde la progresión visual es la protagonista.
+                </p>
+
+                <h2>Identidad Visual y Colores (Pantone)</h2>
+                <p>
+                    La paleta de colores de NutroVia está diseñada para inspirar vitalidad, salud y confianza, mezclando
+                    un verde
+                    "orgánico/tecnológico" con fondos muy oscuros para evitar la fatiga visual.
+                </p>
+
+                <div class="color-palette">
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #b8ff57;"></div>
+                        <span class="color-swatch__info">#B8FF57</span>
+                        <span class="color-swatch__pantone">Pantone 802 C (Aprox)</span>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #0a0a0a;"></div>
+                        <span class="color-swatch__info">#0A0A0A</span>
+                        <span class="color-swatch__pantone">Pantone Black 6 C</span>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="color-swatch__box" style="background-color: #1a1a1a;"></div>
+                        <span class="color-swatch__info">#1A1A1A</span>
+                        <span class="color-swatch__pantone">Pantone 426 C</span>
+                    </div>
+                </div>
+
+                <h2>Enlaces</h2>
+                <p>
+                    <a href="https://nutrovia.vercel.app/" target="_blank" rel="noopener" class="contact__btn"
+                        style="margin-right: 1rem; margin-bottom: 0;">Ver Proyecto En Vivo &rarr;</a>
+                    <a href="https://github.com/edward15001/nutrovia-web-app" target="_blank" rel="noopener"
+                        class="project-item__github">Código en GitHub</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Eduardo. Construido con código propio.
+        </p>
+    </footer>
+
+    <script src="dist/main.js"></script>
+</body>
+
+</html>
