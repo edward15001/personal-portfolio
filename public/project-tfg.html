@@ -19,9 +19,7 @@
     <nav id="main-nav" class="nav">
         <div class="nav__logo"><a href="index.html" style="color: inherit; text-decoration: none;">E<span
                     class="accent">.</span></a></div>
-        <ul class="nav__links">
-            <li><a href="index.html#projects">Volver a Proyectos</a></li>
-        </ul>
+
     </nav>
 
     <!-- ========== PROJECT DETAIL ========== -->
@@ -30,8 +28,8 @@
             <a href="index.html#projects" class="project-detail__back">&larr; Volver</a>
 
             <header class="project-detail__header">
-                <h1 class="project-detail__title">Ciberseguridad IA (TFG)</h1>
-                <p class="project-detail__subtitle">Detección de Phishing en tiempo real</p>
+                <h1 class="project-detail__title">Ciberseguridad Inteligente (TFG)</h1>
+                <p class="project-detail__subtitle">Detección de Phishing y Anomalías de Red en tiempo real</p>
             </header>
 
             <div class="project-detail__content">
@@ -40,56 +38,45 @@
 
                 <h2>El Problema y la Solución</h2>
                 <p>
-                    Los grupos corporativos de Telegram son a menudo blanco de ataques <em>Zero-day</em> de ingeniería
-                    social, spam invasivo y links de phishing.
-                    Este <strong>Trabajo de Fin de Grado</strong> soluciona el problema interceptando cada mensaje
-                    entrante en los grupos mediante un bot centinela y delegando su comprensión semántica a grandes
-                    modelos de lenguaje (LLMs como DeepSeek o OpenAI) para determinar si un mensaje es peligroso antes
-                    de que los empleados puedan interactuar con él.
+                    Las pequeñas y medianas empresas (PYMEs) utilizan Telegram para su comunicación interna,
+                    exponiéndose a vectores de ataque sin contar con presupuesto para soluciones corporativas costosas.
+
+                    Este Trabajo de Fin de Grado resuelve este problema mediante un sistema autónomo y de bajo coste.
+                    Actúa como un centinela dual: analiza el tráfico de red de la empresa y evalúa los mensajes
+                    entrantes en los grupos de Telegram mediante Inteligencia Artificial. De esta forma, intercepta y
+                    bloquea intentos de phishing, spam e ingeniería social antes de que los empleados puedan interactuar
+                    con ellos.
                 </p>
 
                 <h2>Arquitectura en Raspberry Pi y Docker</h2>
                 <p>
-                    El núcleo del proyecto debía ser portátil y ejecutarse en entornos controlados por empresas.
-                    La solución completa fue orquestada sobre una <strong>Raspberry Pi 4</strong> (arquitectura ARM
-                    Cortex-A72).
+                    El núcleo del proyecto debía ser portátil, privado y ejecutarse en entornos de bajos recursos. La
+                    solución completa está orquestada sobre una <strong>Raspberry Pi 5</strong>, encapsulando los
+                    servicios en contenedores Docker:
                 </p>
                 <ul>
-                    <li><strong>Contenedorización Docker:</strong> Cada servicio (API del bot, base de datos MongoDB
-                        para registros de incidentes, y módulo de evaluación AI) está encapsulado en contenedores
-                        independientes.</li>
-                    <li><strong>Pipeline Asíncrono:</strong> Escrito íntegramente en Python utilizando
-                        <code>asyncio</code>, permitiendo a la Raspberry procesar cientos de mensajes por segundo sin
-                        encolar eventos bloqueantes.</li>
-                    <li><strong>MongoDB Local:</strong> Persistencia ultralígera de perfiles atacantes penalizados para
-                        construir un firewall temporal por <em>User ID</em>.</li>
+                    <li><strong>IA Local (Ollama):</strong> Clasificación semántica de los mensajes mediante grandes
+                        modelos de lenguaje (LLMs) ejecutados de forma 100% local, garantizando que los datos sensibles
+                        de la empresa no salgan a servidores de terceros.</li>
+
+                    <li><strong>Monitorización de Red (Suricata):</strong> Sistema de Detección de Intrusos (IDS) que
+                        escanea el tráfico de la red corporativa en busca de anomalías y patrones de ataque.</li>
+
+                    <li><strong>Pipeline Asíncrono:</strong> Bot escrito en Python utilizando <em>asyncio</em>,
+                        permitiendo a la Raspberry procesar cientos de eventos de red y mensajes por segundo sin encolar
+                        procesos bloqueantes.</li>
+
+                    <li><strong>MongoDB Local:</strong> Persistencia ultraligera de amenazas detectadas y perfiles
+                        atacantes para generar estadísticas e informes automáticos.</li>
                 </ul>
 
-                <h2>Identidad Visual y Colores (Pantone)</h2>
+                <h2>El Reto Técnico</h2>
                 <p>
-                    La ausencia de una interfaz GUI de usuario final nos llevó a diseñar los esquemas de alerta
-                    (dashboard mockups y logs de consola) apoyados en la tensión visual del ciberespacio: el contraste
-                    puro del fósforo verde (terminales hacker) alertando sobre la nada (el vacío total del negro
-                    absoluto).
+                    El mayor desafío de esta arquitectura fue lograr un equilibrio perfecto entre el rendimiento del
+                    hardware (limitado a los recursos físicos de una Raspberry Pi 5) y la ejecución de modelos de
+                    Inteligencia Artificial locales junto con un analizador de red en tiempo real, ofreciendo protección
+                    empresarial a una fracción del coste tradicional.
                 </p>
-
-                <div class="color-palette">
-                    <div class="color-swatch">
-                        <div class="color-swatch__box" style="background-color: #b8ff57;"></div>
-                        <span class="color-swatch__info">#B8FF57</span>
-                        <span class="color-swatch__pantone">Pantone 802 C (Hacker Green)</span>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-swatch__box" style="background-color: #050505;"></div>
-                        <span class="color-swatch__info">#050505</span>
-                        <span class="color-swatch__pantone">Pantone Black 6 C (Void Black)</span>
-                    </div>
-                    <div class="color-swatch">
-                        <div class="color-swatch__box" style="background-color: #2F2F2F;"></div>
-                        <span class="color-swatch__info">#2F2F2F</span>
-                        <span class="color-swatch__pantone">Pantone 426 C (Terminal Gray)</span>
-                    </div>
-                </div>
 
                 <h2>Enlaces</h2>
                 <p>
