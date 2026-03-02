@@ -42,19 +42,59 @@
   <section id="about" class="section about">
     <div class="section__inner">
       <h2 class="section__title fade-in">Sobre mí<span class="accent">.</span></h2>
-      <div class="about__content fade-in">
-        <p>
-          Soy un desarrollador apasionado por construir software que resuelve problemas reales.
-          Me especializo en desarrollo web y me encanta trabajar con tecnologías modernas
-          para crear productos que sean funcionales, eficientes y visualmente atractivos.
-        </p>
-        <div class="about__techs">
-          <span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">SQL</span>
-          <span class="tech-tag">Git</span>
+      <div class="about__grid fade-in">
+        <div class="about__bio">
+          <p>
+            Me llamo Eduardo y soy desarrollador de software. Me apasiona crear productos digitales que
+            no solo funcionen, sino que ofrezcan una experiencia impecable. Desde aplicaciones web interactivas
+            hasta APIs robustas, disfruto enfrentándome a retos técnicos y encontrando soluciones elegantes.
+          </p>
+          <p>
+            Actualmente explorando el mundo de los datos y las arquitecturas de sistemas,
+            buscando cómo construir aplicaciones más robustas, escalables y orientadas a la información.
+          </p>
+        </div>
+        <div class="about__highlights">
+          <div class="highlight-card">
+            <span class="highlight-card__number">2+</span>
+            <span class="highlight-card__label">Proyectos en producción</span>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-card__number">5+</span>
+            <span class="highlight-card__label">Tecnologías dominadas</span>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-card__number">∞</span>
+            <span class="highlight-card__label">Ganas de aprender</span>
+          </div>
+        </div>
+      </div>
+      <div class="about__techs-section fade-in">
+        <div class="about__techs-group">
+          <span class="about__techs-label">Frontend</span>
+          <div class="about__techs">
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Angular</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">HTML / CSS</span>
+          </div>
+        </div>
+        <div class="about__techs-group">
+          <span class="about__techs-label">Backend</span>
+          <div class="about__techs">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">SQL</span>
+          </div>
+        </div>
+        <div class="about__techs-group">
+          <span class="about__techs-label">Herramientas</span>
+          <div class="about__techs">
+            <span class="tech-tag">Git</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Vercel</span>
+          </div>
         </div>
       </div>
     </div>
@@ -67,10 +107,10 @@
       <div class="projects__grid">
 
         <!-- Card 1 — NutroVia -->
-        <article class="project-card fade-in" id="project-1">
+        <article class="project-card fade-in" id="project-1"
+          onclick="window.open('https://nutrovia-web-app.vercel.app/', '_blank')">
           <div class="project-card__image">
-            <img src="img/nutrovia.jfif" alt="Vista previa de NutroVia"
-              style="width:100%;height:100%;object-fit:cover;" />
+            <img src="img/nutrovia.jfif" alt="Vista previa de NutroVia" />
           </div>
           <div class="project-card__body">
             <h3>NutroVia</h3>
@@ -81,29 +121,23 @@
               <span class="tech-tag tech-tag--sm">Express</span>
             </div>
             <div class="project-card__links">
-              <a href="#" class="project-link" aria-label="Ver código fuente">
+              <a href="https://github.com/edward15001/nutrovia-web-app" target="_blank" rel="noopener"
+                class="project-link" aria-label="Ver código fuente" onclick="event.stopPropagation();">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
                   <path
                     d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
                 </svg>
                 GitHub
               </a>
-              <a href="https://nutrovia-web-app.vercel.app/" target="_blank" rel="noopener" class="project-link"
-                aria-label="Ver demo en vivo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                </svg>
-                Demo
-              </a>
             </div>
           </div>
         </article>
 
         <!-- Card 2 — Angular Task Manager -->
-        <article class="project-card fade-in" id="project-2">
+        <article class="project-card fade-in" id="project-2"
+          onclick="window.open('https://angular-showcase-six.vercel.app/login', '_blank')">
           <div class="project-card__image">
-            <img src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager"
-              style="width:100%;height:100%;object-fit:cover;" />
+            <img src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager" />
           </div>
           <div class="project-card__body">
             <h3>Angular Task Manager</h3>
@@ -114,19 +148,13 @@
               <span class="tech-tag tech-tag--sm">TypeScript</span>
             </div>
             <div class="project-card__links">
-              <a href="#" class="project-link" aria-label="Ver código fuente">
+              <a href="https://github.com/edward15001/angular-showcase" target="_blank" rel="noopener"
+                class="project-link" aria-label="Ver código fuente" onclick="event.stopPropagation();">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
                   <path
                     d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
                 </svg>
                 GitHub
-              </a>
-              <a href="https://angular-showcase-six.vercel.app/login" target="_blank" rel="noopener"
-                class="project-link" aria-label="Ver demo en vivo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                </svg>
-                Demo
               </a>
             </div>
           </div>
@@ -144,7 +172,7 @@
         ¿Tienes un proyecto en mente o simplemente quieres saludar?<br />
         No dudes en escribirme.
       </p>
-      <a href="mailto:hello@edward.dev" class="contact__btn fade-in" id="contact-btn">
+      <a href="mailto:edward.15.holanda@gmail.com" class="contact__btn fade-in" id="contact-btn">
         Enviar un email &rarr;
       </a>
       <div class="contact__socials fade-in">
