@@ -25,7 +25,9 @@ start index.html
 
 # Opción B — con servidor local:
 npx -y http-server . -p 8080
-# Abre http://localhost:8080
+# 
+
+Abre http://localhost:8080
 ```
 
 ## 📁 Estructura
