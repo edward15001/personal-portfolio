@@ -470,6 +470,26 @@ img {
   transform: scale(1.04);
 }
 
+.project-item__image--placeholder {
+  position: relative;
+  background: radial-gradient(circle at center, rgba(184, 255, 87, 0.15) 0%, var(--surface-2) 70%);
+}
+
+.placeholder-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(184, 255, 87, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 255, 87, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  transition: transform 0.6s var(--ease);
+}
+
+.project-item:hover .placeholder-pattern {
+  transform: scale(1.04);
+}
+
 .project-item:first-child {
   border-top: 1px solid var(--border);
 }
