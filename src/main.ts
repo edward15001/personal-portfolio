@@ -31,9 +31,9 @@
     const handleNavScroll = (): void => {
         if (!nav) return;
         if (window.scrollY > 60) {
-            nav.style.background = 'rgba(10, 10, 10, 0.85)';
+            nav.style.borderBottomColor = 'var(--accent)';
         } else {
-            nav.style.background = 'rgba(10, 10, 10, 0.55)';
+            nav.style.borderBottomColor = 'var(--border)';
         }
     };
 
