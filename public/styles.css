@@ -811,6 +811,14 @@ img {
   margin-bottom: var(--space-sm);
 }
 
+.project-detail__content ul {
+  padding-left: var(--space-lg);
+}
+
+.project-detail__content li {
+  margin-bottom: var(--space-xs);
+}
+
 /* Color Palette Display */
 .color-palette {
   display: flex;
