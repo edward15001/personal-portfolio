@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Detalle del proyecto - Buscaminas en Java" />
+    <title>Buscaminas Java | Edward Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ========== NAV ========== -->
+    <nav id="main-nav" class="nav">
+        <div class="nav__logo"><a href="index.html" style="color: inherit; text-decoration: none;">E<span
+                    class="accent">.</span></a></div>
+    </nav>
+
+    <!-- ========== PROJECT DETAIL ========== -->
+    <main class="section project-detail fade-in">
+        <div class="section__inner">
+            <a href="index.html#projects" class="project-detail__back">&larr; Volver</a>
+
+            <header class="project-detail__header">
+                <h1 class="project-detail__title">Buscaminas Clásico</h1>
+                <p class="project-detail__subtitle">Implementación en Java con Interfaz Gráfica (Swing)</p>
+            </header>
+
+            <div class="project-detail__content">
+                <div class="project-item__image" style="margin-bottom: var(--space-md); aspect-ratio: 16/9;">
+                    <img src="" alt="Minesweeper Java Gameplay Placeholder"
+                        style="width:100%; height:100%; object-fit:cover;" class="project-item__image--placeholder" />
+                    <div class="placeholder-pattern"></div>
+                </div>
+
+                <h2>Sobre el Proyecto</h2>
+                <p>
+                    El clásico juego del Buscaminas desarrollado íntegramente en Java. Este proyecto
+                    sirve como una excelente demostración de programación orientada a objetos (POO), manejo de
+                    eventos e interfaces gráficas en Java.
+                </p>
+
+                <h2>Características Principales</h2>
+                <ul>
+                    <li><strong>Lógica de Juego:</strong> Generación aleatoria de minas y cálculo de números adyacentes.
+                    </li>
+                    <li><strong>Interfaz Gráfica (GUI):</strong> Construida con Java Swing, implementando un diseño de
+                        cuadrícula interactiva.</li>
+                    <li><strong>Recursividad:</strong> Algoritmo recursivo para descubrir múltiples casillas en blanco
+                        cuando el jugador hace clic en zonas seguras.</li>
+                    <li><strong>Estados de Juego:</strong> Gestión completa de partida ganada, perdida y reinicios.</li>
+                </ul>
+
+                <h2>Desarrollo y Aprendizaje</h2>
+                <p>
+                    La implementación de la lógica detrás del despeje de casillas (flood-fill) supuso un excelente caso
+                    de uso
+                    práctico para algoritmos recursivos y matrices bidimensionales. Además, separar la lógica pura (el
+                    modelo de datos)
+                    de la lógica visual (los paneles y botones de Swing) garantizó un código limpio, estructurado y
+                    fácil de mantener.
+                </p>
+
+                <h2>Enlaces</h2>
+                <p>
+                    <a href="https://github.com/edward15001" target="_blank" rel="noopener" class="contact__btn"
+                        style="margin-right: 1rem; margin-bottom: 0;">Código en GitHub &rarr;</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Eduardo. Construido con código propio.
+        </p>
+    </footer>
+
+    <script src="dist/main.js"></script>
+</body>
+
+</html>

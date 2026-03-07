@@ -286,8 +286,8 @@ img {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(204, 255, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(204, 255, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(204, 255, 0, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(204, 255, 0, 0.12) 1px, transparent 1px);
   background-size: 40px 40px;
   z-index: 1;
   pointer-events: none;
@@ -883,13 +883,36 @@ img {
     padding: var(--space-xl) var(--space-sm) var(--space-lg);
   }
 
-  .section {
-    padding: var(--space-lg) var(--space-sm);
+  .hero__title {
+    font-size: clamp(3rem, 15vw, 5rem);
+    letter-spacing: -2px;
   }
 
-  .hero__gradient-orb {
-    width: 500px;
-    height: 500px;
+  .hero__tech-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: none;
+    border-left: 2px solid var(--accent);
+    padding-left: var(--space-xs);
+    padding-bottom: 0;
+  }
+
+  .tech-corner.top-left {
+    top: 80px;
+    left: 15px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .tech-corner.bottom-right {
+    bottom: 30px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .section {
+    padding: var(--space-lg) var(--space-sm);
   }
 
   .about__grid {
@@ -909,9 +932,5 @@ img {
 @media (max-width: 480px) {
   .nav {
     padding: var(--space-xs) var(--space-sm);
-  }
-
-  .glass-text {
-    letter-spacing: -1.5px;
   }
 }
