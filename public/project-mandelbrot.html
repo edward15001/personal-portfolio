@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Detalle del proyecto - Renderizador Paralelo de Mandelbrot en Java" />
+    <title>Mandelbrot Java | Edward Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ========== NAV ========== -->
+    <nav id="main-nav" class="nav">
+        <div class="nav__logo"><a href="index.html" style="color: inherit; text-decoration: none;">E<span
+                    class="accent">.</span></a></div>
+    </nav>
+
+    <!-- ========== PROJECT DETAIL ========== -->
+    <main class="section project-detail fade-in">
+        <div class="section__inner">
+            <a href="index.html#projects" class="project-detail__back">&larr; Volver</a>
+
+            <header class="project-detail__header">
+                <h1 class="project-detail__title">Generador de Fractales</h1>
+                <p class="project-detail__subtitle">Renderizador paralelo y concurrente de Mandelbrot</p>
+            </header>
+
+            <div class="project-detail__content">
+                <img src="img/mandelbrot_forkjoin.png" alt="Mandelbrot Fractal Rendering"
+                    style="width:100%; border-radius:var(--radius-md); border:1px solid var(--border); margin-bottom:var(--space-md); aspect-ratio:16/9; object-fit:contain; background: var(--surface-2);">
+
+                <h2>Sobre el Proyecto</h2>
+                <p>
+                    Este proyecto consiste en un renderizador concurrente y paralelo del fractal de Mandelbrot
+                    desarrollado en Java.
+                    Fue creado como parte de un curso de Programación Concurrente y Paralela, con el objetivo principal
+                    de comparar
+                    diversas estrategias de paralelización en una carga de trabajo dependiente de la CPU.
+                </p>
+
+                <h2>Características Principales</h2>
+                <ul>
+                    <li><strong>Alto Rendimiento Computacional:</strong> Optimizado para cargas de trabajo extensivas en
+                        CPU calculando funciones iterativas complejas.</li>
+                    <li><strong>Paralelismo:</strong> Implementación de diferentes modelos de ejecución concurrente,
+                        destacando arquitecturas multinúcleo.</li>
+                    <li><strong>Benchmarking:</strong> Útil como herramienta de prueba ("benchmark") para analizar la
+                        escalabilidad, dado que el Conjunto de Mandelbrot es un problema "vergonzosamente paralelo"
+                        (embarrassingly parallel), donde el valor de cada píxel puede calcularse de manera
+                        independiente.</li>
+                </ul>
+
+                <h2>Desarrollo y Aprendizaje</h2>
+                <p>
+                    Este desarrollo permitió profundizar en el modelo de hilos de Java, el framework Fork/Join y los
+                    flujos paralelos (`parallel streams`).
+                    Al visualizar el costo de sincronización frente a la ganancia por ejecución paralela, el
+                    renderizador funcionó como un laboratorio
+                    excelente para observar empíricamente la Ley de Amdahl y entender cómo aprovechar el hardware
+                    moderno.
+                </p>
+
+                <h2>Enlaces</h2>
+                <p>
+                    <a href="https://github.com/edward15001/parallel-mandelbrot-java" target="_blank" rel="noopener"
+                        class="contact__btn" style="margin-right: 1rem; margin-bottom: 0;">Código en GitHub &rarr;</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy;
+            <script>document.write(new Date().getFullYear())</script> Eduardo. Construido con código propio.
+        </p>
+    </footer>
+
+    <script src="dist/main.js"></script>
+</body>
+
+</html>
