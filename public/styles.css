@@ -10,8 +10,9 @@
   --border: #333333;
   --text: #ffffff;
   --text-dim: #a0a0a0;
-  --accent: #ccff00;
-  --accent-dim: rgba(204, 255, 0, 0.12);
+  --accent: #eaff00;
+  /* Ultra-vibrant neon lime */
+  --accent-dim: rgba(234, 255, 0, 0.15);
   --error: #ff3333;
 
   /* Typography */
@@ -527,25 +528,26 @@ img {
 .project-item__image::after {
   content: '';
   position: absolute;
-  width: 16px;
-  height: 16px;
-  border: 2px solid var(--accent);
+  width: 20px;
+  height: 20px;
   z-index: 3;
   pointer-events: none;
+  border: 0px solid var(--accent);
+  /* Reset */
 }
 
 .project-item__image::before {
   top: 0;
   left: 0;
-  border-right: none;
-  border-bottom: none;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
 }
 
 .project-item__image::after {
   bottom: 0;
   right: 0;
-  border-left: none;
-  border-top: none;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
 }
 
 .project-item__image img {
@@ -666,15 +668,20 @@ img {
 
 .project-item__github {
   color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
   text-decoration: underline;
   text-decoration-color: var(--border);
-  text-underline-offset: 4px;
-  transition: color 0.3s var(--ease), text-decoration-color 0.3s var(--ease);
+  text-underline-offset: 6px;
+  transition: color 0.3s var(--ease), text-decoration-color 0.3s var(--ease), transform 0.3s var(--ease);
+  display: inline-block;
 }
 
 .project-item__github:hover {
   color: var(--accent);
   text-decoration-color: var(--accent);
+  transform: translateX(4px);
 }
 
 /* ============================================================
@@ -695,22 +702,26 @@ img {
 
 .contact__btn {
   display: inline-block;
-  padding: 1rem 2.4rem;
+  padding: 1.1rem 2.8rem;
   font-family: var(--font-mono);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--bg);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #000000 !important;
+  /* Force black for ultimate contrast */
   background: var(--accent);
   border: 1px solid var(--accent);
   text-transform: uppercase;
   letter-spacing: 2px;
-  transition: transform 0.3s var(--ease), background 0.3s var(--ease);
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
   margin-bottom: var(--space-md);
+  box-shadow: 4px 4px 0px rgba(204, 255, 0, 0.2);
 }
 
 .contact__btn:hover {
   background: transparent;
-  color: var(--accent);
+  color: var(--accent) !important;
+  box-shadow: 0px 0px 0px transparent;
+  transform: translate(2px, 2px);
 }
 
 .contact__fallback {
