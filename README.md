@@ -1,6 +1,7 @@
 # Personal Portfolio
 
-Portfolio personal con diseño brutalista, estética cyberpunk y temática técnica de alto contraste (inspirado en la interfaz tipo consola/juego clásico como *Marathon*). Accesible desde https://www.eduardo-projects.es/
+Portfolio personal con diseño brutalista, estética cyberpunk y temática técnica de alto contraste (inspirado en la interfaz tipo consola/juego clásico como *Marathon*). Accesible desde [aqui]([https://www.url-ejemplo.com](https://www.eduardo-projects.es/))
+
 
 ![HTML](https://img.shields.io/badge/HTML5-0a0a0a?style=flat&logo=html5)
 ![CSS](https://img.shields.io/badge/CSS3-0a0a0a?style=flat&logo=css3&logoColor=2965f1)
