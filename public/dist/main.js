@@ -26,6 +26,201 @@
     };
     const observer = new IntersectionObserver(onIntersect, observerOptions);
     fadeElements.forEach((el) => observer.observe(el));
+    /* ——— Split effect words (.tw--lift / .tw--dissolve) into letters ———
+       Each letter gets a transition-delay so the stagger reads left to right.
+       Runs with or without GSAP (the effects are pure CSS). */
+    const splitLetters = (el) => {
+        const text = el.textContent ?? '';
+        el.textContent = '';
+        [...text].forEach((ch) => {
+            if (ch === ' ') {
+                el.appendChild(document.createTextNode(' '));
+            }
+            else {
+                const s = document.createElement('span');
+                s.className = 'l';
+                s.textContent = ch;
+                el.appendChild(s);
+            }
+        });
+    };
+    document
+        .querySelectorAll('.tw--lift, .tw--dissolve, .tw--magnetic, .tw--glitch, .tw--weight, .tw--wave, .tw--tilt')
+        .forEach((el) => {
+        splitLetters(el);
+        /* Elevation keeps a left-to-right stagger; the cursor-driven
+           effects must respond without per-letter delay. */
+        if (el.classList.contains('tw--lift')) {
+            el.querySelectorAll('.l').forEach((l, i) => {
+                l.style.transitionDelay = `${i * 22}ms`;
+            });
+        }
+    });
+    /* ——— Cursor-driven letter effects ———
+       On mousemove, each letter's intensity is mapped from its distance to the
+       pointer (smoothstep falloff, horizontal distance dominant). Each effect
+       translates that intensity differently: dissolve (fade/drift/blur),
+       magnetic (pull toward the cursor), glitch (RGB split + jitter), weight
+       (variable font weight) and tilt (3D rotation). The wave effect instead
+       ripples outward from the cursor entry point. */
+    const initCursorEffects = () => {
+        const modes = ['dissolve', 'magnetic', 'glitch', 'weight', 'wave', 'tilt', 'liquid'];
+        const selector = modes.map((m) => `.tw--${m}`).join(', ');
+        const liquidFilter = document.getElementById('liquid');
+        const turbulence = liquidFilter?.querySelector('feTurbulence') ?? null;
+        const displacement = liquidFilter?.querySelector('feDisplacementMap') ?? null;
+        document.querySelectorAll(selector).forEach((word) => {
+            const mode = (modes.find((m) => word.classList.contains(`tw--${m}`)) ?? 'dissolve');
+            const fontPx = parseFloat(getComputedStyle(word).fontSize) || 32;
+            const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7ee08f';
+            /* ——— Liquid: word-level SVG displacement (no letter split needed) ———
+               The word always carries filter: url(#liquid); on hover the JS
+               eases the displacement scale up (with per-frame noise jitter =
+               "bubbling") and back down to 0 on exit. */
+            if (mode === 'liquid') {
+                if (!turbulence || !displacement)
+                    return;
+                const liquidRadius = fontPx * 3;
+                let currentScale = 0;
+                let targetScale = 0;
+                let liquidRaf = 0;
+                const tick = (time) => {
+                    currentScale += (targetScale - currentScale) * 0.1;
+                    if (Math.abs(currentScale) < 0.05 && Math.abs(targetScale) < 0.05) {
+                        displacement.setAttribute('scale', '0');
+                        liquidRaf = 0;
+                        return;
+                    }
+                    if (currentScale > 0.4) {
+                        /* bubbling: shift the noise pattern every frame */
+                        turbulence.setAttribute('baseFrequency', `${(0.012 + Math.random() * 0.012).toFixed(4)} ${(0.02 + Math.random() * 0.02).toFixed(4)}`);
+                    }
+                    const osc = 1 + Math.sin(time / 260) * 0.18;
+                    displacement.setAttribute('scale', String(Math.max(0, currentScale * osc)));
+                    liquidRaf = requestAnimationFrame(tick);
+                };
+                const setIntensity = (int) => {
+                    targetScale = int * 16;
+                    if (!liquidRaf)
+                        liquidRaf = requestAnimationFrame(tick);
+                };
+                word.addEventListener('mousemove', (e) => {
+                    const rect = word.getBoundingClientRect();
+                    const cx = e.clientX - (rect.left + rect.width / 2);
+                    const cy = e.clientY - (rect.top + rect.height / 2);
+                    const dist = Math.sqrt(cx * cx + cy * cy * 0.5);
+                    const t = Math.max(0, 1 - dist / liquidRadius);
+                    setIntensity(t * t * (3 - 2 * t));
+                });
+                word.addEventListener('mouseleave', () => setIntensity(0));
+                return;
+            }
+            const letters = Array.from(word.querySelectorAll('.l'));
+            if (letters.length === 0)
+                return;
+            const radius = fontPx * 2.6;
+            const apply = (clientX, clientY) => {
+                const rect = word.getBoundingClientRect();
+                const cx = clientX - rect.left;
+                const cy = clientY - rect.top;
+                for (const l of letters) {
+                    const lr = l.getBoundingClientRect();
+                    const lx = lr.left + lr.width / 2 - rect.left;
+                    const ly = lr.top + lr.height / 2 - rect.top;
+                    const dx = cx - lx;
+                    const dy = cy - ly;
+                    const dist = Math.sqrt(dx * dx + dy * dy * 0.5);
+                    const t = Math.max(0, 1 - dist / radius);
+                    const int = t * t * (3 - 2 * t); // smoothstep falloff
+                    switch (mode) {
+                        case 'dissolve':
+                            l.style.opacity = String(1 - int);
+                            l.style.transform = `translateY(${int * 0.28}em) rotate(${int * 8}deg)`;
+                            l.style.filter = `blur(${int * 3}px)`;
+                            break;
+                        case 'magnetic': {
+                            const pull = int * fontPx * 0.18;
+                            const nx = dist === 0 ? 0 : dx / dist;
+                            const ny = dist === 0 ? 0 : dy / dist;
+                            l.style.transform = `translate(${nx * pull}px, ${ny * pull}px)`;
+                            break;
+                        }
+                        case 'glitch': {
+                            const split = int * 4;
+                            l.style.textShadow =
+                                split > 0.3
+                                    ? `${split}px 0 rgba(255, 60, 90, 0.85), ${-split}px 0 rgba(0, 230, 255, 0.85)`
+                                    : '';
+                            l.style.transform =
+                                int > 0.5
+                                    ? `translate(${(Math.random() - 0.5) * 2}px, ${(Math.random() - 0.5) * 2}px)`
+                                    : '';
+                            break;
+                        }
+                        case 'weight':
+                            l.style.fontWeight = String(Math.round(300 + int * 400));
+                            break;
+                        case 'tilt': {
+                            const rx = Math.max(-28, Math.min(28, (cy - ly) * 0.35 * (0.4 + int)));
+                            const ry = Math.max(-28, Math.min(28, (cx - lx) * 0.35 * (0.4 + int)));
+                            l.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                            break;
+                        }
+                        case 'wave':
+                            break; // handled on enter/leave below
+                    }
+                }
+            };
+            const reset = () => {
+                for (const l of letters) {
+                    l.style.opacity = '';
+                    l.style.transform = '';
+                    l.style.filter = '';
+                    l.style.textShadow = '';
+                    l.style.fontWeight = '';
+                }
+            };
+            if (mode === 'wave') {
+                let entryIdx = 0;
+                word.addEventListener('mouseenter', (e) => {
+                    const rect = word.getBoundingClientRect();
+                    const ex = e.clientX - rect.left;
+                    let best = Infinity;
+                    letters.forEach((l, i) => {
+                        const lr = l.getBoundingClientRect();
+                        const c = lr.left + lr.width / 2 - rect.left;
+                        const d = Math.abs(c - ex);
+                        if (d < best) {
+                            best = d;
+                            entryIdx = i;
+                        }
+                    });
+                    letters.forEach((l, i) => {
+                        l.style.transitionDelay = `${Math.abs(i - entryIdx) * 45}ms`;
+                        l.style.transform = 'translateY(-0.3em)';
+                        l.style.color = accent;
+                    });
+                });
+                word.addEventListener('mouseleave', () => {
+                    letters.forEach((l, i) => {
+                        l.style.transitionDelay = `${Math.abs(i - entryIdx) * 45}ms`;
+                        l.style.transform = '';
+                        l.style.color = '';
+                    });
+                    window.setTimeout(() => {
+                        letters.forEach((l) => {
+                            l.style.transitionDelay = '';
+                        });
+                    }, 700);
+                });
+            }
+            else {
+                word.addEventListener('mousemove', (e) => apply(e.clientX, e.clientY));
+                word.addEventListener('mouseleave', reset);
+            }
+        });
+    };
+    initCursorEffects();
     /* ——— GSAP experience (homepage only) ——— */
     const gsap = win.gsap;
     const ScrollTrigger = win.ScrollTrigger;
@@ -33,10 +228,17 @@
         gsap.registerPlugin(ScrollTrigger);
         /* ——— Lenis smooth scroll ——— */
         if (typeof win.Lenis !== 'undefined') {
-            lenis = new win.Lenis({ lerp: 0.12, smoothWheel: true });
+            /* Duration-based smoothing: starts moving on the first wheel tick
+               (no startup lag) and keeps a natural momentum, independent of
+               frame rate. Native scroll-behavior is kept at `auto` in CSS so
+               the two smoothing engines don't fight each other. */
+            lenis = new win.Lenis({
+                duration: 1.15,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+            });
             lenis.on('scroll', ScrollTrigger.update);
             gsap.ticker.add((time) => lenis.raf(time * 1000));
-            gsap.ticker.lagSmoothing(0);
         }
         /* ——— Smooth scroll for anchor links (through Lenis when available) ——— */
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -79,13 +281,12 @@
                 nav.classList.toggle('nav--scrolled', self.scroll() > 60);
             },
         });
-        /* ——— Hero intro timeline ——— */
-        const heroLetters = gsap.utils.toArray('.hero__letter');
+        /* ——— Hero intro timeline (the title itself is a cursor-driven
+           magnetic word handled by initCursorEffects) ——— */
         const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
         heroTl
             .from('.hero__tech-meta', { y: 24, opacity: 0, duration: 0.8 }, 0.1)
             .from('.hero__greeting', { y: 24, opacity: 0, duration: 0.7 }, 0.25)
-            .from(heroLetters, { yPercent: 120, opacity: 0, duration: 1.1, stagger: 0.07 }, 0.35)
             .from('.hero__tagline', { y: 24, opacity: 0, duration: 0.8 }, 0.95)
             .from('.hero__sub', { y: 24, opacity: 0, duration: 0.8 }, 1.05)
             .from('.hero__cta', { y: 24, opacity: 0, duration: 0.8 }, 1.15)
@@ -129,93 +330,59 @@
                 scrollTrigger: { trigger: title, start: 'top 85%' },
             });
         });
-        /* ——— Animated counters ——— */
-        gsap.utils.toArray('.counter').forEach((el) => {
-            const end = Number(el.dataset.count ?? 0);
-            const obj = { v: 0 };
-            gsap.to(obj, {
-                v: end,
-                duration: 1.6,
-                ease: 'power2.out',
-                onUpdate: () => {
-                    el.textContent = String(Math.round(obj.v));
+        /* ——— About story: one phrase at a time (pinned narrative) ———
+           Each phrase fades in from below while the previous one fades out
+           above, so scrolling reads as a sequence instead of a static list. */
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const story = document.querySelector('.about__story');
+        const phrases = story ? gsap.utils.toArray('.about__phrase') : [];
+        if (story && phrases.length > 1 && !prefersReducedMotion) {
+            const storyTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: story,
+                    start: 'top top',
+                    end: `+=${(phrases.length - 1) * 75}%`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1,
                 },
-                scrollTrigger: { trigger: el, start: 'top 85%', once: true },
             });
-        });
-        /* ——— Project showcase: pinned full-screen sections, varied per item ———
-           scrub: 1 smooths the pin animation so sections reveal progressively
-           instead of snapping; direction/scale alternate so no two projects
-           animate the same way. */
-        gsap.utils.toArray('.showcase-item').forEach((item, i) => {
-            const even = i % 2 === 1;
-            const content = item.querySelector('.showcase-item__content');
-            const media = item.querySelector('.showcase-item__media');
-            const num = item.querySelector('.showcase-item__num');
-            const img = media?.querySelector('img') ?? null;
-            const parts = [
-                item.querySelector('.showcase-item__title'),
-                item.querySelector('.showcase-item__desc'),
-                item.querySelector('.showcase-item__meta'),
-                item.querySelector('.showcase-item__link'),
-            ].filter((el) => el !== null);
-            if (content) {
-                gsap.fromTo(content, { xPercent: even ? 8 : -8, opacity: 0 }, {
-                    xPercent: 0,
-                    opacity: 1,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top top',
-                        end: '+=120%',
-                        scrub: 1,
-                        pin: true,
-                        anticipatePin: 1,
-                    },
-                });
-            }
-            if (parts.length > 0) {
-                gsap.fromTo(parts, { yPercent: 44, opacity: 0 }, {
-                    yPercent: 0,
-                    opacity: 1,
-                    stagger: 0.14,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top top',
-                        end: '+=95%',
-                        scrub: 1,
-                    },
-                });
-            }
-            if (img) {
-                gsap.fromTo(img, { scale: even ? 1.22 : 1.12, xPercent: even ? 4 : -4 }, {
-                    scale: 1,
-                    xPercent: 0,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: 1,
-                    },
-                });
-            }
-            if (num) {
-                gsap.fromTo(num, { opacity: 0.08, xPercent: even ? 14 : -14 }, {
-                    opacity: 0.9,
-                    xPercent: 0,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 95%',
-                        end: 'top top',
-                        scrub: 1,
-                    },
-                });
-            }
-        });
+            phrases.slice(1).forEach((ph, i) => {
+                const prev = phrases[i];
+                const pos = i; // one timeline unit per phrase swap
+                storyTl
+                    .set(ph, { visibility: 'visible' }, pos + 0.05)
+                    .to(prev, { opacity: 0, yPercent: -25, duration: 0.45 }, pos)
+                    .fromTo(ph, { opacity: 0, yPercent: 25 }, { opacity: 1, yPercent: 0, duration: 0.45 }, pos + 0.15);
+            });
+        }
+        /* ——— Stacked project cards (GSAP pin, like lunchbox.io) ———
+           The .stack-pin gets pinned while each card slides up from below
+           (yPercent 100 → 0) covering the previous one, like a deck being
+           revealed. Cards only become absolutely positioned when GSAP is
+           available; otherwise they stay in a normal vertical flow. */
+        const pinWrap = document.querySelector('.stack-pin');
+        const stackCards = pinWrap ? gsap.utils.toArray('.stack-card') : [];
+        if (pinWrap && stackCards.length > 1 && !prefersReducedMotion) {
+            gsap.set(pinWrap, { height: '100vh' });
+            gsap.set(stackCards, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', margin: 0 });
+            gsap.set(stackCards.slice(1), { yPercent: 100 });
+            const stackTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: pinWrap,
+                    start: 'top top',
+                    end: `+=${(stackCards.length - 1) * 80}%`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1,
+                },
+            });
+            stackCards.slice(1).forEach((card, i) => {
+                stackTl.fromTo(card, { yPercent: 100 }, { yPercent: 0, ease: 'none', duration: 1 }, i);
+            });
+        }
         /* ——— Refresh trigger positions once media has loaded ——— */
+        window.addEventListener('load', () => ScrollTrigger.refresh());
         window.addEventListener('load', () => ScrollTrigger.refresh());
     }
     else {

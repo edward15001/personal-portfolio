@@ -52,8 +52,10 @@
   box-sizing: border-box;
 }
 
+/* Smooth scrolling is handled by Lenis (JS), so native scroll-behavior stays
+   auto — otherwise the two smoothing engines fight and scrolling feels laggy. */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -109,7 +111,7 @@ img {
   display: inline-block;
 }
 
-/* Split-title words: hover interaction on section titles */
+/* Split-title words: hover interactions on section titles */
 .tw {
   display: inline-block;
   position: relative;
@@ -117,35 +119,39 @@ img {
   transition: color 0.3s var(--ease);
 }
 
-.tw::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0.04em;
-  width: 100%;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.45s var(--ease);
-}
-
 .tw:hover {
   color: var(--accent);
-}
-
-.tw:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
 }
 
 .tw--accent {
   color: var(--accent);
 }
 
-.tw--accent:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+/* Effect "elevación": each letter jumps up with a progressive stagger on
+   hover (letters are split into .l spans by main.ts). */
+.tw--lift .l {
+  display: inline-block;
+  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+.tw--lift:hover .l {
+  transform: translateY(-0.22em);
+  color: var(--accent);
+}
+
+/* Effect "disolución": cursor-driven. main.ts tracks the pointer and sets
+   intensity (opacity / drift / blur) per letter based on distance from the
+   cursor, so the dissolve travels with it instead of firing on the whole
+   word at once. */
+.tw--dissolve .l {
+  display: inline-block;
+  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease), filter 0.16s var(--ease);
+}
+
+/* Words inside the about-story phrases re-enable pointer events so the
+   letter effects work there (the phrase container itself is inert). */
+.about__phrase .tw {
+  pointer-events: auto;
 }
 
 /* Progressive enhancement: elements hidden only when JS is present.
@@ -314,16 +320,54 @@ img {
   margin-bottom: var(--space-sm);
 }
 
-.hero__mask {
+/* Cursor-driven letter effects — letters are split into .l spans by main.ts
+   (magnetic = hero name, glitch = projects title, weight/wave = about title,
+   tilt = projects title). */
+.tw--magnetic .l,
+.tw--glitch .l,
+.tw--weight .l,
+.tw--wave .l,
+.tw--tilt .l {
   display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  padding-bottom: 0.08em;
 }
 
-.hero__letter {
-  display: inline-block;
-  will-change: transform, opacity;
+.tw--magnetic .l {
+  transition: transform 0.2s var(--ease);
+}
+
+.tw--glitch .l {
+  transition: text-shadow 0.1s linear, transform 0.1s linear;
+}
+
+.tw--weight .l {
+  transition: font-weight 0.2s var(--ease);
+}
+
+.tw--wave .l {
+  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+.tw--tilt .l {
+  transition: transform 0.2s var(--ease);
+}
+
+/* Liquid: word-level SVG displacement (feTurbulence + feDisplacementMap).
+   The filter is always applied; main.ts eases the displacement scale up on
+   hover (with per-frame noise jitter = "bubbling") and back to 0 on exit. */
+.tw--liquid {
+  filter: url(#liquid);
+}
+
+/* Words with letter effects never break inside the word (no orphan letters) */
+.tw--lift,
+.tw--dissolve,
+.tw--magnetic,
+.tw--glitch,
+.tw--weight,
+.tw--wave,
+.tw--tilt,
+.tw--liquid {
+  white-space: nowrap;
 }
 
 .hero__tagline {
@@ -579,160 +623,71 @@ img {
   max-width: 14em;
 }
 
-.about__grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: var(--space-lg);
-  align-items: start;
-}
-
-.about__bio p {
-  font-size: 1.08rem;
-  color: var(--text-dim);
-  line-height: 1.85;
-  max-width: 580px;
-}
-
-.about__bio p+p {
-  margin-top: var(--space-sm);
-}
-
-.about__highlights {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.highlight-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: var(--space-sm) var(--space-md);
+/* Story: one phrase at a time, narrative sequence while scrolling */
+.about__story {
+  position: relative;
+  min-height: 72vh;
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
-  font-family: var(--font-mono);
 }
 
-.highlight-card:hover {
-  border-color: var(--accent);
-  background: var(--accent-dim);
-  transform: translateX(6px);
-}
-
-.highlight-card__number {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -1px;
-  min-width: 56px;
-  font-variant-numeric: tabular-nums;
-}
-
-.highlight-card__label {
-  font-size: 0.88rem;
-  color: var(--text-dim);
-  line-height: 1.4;
-}
-
-/* How I work */
-.about__how {
-  margin-top: var(--space-xl);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-sm);
-}
-
-.about__how-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: var(--space-md);
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
-}
-
-.about__how-card:hover {
-  border-color: var(--accent);
-  background: var(--accent-dim);
-  transform: translateY(-4px);
-}
-
-.about__how-num {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 1px;
-}
-
-.about__how-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  margin-top: var(--space-xs);
-}
-
-.about__how-desc {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  line-height: 1.65;
-  margin-top: var(--space-xs);
-}
-
-/* Tech tags */
-.about__techs-section {
-  margin-top: var(--space-xl);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xl) var(--space-lg);
-}
-
-.about__techs-group {
+.about__phrase {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 920px;
+  pointer-events: none;
 }
 
-.about__techs-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--text-dim);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+/* No-JS / pre-animation fallback: only the first phrase is visible */
+.about__phrase:not(:first-child) {
+  opacity: 0;
+  visibility: hidden;
 }
 
-.about__techs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
+/* Giant outline number, fills the space behind each phrase */
+.about__phrase-num {
+  position: absolute;
+  top: 50%;
+  left: -0.04em;
+  transform: translateY(-50%);
+  font-size: clamp(9rem, 26vw, 22rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -6px;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  opacity: 0.6;
+  user-select: none;
 }
 
-.tech-tag {
-  display: inline-block;
-  padding: 0.35rem 0.9rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+.about__phrase-line {
+  font-size: clamp(2rem, 5vw, 5rem);
   font-weight: 700;
-  color: var(--accent);
-  background: transparent;
-  border: 1px solid var(--border);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease);
+  letter-spacing: -2px;
+  line-height: 1.15;
+  max-width: 18ch;
 }
 
-.tech-tag:hover {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
+.about__phrase-sub {
+  margin-top: var(--space-md);
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 60ch;
 }
 
 /* ============================================================
    PROJECTS SHOWCASE
    ============================================================ */
+/* Note: no overflow hidden here — it would break both CSS sticky and the
+   fixed positioning GSAP uses for its pins. */
 .showcase {
   background: var(--bg-alt);
   padding: var(--space-2xl) 0 0;
-  overflow: hidden;
 }
 
 .showcase__intro {
@@ -757,83 +712,99 @@ img {
   text-transform: uppercase;
 }
 
-.showcase__list {
+/* Stacked project cards: GSAP pins the .stack-pin while each card slides up
+   from below over the previous one (z-index grows, newest always on top),
+   like a deck of cards being revealed. Without JS / reduced motion the cards
+   fall back to a normal vertical flow, each filling a viewport. */
+.stack {
   position: relative;
 }
 
-.showcase-item {
+.stack-pin {
   position: relative;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
+  height: auto;
+}
+
+.stack-card {
+  position: relative;
+  height: 100vh;
+  display: flex;
   align-items: center;
-  padding: var(--space-2xl) var(--space-md);
-  overflow: hidden;
+  justify-content: center;
+  padding: 3.5vh 3vw;
+  box-sizing: border-box;
 }
 
-.showcase-item__num {
-  position: absolute;
-  top: 50%;
-  left: 4%;
-  transform: translateY(-50%);
-  font-size: clamp(12rem, 30vw, 24rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--border);
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-}
+.stack-pin .stack-card:nth-child(1) { z-index: 1; }
+.stack-pin .stack-card:nth-child(2) { z-index: 2; }
+.stack-pin .stack-card:nth-child(3) { z-index: 3; }
+.stack-pin .stack-card:nth-child(4) { z-index: 4; }
+.stack-pin .stack-card:nth-child(5) { z-index: 5; }
+.stack-pin .stack-card:nth-child(6) { z-index: 6; }
 
-.showcase-item__content {
+.stack-card__inner {
   position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 18px 18px 0 rgba(0, 0, 0, 0.45);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+}
+
+.stack-card__num {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
   z-index: 2;
-  max-width: 520px;
-  justify-self: end;
-  padding-right: var(--space-lg);
-  will-change: transform, opacity;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 2px;
 }
 
-.showcase-item:nth-child(even) .showcase-item__content {
-  justify-self: start;
-  padding-right: 0;
-  padding-left: var(--space-lg);
-  grid-column: 2;
-  grid-row: 1;
+.stack-card__media {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+  display: block;
 }
 
-.showcase-item:nth-child(even) .showcase-item__media {
-  grid-column: 1;
-  grid-row: 1;
+.stack-card__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-sm);
 }
 
-.showcase-item__title {
-  font-size: clamp(2.4rem, 6vw, 4.6rem);
+.stack-card__title {
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
   font-weight: 800;
   letter-spacing: -2px;
   line-height: 1;
   text-transform: uppercase;
-  margin-bottom: var(--space-md);
 }
 
-.showcase-item__desc {
-  font-size: 1.05rem;
+.stack-card__desc {
+  font-size: 1rem;
   color: var(--text-dim);
-  line-height: 1.75;
-  margin-bottom: var(--space-md);
+  line-height: 1.7;
 }
 
-.showcase-item__meta {
+.stack-card__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: var(--space-lg);
+  gap: 0.5rem;
 }
 
-.showcase-item__meta span {
+.stack-card__meta span {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
@@ -844,7 +815,7 @@ img {
   letter-spacing: 1px;
 }
 
-.showcase-item__link {
+.stack-card__link {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -856,43 +827,18 @@ img {
   letter-spacing: 1.5px;
   padding-bottom: 0.3rem;
   border-bottom: 2px solid var(--accent);
+  margin-top: var(--space-xs);
   transition: color 0.3s var(--ease), gap 0.3s var(--ease);
 }
 
-.showcase-item__link span {
+.stack-card__link span {
   color: var(--accent);
   transition: transform 0.3s var(--ease);
 }
 
-.showcase-item__link:hover {
+.stack-card__link:hover {
   color: var(--accent);
   gap: 0.9rem;
-}
-
-.showcase-item__media {
-  position: relative;
-  z-index: 1;
-  aspect-ratio: 16 / 10;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  background: var(--surface-2);
-  box-shadow: 24px 24px 0 rgba(0, 0, 0, 0.35);
-}
-
-.showcase-item__media::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  box-shadow: inset 0 0 0 1px var(--accent-dim);
-}
-
-.showcase-item__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  will-change: transform;
 }
 
 /* ============================================================
@@ -1300,44 +1246,22 @@ body.modal-open {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
-  .showcase-item {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    padding: var(--space-2xl) var(--space-sm);
+  .stack-card {
+    padding: 2.5vh 3vw;
   }
 
-  .showcase-item__content,
-  .showcase-item:nth-child(even) .showcase-item__content {
-    justify-self: start;
-    padding: 0;
-    grid-column: 1;
-    grid-row: auto;
-    max-width: none;
-  }
-
-  .showcase-item:nth-child(even) .showcase-item__media {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .showcase-item__num {
-    font-size: clamp(9rem, 34vw, 14rem);
-    left: 2%;
-  }
-
-  .about__grid {
+  .stack-card__inner {
     grid-template-columns: 1fr;
   }
 
-  .about__highlights {
-    flex-direction: row;
-    flex-wrap: wrap;
+  .stack-card__media {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
   }
 
-  .highlight-card {
-    flex: 1 1 140px;
+  .stack-card__body {
+    padding: var(--space-md);
   }
-
 }
 
 @media (max-width: 768px) {
@@ -1395,10 +1319,6 @@ body.modal-open {
   .showcase__intro {
     padding-bottom: var(--space-xl);
   }
-
-  .about__how {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1421,5 +1341,17 @@ body.modal-open {
 
   html {
     scroll-behavior: auto;
+  }
+
+  /* Story phrases stack as a static list instead of the pinned sequence */
+  .about__story {
+    min-height: 0;
+    display: block;
+  }
+
+  .about__phrase {
+    position: static;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }

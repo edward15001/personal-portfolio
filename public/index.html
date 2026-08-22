@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300..700&display=swap"
     rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
@@ -46,11 +46,7 @@
       </div>
       <p class="hero__greeting">HOLA, SOY</p>
       <h1 class="hero__title" aria-label="EDUARDO">
-        <span class="hero__mask">
-          <span class="hero__letter">E</span><span class="hero__letter">D</span><span class="hero__letter">U</span><span
-            class="hero__letter">A</span><span class="hero__letter">R</span><span class="hero__letter">D</span><span
-            class="hero__letter">O</span>
-        </span>
+        <span class="tw tw--magnetic">EDUARDO</span>
       </h1>
       <p class="hero__tagline">DESARROLLADOR DE SOFTWARE<span class="accent hero__cursor">_</span></p>
       <p class="hero__sub">CREO EXPERIENCIAS DIGITALES LIMPIAS, RÁPIDAS Y CON ATENCIÓN AL DETALLE.</p>
@@ -100,97 +96,35 @@
       <div class="about__head">
         <p class="kicker reveal">01 — Sobre mí</p>
         <h2 class="about__title split-title">
-          <span class="tw">Construyo</span> <span class="tw tw--accent">productos</span> <span class="tw">que</span>
-          <span class="tw">importan</span><span class="tw tw--accent">.</span>
+          <span class="tw tw--weight">Construyo</span> <span class="tw tw--accent tw--dissolve">productos</span> <span class="tw">que</span>
+          <span class="tw tw--wave">importan</span><span class="tw tw--accent">.</span>
         </h2>
       </div>
-      <div class="about__grid">
-        <div class="about__bio reveal">
-          <p>
-            Me llamo Eduardo y soy <span class="tw">desarrollador de software</span>. Me gusta crear
-            productos digitales que no solo funcionen, sino que ofrezcan una experiencia impecable:
-            rápidos, limpios y con atención al detalle.
-          </p>
-          <p>
-            Trabajo de forma integral: desde la primera línea de código hasta tener el producto en
-            producción. Me gusta entender el problema completo, elegir bien la arquitectura y cuidar
-            tanto el <span class="tw">backend</span> como el <span class="tw">frontend</span> y los
-            detalles de la <span class="tw tw--accent">experiencia</span>.
-          </p>
-          <p>
-            He construido proyectos muy distintos entre sí — ciberseguridad con IA multi-plataforma,
-            plataformas web de nutrición, renderizado de fractales con programación concurrente o
-            gestores de tareas — y de cada uno he aprendido algo nuevo: integrar modelos de lenguaje
-            en productos reales, desplegar en la nube o hacer que una interfaz se sienta fluida.
-          </p>
+      <div class="about__story" id="about-story">
+        <div class="about__phrase about__phrase--active">
+          <span class="about__phrase-num" aria-hidden="true">01</span>
+          <p class="about__phrase-line">Soy <span class="tw tw--lift">desarrollador</span> <span class="tw tw--lift">de</span> <span class="tw tw--lift">software</span><span class="accent">.</span></p>
+          <p class="about__phrase-sub">Me gusta crear productos digitales que ofrezcan una experiencia impecable: rápidos, limpios y con atención al detalle.</p>
         </div>
-        <div class="about__highlights">
-          <div class="highlight-card reveal">
-            <span class="highlight-card__number"><span class="counter" data-count="2">0</span>+</span>
-            <span class="highlight-card__label">Proyectos en producción</span>
-          </div>
-          <div class="highlight-card reveal">
-            <span class="highlight-card__number"><span class="counter" data-count="5">0</span>+</span>
-            <span class="highlight-card__label">Tecnologías dominadas</span>
-          </div>
-          <div class="highlight-card reveal">
-            <span class="highlight-card__number">&infin;</span>
-            <span class="highlight-card__label">Ganas de aprender</span>
-          </div>
+        <div class="about__phrase">
+          <span class="about__phrase-num" aria-hidden="true">02</span>
+          <p class="about__phrase-line">Trabajo de forma integral<span class="accent">.</span></p>
+          <p class="about__phrase-sub">Desde la primera línea de código hasta tener el producto en producción.</p>
         </div>
-      </div>
-      <div class="about__how reveal">
-        <div class="about__how-card">
-          <span class="about__how-num">01</span>
-          <h3 class="about__how-title">De la idea al despliegue</h3>
-          <p class="about__how-desc">Diseño, desarrollo y puesta en producción. Producto completo, no solo código.</p>
+        <div class="about__phrase">
+          <span class="about__phrase-num" aria-hidden="true">03</span>
+          <p class="about__phrase-line">Cuido el <span class="tw tw--lift">backend</span>, el <span class="tw tw--lift">frontend</span> y los detalles de la <span class="tw tw--accent tw--dissolve">experiencia</span><span class="accent">.</span></p>
+          <p class="about__phrase-sub">Cada pieza importa: estructura, rendimiento y cómo se siente usarla.</p>
         </div>
-        <div class="about__how-card">
-          <span class="about__how-num">02</span>
-          <h3 class="about__how-title">Código limpio y mantenible</h3>
-          <p class="about__how-desc">Calidad, tests y arquitectura pensada para crecer sin romperse.</p>
+        <div class="about__phrase">
+          <span class="about__phrase-num" aria-hidden="true">04</span>
+          <p class="about__phrase-line">Integro IA, datos y arquitecturas robustas<span class="accent">.</span></p>
+          <p class="about__phrase-sub">Modelos de lenguaje y sistemas escalables funcionando en productos reales.</p>
         </div>
-        <div class="about__how-card">
-          <span class="about__how-num">03</span>
-          <h3 class="about__how-title">Backend + IA + datos</h3>
-          <p class="about__how-desc">APIs robustas y modelos de lenguaje integrados en productos reales.</p>
-        </div>
-      </div>
-      <div class="about__techs-section reveal">
-        <div class="about__techs-group">
-          <span class="about__techs-label">Frontend</span>
-          <div class="about__techs">
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Angular</span>
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">HTML / CSS</span>
-          </div>
-        </div>
-        <div class="about__techs-group">
-          <span class="about__techs-label">Backend</span>
-          <div class="about__techs">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Express</span>
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">SQL</span>
-          </div>
-        </div>
-        <div class="about__techs-group">
-          <span class="about__techs-label">IA &amp; Datos</span>
-          <div class="about__techs">
-            <span class="tech-tag">LLMs</span>
-            <span class="tech-tag">Groq</span>
-            <span class="tech-tag">MongoDB</span>
-            <span class="tech-tag">Threat Intel</span>
-          </div>
-        </div>
-        <div class="about__techs-group">
-          <span class="about__techs-label">Herramientas</span>
-          <div class="about__techs">
-            <span class="tech-tag">Git</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">Vercel</span>
-          </div>
+        <div class="about__phrase">
+          <span class="about__phrase-num" aria-hidden="true">05</span>
+          <p class="about__phrase-line">He construido proyectos muy <span class="tw tw--tilt">distintos</span><span class="accent">.</span></p>
+          <p class="about__phrase-sub">Ciberseguridad con IA multi-plataforma, plataformas web de nutrición, fractales concurrentes y más.</p>
         </div>
       </div>
     </div>
@@ -201,110 +135,111 @@
     <div class="showcase__intro section__inner">
       <p class="kicker reveal">02 — Proyectos</p>
       <h2 class="showcase__intro-title split-title">
-        <span class="tw">Trabajos</span> <span class="tw">que</span> <span class="tw tw--accent">hablan</span>
+        <span class="tw tw--glitch">Trabajos</span> <span class="tw">que</span> <span class="tw">hablan</span>
         <span class="tw">por</span> <span class="tw">sí</span> <span class="tw">solos</span><span class="tw tw--accent">.</span>
       </h2>
       <p class="showcase__hint reveal">Sigue haciendo scroll para recorrerlos</p>
     </div>
 
-    <div class="showcase__list">
+    <div class="stack">
+      <div class="stack-pin">
 
       <!-- Project 01 — SafeGram -->
-      <article class="showcase-item">
-        <div class="showcase-item__num">01</div>
-        <div class="showcase-item__content">
-          <h3 class="showcase-item__title">SafeGram</h3>
-          <p class="showcase-item__desc">
-            Sistema de ciberseguridad multi-plataforma que detecta phishing, spam e ingeniería social
-            en Telegram, WhatsApp y Slack, combinando IA, heurísticas y feeds de inteligencia de amenazas,
-            con dashboard web multi-bot.
-          </p>
-          <div class="showcase-item__meta">
-            <span>Python</span><span>Vercel</span><span>MongoDB</span><span>IA</span><span>Multi-plataforma</span>
+      <article class="stack-card">
+          <div class="stack-card__inner">
+            <span class="stack-card__num">01</span>
+            <img class="stack-card__media" src="img/safegram-mockup-1.png" alt="Mockup de SafeGram" />
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">SafeGram</h3>
+              <p class="stack-card__desc">
+                Sistema de ciberseguridad multi-plataforma que detecta phishing, spam e ingeniería social
+                en Telegram, WhatsApp y Slack, combinando IA, heurísticas y feeds de inteligencia de amenazas,
+                con dashboard web multi-bot.
+              </p>
+              <div class="stack-card__meta">
+                <span>Python</span><span>Vercel</span><span>MongoDB</span><span>IA</span><span>Multi-plataforma</span>
+              </div>
+              <a href="project-safegram.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
+            </div>
           </div>
-          <a href="project-safegram.html" class="showcase-item__link">Ver proyecto <span>&nearr;</span></a>
-        </div>
-        <div class="showcase-item__media">
-          <img src="img/safegram-mockup-1.png" alt="Mockup de SafeGram" />
-        </div>
       </article>
 
       <!-- Project 02 — NutroVia -->
-      <article class="showcase-item">
-        <div class="showcase-item__num">02</div>
-        <div class="showcase-item__content">
-          <h3 class="showcase-item__title">NutroVia</h3>
-          <p class="showcase-item__desc">
-            Plataforma web de nutrición y entrenamiento personalizado. Genera planes nutricionales semanales,
-            rutinas de entrenamiento y macros adaptados a cada usuario.
-          </p>
-          <div class="showcase-item__meta">
-            <span>TypeScript</span><span>Express</span><span>SQL</span>
+      <article class="stack-card">
+          <div class="stack-card__inner">
+            <span class="stack-card__num">02</span>
+            <img class="stack-card__media" src="img/nutrovia.jfif" alt="Vista previa de NutroVia" />
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">NutroVia</h3>
+              <p class="stack-card__desc">
+                Plataforma web de nutrición y entrenamiento personalizado. Genera planes nutricionales semanales,
+                rutinas de entrenamiento y macros adaptados a cada usuario.
+              </p>
+              <div class="stack-card__meta">
+                <span>TypeScript</span><span>Express</span><span>SQL</span>
+              </div>
+              <a href="project-nutrovia.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
+            </div>
           </div>
-          <a href="project-nutrovia.html" class="showcase-item__link">Ver proyecto <span>&nearr;</span></a>
-        </div>
-        <div class="showcase-item__media">
-          <img src="img/nutrovia.jfif" alt="Vista previa de NutroVia" />
-        </div>
       </article>
 
       <!-- Project 03 — Angular Task Manager -->
-      <article class="showcase-item">
-        <div class="showcase-item__num">03</div>
-        <div class="showcase-item__content">
-          <h3 class="showcase-item__title">Angular Task Manager</h3>
-          <p class="showcase-item__desc">
-            Aplicación de gestión de tareas con interfaz moderna y autenticación de usuario completa,
-            para organizar tu agenda diaria.
-          </p>
-          <div class="showcase-item__meta">
-            <span>Angular</span><span>TypeScript</span>
+      <article class="stack-card">
+          <div class="stack-card__inner">
+            <span class="stack-card__num">03</span>
+            <img class="stack-card__media" src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager" />
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">Angular Task Manager</h3>
+              <p class="stack-card__desc">
+                Aplicación de gestión de tareas con interfaz moderna y autenticación de usuario completa,
+                para organizar tu agenda diaria.
+              </p>
+              <div class="stack-card__meta">
+                <span>Angular</span><span>TypeScript</span>
+              </div>
+              <a href="project-angular.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
+            </div>
           </div>
-          <a href="project-angular.html" class="showcase-item__link">Ver proyecto <span>&nearr;</span></a>
-        </div>
-        <div class="showcase-item__media">
-          <img src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager" />
-        </div>
       </article>
 
       <!-- Project 04 — Mandelbrot -->
-      <article class="showcase-item">
-        <div class="showcase-item__num">04</div>
-        <div class="showcase-item__content">
-          <h3 class="showcase-item__title">Generador Mandelbrot</h3>
-          <p class="showcase-item__desc">
-            Renderizador del fractal de Mandelbrot que compara estrategias de programación concurrente
-            y paralela frente a una carga intensiva de CPU.
-          </p>
-          <div class="showcase-item__meta">
-            <span>Java</span><span>Concurrency</span><span>Fork/Join</span>
+      <article class="stack-card">
+          <div class="stack-card__inner">
+            <span class="stack-card__num">04</span>
+            <img class="stack-card__media" src="img/mandelbrot_forkjoin.png" alt="Render del fractal de Mandelbrot" />
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">Generador Mandelbrot</h3>
+              <p class="stack-card__desc">
+                Renderizador del fractal de Mandelbrot que compara estrategias de programación concurrente
+                y paralela frente a una carga intensiva de CPU.
+              </p>
+              <div class="stack-card__meta">
+                <span>Java</span><span>Concurrency</span><span>Fork/Join</span>
+              </div>
+              <a href="project-mandelbrot.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
+            </div>
           </div>
-          <a href="project-mandelbrot.html" class="showcase-item__link">Ver proyecto <span>&nearr;</span></a>
-        </div>
-        <div class="showcase-item__media">
-          <img src="img/mandelbrot_forkjoin.png" alt="Render del fractal de Mandelbrot" />
-        </div>
       </article>
 
       <!-- Project 05 — Minesweeper -->
-      <article class="showcase-item">
-        <div class="showcase-item__num">05</div>
-        <div class="showcase-item__content">
-          <h3 class="showcase-item__title">Buscaminas Java</h3>
-          <p class="showcase-item__desc">
-            El clásico Buscaminas desarrollado en Java, con interfaz gráfica interactiva
-            y algoritmos recursivos clásicos.
-          </p>
-          <div class="showcase-item__meta">
-            <span>Java</span><span>POO</span>
+      <article class="stack-card">
+          <div class="stack-card__inner">
+            <span class="stack-card__num">05</span>
+            <img class="stack-card__media" src="img/minesweeper-mockup.png" alt="Mockup de Buscaminas Java" />
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">Buscaminas Java</h3>
+              <p class="stack-card__desc">
+                El clásico Buscaminas desarrollado en Java, con interfaz gráfica interactiva
+                y algoritmos recursivos clásicos.
+              </p>
+              <div class="stack-card__meta">
+                <span>Java</span><span>POO</span>
+              </div>
+              <a href="project-minesweeper.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
+            </div>
           </div>
-          <a href="project-minesweeper.html" class="showcase-item__link">Ver proyecto <span>&nearr;</span></a>
-        </div>
-        <div class="showcase-item__media">
-          <img src="img/minesweeper-mockup.png" alt="Mockup de Buscaminas Java" />
-        </div>
       </article>
-
+      </div>
     </div>
   </section>
 
@@ -312,7 +247,7 @@
   <section id="contact" class="section contact">
     <div class="section__inner">
       <p class="kicker reveal">03 — Contacto</p>
-      <h2 class="contact__title split-title"><span class="tw">¿Hablamos</span><span class="tw tw--accent">?</span></h2>
+      <h2 class="contact__title split-title"><span class="tw tw--accent tw--liquid">¿Hablamos</span><span class="tw tw--accent">?</span></h2>
       <p class="contact__text reveal">
         Tienes un proyecto en mente o simplemente quieres saludar.<br />
         No dudes en escribirme.
@@ -348,7 +283,7 @@
     <div class="modal__backdrop" data-modal-close></div>
     <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <button class="modal__close" type="button" data-modal-close aria-label="Cerrar">&times;</button>
-      <h3 class="modal__title" id="modal-title">Hablemos<span class="accent">.</span></h3>
+      <h3 class="modal__title" id="modal-title"><span class="tw tw--dissolve">Hablemos</span><span class="accent">.</span></h3>
       <p class="modal__sub">Cuéntame tu proyecto y te responderé en cuanto pueda.</p>
       <form id="contact-form" class="modal__form" novalidate>
         <input type="checkbox" name="botcheck" class="modal__honeypot" tabindex="-1" autocomplete="off"
@@ -376,6 +311,13 @@
     <p>&copy; 2026 Edward. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- SVG filter for the "liquid" text effect (feTurbulence + feDisplacementMap) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="liquid" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.03" numOctaves="2" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
   <script src="contact-config.js" defer></script>
   <script src="dist/main.js" defer></script>
 </body>
