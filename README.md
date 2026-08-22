@@ -49,14 +49,9 @@ Incluye un campo oculto honeypot anti-spam.
 
 ```text
 ├── public/                 # Archivos estáticos (servidos por Vercel)
-│   ├── index.html          # Página principal
+│   ├── index.html          # Página principal (todos los proyectos en la home)
 │   ├── contact-config.js   # Access key de Web3Forms (formulario de contacto)
-│   ├── project-nutrovia.html
-│   ├── project-angular.html
-│   ├── project-safegram.html
-│   ├── project-minesweeper.html
-│   ├── project-mandelbrot.html
-│   ├── styles.css          # Sistema de diseño (tokens, hero, showcase, modal)
+│   ├── styles.css          # Sistema de diseño (tokens, hero, proyectos, modal)
 │   ├── img/                # Imágenes de los proyectos y mockups generados
 │   └── dist/
 │       └── main.js         # JavaScript compilado

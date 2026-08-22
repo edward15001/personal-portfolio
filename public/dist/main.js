@@ -72,7 +72,11 @@
         document.querySelectorAll(selector).forEach((word) => {
             const mode = (modes.find((m) => word.classList.contains(`tw--${m}`)) ?? 'dissolve');
             const fontPx = parseFloat(getComputedStyle(word).fontSize) || 32;
-            const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7ee08f';
+            /* Accent for the wave effect: resolved from the word's own context
+               (--accent is overridden per project theme), so the color stays
+               inside the palette of the section it lives in. */
+            const wordComputed = getComputedStyle(word);
+            const accent = wordComputed.getPropertyValue('--accent').trim() || wordComputed.color || '#7ee08f';
             /* ——— Liquid: word-level SVG displacement (no letter split needed) ———
                The word always carries filter: url(#liquid); on hover the JS
                eases the displacement scale up (with per-frame noise jitter =
@@ -221,6 +225,143 @@
         });
     };
     initCursorEffects();
+    /* ——— Hero: "EDUARDO" as a particle constellation ———
+       The real text stays in the DOM (SEO / a11y) but is hidden while a canvas
+       renders the word as a cloud of dots that assembles on load (spring
+       physics from a scattered field), disperses under the cursor and
+       reassembles on exit. Pure canvas 2D — no extra dependencies. */
+    const initHeroParticles = () => {
+        const canvas = document.querySelector('.hero__particles');
+        const text = document.querySelector('.hero__title-text');
+        const hero = document.querySelector('.hero');
+        if (!canvas || !text || !hero)
+            return;
+        if (typeof canvas.getContext !== 'function')
+            return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+            return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx)
+            return;
+        const DPR = Math.min(window.devicePixelRatio || 1, 2);
+        const NEON = '#4ade80';
+        const FORCE = 3.4;
+        const SPRING = 0.085;
+        const DAMP = 0.8;
+        let particles = [];
+        let raf = 0;
+        let w = 0;
+        let h = 0;
+        let radius = 90; // cursor influence radius (px), scaled to the font size
+        const mouse = { x: -9999, y: -9999, inside: false };
+        const build = () => {
+            const h1 = text.parentElement;
+            if (!h1)
+                return;
+            const tr = text.getBoundingClientRect();
+            const hr = h1.getBoundingClientRect();
+            w = Math.max(10, tr.width);
+            h = Math.max(10, tr.height);
+            canvas.style.left = `${tr.left - hr.left}px`;
+            canvas.style.top = `${tr.top - hr.top}px`;
+            canvas.style.width = `${w}px`;
+            canvas.style.height = `${h}px`;
+            canvas.width = Math.round(w * DPR);
+            canvas.height = Math.round(h * DPR);
+            ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+            /* sample the word's glyphs on an offscreen canvas */
+            const cs = getComputedStyle(text);
+            const fs = parseFloat(cs.fontSize) || 96;
+            radius = Math.max(80, fs * 0.7);
+            const off = document.createElement('canvas');
+            off.width = Math.max(4, Math.ceil(w));
+            off.height = Math.max(4, Math.ceil(h));
+            const octx = off.getContext('2d');
+            if (!octx)
+                return;
+            octx.font = `${cs.fontWeight} ${fs}px ${cs.fontFamily}`;
+            octx.letterSpacing = cs.letterSpacing;
+            octx.textAlign = 'center';
+            octx.textBaseline = 'middle';
+            octx.fillStyle = '#fff';
+            octx.fillText(text.textContent ?? 'EDUARDO', off.width / 2, off.height / 2);
+            const data = octx.getImageData(0, 0, off.width, off.height).data;
+            const targets = [];
+            const gap = 6; // sampling stride — the bigger, the sparser the cloud
+            for (let y = 0; y < off.height; y += gap) {
+                for (let x = 0; x < off.width; x += gap) {
+                    if (data[(y * off.width + x) * 4 + 3] > 120)
+                        targets.push({ x, y });
+                }
+            }
+            particles = targets.map((t) => ({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                tx: t.x,
+                ty: t.y,
+                vx: 0,
+                vy: 0,
+                s: 1 + Math.random() * 1.7,
+                a: 0.3 + Math.random() * 0.7,
+                ph: Math.random() * Math.PI * 2,
+            }));
+            text.classList.add('hero__title-text--hidden');
+            canvas.classList.add('is-live');
+            canvas.setAttribute('data-particles', String(particles.length));
+            if (!raf)
+                raf = requestAnimationFrame(tick);
+        };
+        const tick = (now) => {
+            ctx.clearRect(0, 0, w, h);
+            for (const p of particles) {
+                /* spring toward the glyph target (assembly) */
+                p.vx += (p.tx - p.x) * SPRING;
+                p.vy += (p.ty - p.y) * SPRING;
+                /* cursor repulsion (dispersion) with distance falloff */
+                if (mouse.inside) {
+                    const dx = p.x - mouse.x;
+                    const dy = p.y - mouse.y;
+                    const d = Math.sqrt(dx * dx + dy * dy);
+                    if (d < radius && d > 0.01) {
+                        const f = (1 - d / radius) * FORCE;
+                        p.vx += (dx / d) * f;
+                        p.vy += (dy / d) * f;
+                    }
+                }
+                p.vx *= DAMP;
+                p.vy *= DAMP;
+                p.x += p.vx;
+                p.y += p.vy;
+                const tw = 1 + Math.sin(now / 320 + p.ph) * 0.25; // twinkle
+                ctx.globalAlpha = p.a;
+                ctx.fillStyle = NEON;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.s * tw, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            raf = requestAnimationFrame(tick);
+        };
+        hero.addEventListener('mousemove', (e) => {
+            const r = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - r.left;
+            mouse.y = e.clientY - r.top;
+            mouse.inside = true;
+        });
+        hero.addEventListener('mouseleave', () => {
+            mouse.inside = false;
+            mouse.x = -9999;
+            mouse.y = -9999;
+        });
+        /* Wait for the webfonts: sampling must use the real font metrics */
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(build);
+        }
+        else {
+            build();
+        }
+        window.addEventListener('resize', build);
+    };
+    initHeroParticles();
     /* ——— GSAP experience (homepage only) ——— */
     const gsap = win.gsap;
     const ScrollTrigger = win.ScrollTrigger;
@@ -281,16 +422,14 @@
                 nav.classList.toggle('nav--scrolled', self.scroll() > 60);
             },
         });
-        /* ——— Hero intro timeline (the title itself is a cursor-driven
-           magnetic word handled by initCursorEffects) ——— */
+        /* ——— Hero intro timeline (the title itself is drawn by the particle
+           constellation — initHeroParticles) ——— */
         const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
         heroTl
             .from('.hero__tech-meta', { y: 24, opacity: 0, duration: 0.8 }, 0.1)
             .from('.hero__greeting', { y: 24, opacity: 0, duration: 0.7 }, 0.25)
             .from('.hero__tagline', { y: 24, opacity: 0, duration: 0.8 }, 0.95)
-            .from('.hero__sub', { y: 24, opacity: 0, duration: 0.8 }, 1.05)
-            .from('.hero__cta', { y: 24, opacity: 0, duration: 0.8 }, 1.15)
-            .from('.hero__cue', { opacity: 0, duration: 0.6 }, 1.5);
+            .from('.hero__sub', { y: 24, opacity: 0, duration: 0.8 }, 1.05);
         /* ——— Hero parallax fade-out on scroll ——— */
         const heroContent = document.querySelector('.hero__content');
         if (heroContent) {
@@ -356,33 +495,7 @@
                     .fromTo(ph, { opacity: 0, yPercent: 25 }, { opacity: 1, yPercent: 0, duration: 0.45 }, pos + 0.15);
             });
         }
-        /* ——— Stacked project cards (GSAP pin, like lunchbox.io) ———
-           The .stack-pin gets pinned while each card slides up from below
-           (yPercent 100 → 0) covering the previous one, like a deck being
-           revealed. Cards only become absolutely positioned when GSAP is
-           available; otherwise they stay in a normal vertical flow. */
-        const pinWrap = document.querySelector('.stack-pin');
-        const stackCards = pinWrap ? gsap.utils.toArray('.stack-card') : [];
-        if (pinWrap && stackCards.length > 1 && !prefersReducedMotion) {
-            gsap.set(pinWrap, { height: '100vh' });
-            gsap.set(stackCards, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', margin: 0 });
-            gsap.set(stackCards.slice(1), { yPercent: 100 });
-            const stackTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: pinWrap,
-                    start: 'top top',
-                    end: `+=${(stackCards.length - 1) * 80}%`,
-                    scrub: 1,
-                    pin: true,
-                    anticipatePin: 1,
-                },
-            });
-            stackCards.slice(1).forEach((card, i) => {
-                stackTl.fromTo(card, { yPercent: 100 }, { yPercent: 0, ease: 'none', duration: 1 }, i);
-            });
-        }
         /* ——— Refresh trigger positions once media has loaded ——— */
-        window.addEventListener('load', () => ScrollTrigger.refresh());
         window.addEventListener('load', () => ScrollTrigger.refresh());
     }
     else {

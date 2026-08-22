@@ -46,15 +46,11 @@
       </div>
       <p class="hero__greeting">HOLA, SOY</p>
       <h1 class="hero__title" aria-label="EDUARDO">
-        <span class="tw tw--magnetic">EDUARDO</span>
+        <canvas class="hero__particles" aria-hidden="true"></canvas>
+        <span class="hero__title-text">EDUARDO</span>
       </h1>
-      <p class="hero__tagline">DESARROLLADOR DE SOFTWARE<span class="accent hero__cursor">_</span></p>
+      <p class="hero__tagline">DESARROLLADOR DE SOFTWARE</p>
       <p class="hero__sub">CREO EXPERIENCIAS DIGITALES LIMPIAS, RÁPIDAS Y CON ATENCIÓN AL DETALLE.</p>
-      <a href="#projects" class="hero__cta">[ VER PROYECTOS ]</a>
-    </div>
-    <div class="hero__cue" aria-hidden="true">
-      <span>SCROLL</span>
-      <div class="hero__cue-line"></div>
     </div>
     <div class="tech-corner top-left"></div>
     <div class="tech-corner bottom-right"></div>
@@ -138,116 +134,228 @@
         <span class="tw tw--glitch">Trabajos</span> <span class="tw">que</span> <span class="tw">hablan</span>
         <span class="tw">por</span> <span class="tw">sí</span> <span class="tw">solos</span><span class="tw tw--accent">.</span>
       </h2>
-      <p class="showcase__hint reveal">Sigue haciendo scroll para recorrerlos</p>
     </div>
 
-    <div class="stack">
-      <div class="stack-pin">
+    <div class="proj-list">
 
-      <!-- Project 01 — SafeGram -->
-      <article class="stack-card">
-          <div class="stack-card__inner">
-            <span class="stack-card__num">01</span>
-            <img class="stack-card__media" src="img/safegram-mockup-1.png" alt="Mockup de SafeGram" />
-            <div class="stack-card__body">
-              <h3 class="stack-card__title">SafeGram</h3>
-              <p class="stack-card__desc">
-                Sistema de ciberseguridad multi-plataforma que detecta phishing, spam e ingeniería social
-                en Telegram, WhatsApp y Slack, combinando IA, heurísticas y feeds de inteligencia de amenazas,
-                con dashboard web multi-bot.
-              </p>
-              <div class="stack-card__meta">
-                <span>Python</span><span>Vercel</span><span>MongoDB</span><span>IA</span><span>Multi-plataforma</span>
-              </div>
-              <a href="project-safegram.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
-            </div>
+      <!-- Project 01 — SafeGram · terminal -->
+      <article class="proj" id="proj-safegram" data-theme="safegram">
+        <div class="section__inner">
+          <header class="proj__head reveal">
+            <span class="proj__num">01 — Ciberseguridad</span>
+            <h3 class="proj__title tw tw--glitch">SafeGram</h3>
+            <p class="proj__sub">Sistema de ciberseguridad inteligente para Telegram, WhatsApp y Slack</p>
+          </header>
+
+          <div class="proj__grid">
+            <figure class="proj__media proj__media--wide reveal">
+              <img src="img/safegram-mockup-1.png" alt="Dashboard de SafeGram" loading="lazy" />
+            </figure>
+            <p class="proj__desc proj__w7 reveal">
+              SafeGram actúa como un <strong>vigilante silencioso</strong>: analiza cada mensaje en tiempo real
+              y frena phishing, spam e ingeniería social antes de que un empleado pueda interactuar con ellos.
+              Usa una triple capa de análisis: <strong>IA (LLM)</strong> para la clasificación semántica,
+              <strong>heurísticas deterministas</strong> como filtro rápido y <strong>feeds de inteligencia de
+              amenazas</strong> (URLhaus, PhishTank, Google Safe Browsing) como evidencia objetiva.
+            </p>
+            <ul class="proj__features proj__w5 reveal">
+              <li>Multi-plataforma: Telegram, WhatsApp y Slack</li>
+              <li>Dashboard web multi-bot con métricas en MongoDB</li>
+              <li>Alertas a administradores + modo silencioso</li>
+              <li>Serverless en Vercel o VPS con Docker Compose</li>
+              <li>Rate limiting, caché y fallback a heurísticas</li>
+            </ul>
+            <figure class="proj__media proj__w7 reveal">
+              <img src="img/safegram-mockup-2.png" alt="Detección de una amenaza en SafeGram" loading="lazy" />
+            </figure>
+            <figure class="proj__media proj__media--tall proj__w5 reveal">
+              <img src="img/safegram-mockup-3.png" alt="Métricas del dashboard de SafeGram" loading="lazy" />
+            </figure>
           </div>
+
+          <footer class="proj__foot reveal">
+            <div class="proj__stack">
+              <span>Python</span><span>Vercel</span><span>MongoDB</span><span>IA</span><span>Multi-plataforma</span>
+            </div>
+            <div class="proj__links">
+              <a class="proj__link-live" href="https://safe-gram.vercel.app/" target="_blank" rel="noopener">Ver en vivo &nearr;</a>
+              <a class="proj__link-gh" href="https://github.com/edward15001/SafeGram" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </footer>
+        </div>
       </article>
 
-      <!-- Project 02 — NutroVia -->
-      <article class="stack-card">
-          <div class="stack-card__inner">
-            <span class="stack-card__num">02</span>
-            <img class="stack-card__media" src="img/nutrovia.jfif" alt="Vista previa de NutroVia" />
-            <div class="stack-card__body">
-              <h3 class="stack-card__title">NutroVia</h3>
-              <p class="stack-card__desc">
-                Plataforma web de nutrición y entrenamiento personalizado. Genera planes nutricionales semanales,
-                rutinas de entrenamiento y macros adaptados a cada usuario.
-              </p>
-              <div class="stack-card__meta">
-                <span>TypeScript</span><span>Express</span><span>SQL</span>
-              </div>
-              <a href="project-nutrovia.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
-            </div>
+      <!-- Project 02 — NutroVia · cálido -->
+      <article class="proj" id="proj-nutrovia" data-theme="nutrovia">
+        <div class="section__inner">
+          <header class="proj__head reveal">
+            <span class="proj__num">02 — Salud &amp; Fitness</span>
+            <h3 class="proj__title tw tw--lift">NutroVia</h3>
+            <p class="proj__sub">Plataforma integral de nutrición y entrenamiento</p>
+          </header>
+
+          <div class="proj__grid">
+            <p class="proj__desc proj__w5 reveal">
+              NutroVia democratiza el acceso a planes de salud personalizados. Analiza los parámetros físicos
+              de cada usuario, calcula <strong>macronutrientes exactos</strong> y genera rutinas dinámicas
+              adaptadas a su nivel, material disponible y objetivos: volumen, definición o mantenimiento.
+            </p>
+            <figure class="proj__media proj__w7 reveal">
+              <img src="img/nutrovia.jfif" alt="Vista previa de NutroVia" loading="lazy" />
+            </figure>
+            <ul class="proj__features proj__w6 reveal">
+              <li>Análisis paramétrico de necesidades calóricas</li>
+              <li>Generación dinámica de rutinas y dietas</li>
+              <li>Dashboard de progresión centrado en el usuario</li>
+              <li>Pasarela de pago operativa (entorno real)</li>
+            </ul>
+            <p class="proj__quote proj__w6 reveal">
+              “Planes de salud basados en datos, no en genéricos.”
+            </p>
+            <figure class="proj__media proj__media--placeholder proj__w7 reveal" data-ph="nutrovia-rutinas.png"></figure>
+            <figure class="proj__media proj__media--placeholder proj__media--tall proj__w5 reveal" data-ph="nutrovia-dashboard.png"></figure>
           </div>
+
+          <footer class="proj__foot reveal">
+            <div class="proj__stack">
+              <span>TypeScript</span><span>Express</span><span>SQL</span>
+            </div>
+            <div class="proj__links">
+              <a class="proj__link-live" href="https://nutrovia.vercel.app/" target="_blank" rel="noopener">Ver en vivo &nearr;</a>
+              <a class="proj__link-gh" href="https://github.com/edward15001/nutrovia-web-app" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </footer>
+        </div>
       </article>
 
-      <!-- Project 03 — Angular Task Manager -->
-      <article class="stack-card">
-          <div class="stack-card__inner">
-            <span class="stack-card__num">03</span>
-            <img class="stack-card__media" src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager" />
-            <div class="stack-card__body">
-              <h3 class="stack-card__title">Angular Task Manager</h3>
-              <p class="stack-card__desc">
-                Aplicación de gestión de tareas con interfaz moderna y autenticación de usuario completa,
-                para organizar tu agenda diaria.
-              </p>
-              <div class="stack-card__meta">
-                <span>Angular</span><span>TypeScript</span>
-              </div>
-              <a href="project-angular.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
-            </div>
+      <!-- Project 03 — Angular Task Manager · productivo -->
+      <article class="proj" id="proj-angular" data-theme="angular">
+        <div class="section__inner">
+          <header class="proj__head reveal">
+            <span class="proj__num">03 — Productividad</span>
+            <h3 class="proj__title tw tw--weight">Angular Task Manager</h3>
+            <p class="proj__sub">Gestión de agenda y autenticación avanzada</p>
+          </header>
+
+          <div class="proj__grid">
+            <p class="proj__desc proj__w6 reveal">
+              Un showcase de Angular diseñado como herramienta funcional y como <strong>lienzo técnico</strong>:
+              flujos de trabajo eficientes, manejo de estados complejos y gestión de usuarios con una
+              autenticación robusta mantenida a lo largo de toda la sesión.
+            </p>
+            <figure class="proj__media proj__w6 reveal">
+              <img src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager" loading="lazy" />
+            </figure>
+            <ul class="proj__features proj__w5 reveal">
+              <li>Manejo de estados con RxJS observables</li>
+              <li>Guards (canActivate) y autenticación JWT</li>
+              <li>Modularización y arquitectura “Angular Way”</li>
+            </ul>
+            <p class="proj__quote proj__w5 reveal">
+              “Productividad corporativa: azules profundos, cero ruido.”
+            </p>
+            <figure class="proj__media proj__media--placeholder proj__w7 reveal" data-ph="angular-login.png"></figure>
+            <figure class="proj__media proj__media--placeholder proj__w5 reveal" data-ph="angular-tasks.png"></figure>
           </div>
+
+          <footer class="proj__foot reveal">
+            <div class="proj__stack">
+              <span>Angular</span><span>TypeScript</span>
+            </div>
+            <div class="proj__links">
+              <a class="proj__link-live" href="https://angular-showcase.es/login" target="_blank" rel="noopener">Ver en vivo &nearr;</a>
+              <a class="proj__link-gh" href="https://github.com/edward15001/angular-showcase" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </footer>
+        </div>
       </article>
 
-      <!-- Project 04 — Mandelbrot -->
-      <article class="stack-card">
-          <div class="stack-card__inner">
-            <span class="stack-card__num">04</span>
-            <img class="stack-card__media" src="img/mandelbrot_forkjoin.png" alt="Render del fractal de Mandelbrot" />
-            <div class="stack-card__body">
-              <h3 class="stack-card__title">Generador Mandelbrot</h3>
-              <p class="stack-card__desc">
-                Renderizador del fractal de Mandelbrot que compara estrategias de programación concurrente
-                y paralela frente a una carga intensiva de CPU.
-              </p>
-              <div class="stack-card__meta">
-                <span>Java</span><span>Concurrency</span><span>Fork/Join</span>
-              </div>
-              <a href="project-mandelbrot.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
-            </div>
+      <!-- Project 04 — Mandelbrot · computacional -->
+      <article class="proj" id="proj-mandelbrot" data-theme="mandelbrot">
+        <div class="section__inner">
+          <header class="proj__head reveal">
+            <span class="proj__num">04 — Concurrencia</span>
+            <h3 class="proj__title tw tw--tilt">Generador Mandelbrot</h3>
+            <p class="proj__sub">Renderizador paralelo y concurrente del fractal de Mandelbrot</p>
+          </header>
+
+          <div class="proj__grid">
+            <figure class="proj__media proj__w8 reveal">
+              <img src="img/mandelbrot_forkjoin.png" alt="Render del fractal de Mandelbrot" loading="lazy" />
+            </figure>
+            <p class="proj__desc proj__w4 reveal">
+              Compara estrategias de programación concurrente y paralela frente a una carga intensiva de CPU.
+              Un problema “vergonzosamente paralelo” convertido en <strong>laboratorio de benchmarking</strong>.
+            </p>
+            <ul class="proj__features proj__w5 reveal">
+              <li>Alto rendimiento computacional</li>
+              <li>Hilos, Fork/Join y parallel streams</li>
+              <li>Observación empírica de la Ley de Amdahl</li>
+            </ul>
+            <p class="proj__quote proj__w7 reveal">
+              “Visualizar el coste de la sincronización frente a la ganancia de ejecutar en paralelo.”
+            </p>
+            <figure class="proj__media proj__media--placeholder proj__w8 reveal" data-ph="mandelbrot-zoom.png"></figure>
           </div>
+
+          <footer class="proj__foot reveal">
+            <div class="proj__stack">
+              <span>Java</span><span>Concurrency</span><span>Fork/Join</span>
+            </div>
+            <div class="proj__links">
+              <a class="proj__link-gh" href="https://github.com/edward15001/parallel-mandelbrot-java" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </footer>
+        </div>
       </article>
 
-      <!-- Project 05 — Minesweeper -->
-      <article class="stack-card">
-          <div class="stack-card__inner">
-            <span class="stack-card__num">05</span>
-            <img class="stack-card__media" src="img/minesweeper-mockup.png" alt="Mockup de Buscaminas Java" />
-            <div class="stack-card__body">
-              <h3 class="stack-card__title">Buscaminas Java</h3>
-              <p class="stack-card__desc">
-                El clásico Buscaminas desarrollado en Java, con interfaz gráfica interactiva
-                y algoritmos recursivos clásicos.
-              </p>
-              <div class="stack-card__meta">
-                <span>Java</span><span>POO</span>
-              </div>
-              <a href="project-minesweeper.html" class="stack-card__link">Ver proyecto <span>&nearr;</span></a>
-            </div>
+      <!-- Project 05 — Buscaminas · lúdico -->
+      <article class="proj" id="proj-minesweeper" data-theme="minesweeper">
+        <div class="section__inner">
+          <header class="proj__head reveal">
+            <span class="proj__num">05 — Juegos</span>
+            <h3 class="proj__title tw tw--wave">Buscaminas Java</h3>
+            <p class="proj__sub">El clásico, con interfaz gráfica interactiva en Swing</p>
+          </header>
+
+          <div class="proj__grid">
+            <p class="proj__desc proj__w5 reveal">
+              El clásico Buscaminas desarrollado íntegramente en Java: una demostración de
+              <strong>programación orientada a objetos</strong>, manejo de eventos y diseño de interfaces
+              gráficas, con la lógica de juego separada de la capa visual.
+            </p>
+            <figure class="proj__media proj__w7 reveal">
+              <img src="img/minesweeper-mockup.png" alt="Partida de Buscaminas Java" loading="lazy" />
+            </figure>
+            <figure class="proj__media proj__media--tall proj__w4 reveal">
+              <img src="img/minesweeper_start_subtle.png" alt="Pantalla de inicio de Buscaminas" loading="lazy" />
+            </figure>
+            <ul class="proj__features proj__w8 reveal">
+              <li>Generación aleatoria de minas y números adyacentes</li>
+              <li>Algoritmo recursivo flood-fill para despejar casillas</li>
+              <li>Estados completos: ganada, perdida y reinicio</li>
+            </ul>
+            <figure class="proj__media proj__media--placeholder proj__w8 reveal" data-ph="minesweeper-records.png"></figure>
           </div>
+
+          <footer class="proj__foot reveal">
+            <div class="proj__stack">
+              <span>Java</span><span>POO</span><span>Swing</span>
+            </div>
+            <div class="proj__links">
+              <a class="proj__link-gh" href="https://github.com/edward15001/java-minesweeper" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </footer>
+        </div>
       </article>
-      </div>
     </div>
   </section>
 
   <!-- ========== CONTACT ========== -->
   <section id="contact" class="section contact">
     <div class="section__inner">
-      <p class="kicker reveal">03 — Contacto</p>
-      <h2 class="contact__title split-title"><span class="tw tw--accent tw--liquid">¿Hablamos</span><span class="tw tw--accent">?</span></h2>
+      <p class="kicker reveal">— 03 — CONTACTO</p>
+      <h2 class="contact__title split-title"><span class="tw tw--accent">¿HABLAMOS?</span></h2>
       <p class="contact__text reveal">
         Tienes un proyecto en mente o simplemente quieres saludar.<br />
         No dudes en escribirme.
@@ -257,7 +365,7 @@
       </button>
       <p class="contact__fallback reveal">
         O escríbeme directamente a: <br />
-        <strong>edward.15.holanda@gmail.com</strong>
+        <a class="contact__mail" href="mailto:edward.15.holanda@gmail.com">edward.15.holanda@gmail.com</a>
       </p>
       <div class="contact__socials reveal">
         <a href="https://github.com/edward15001" target="_blank" rel="noopener" aria-label="GitHub" class="social-link"
