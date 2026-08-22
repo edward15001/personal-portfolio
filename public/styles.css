@@ -832,6 +832,21 @@ img {
   margin-bottom: var(--space-xs);
 }
 
+.project-detail__gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.project-detail__gallery img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
 /* Color Palette Display */
 .color-palette {
   display: flex;

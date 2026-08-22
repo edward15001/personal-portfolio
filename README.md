@@ -20,7 +20,7 @@ Portfolio personal con diseño brutalista, estética cyberpunk y temática técn
 │   ├── index.html          # Página principal
 │   ├── project-nutrovia.html
 │   ├── project-angular.html
-│   ├── project-tfg.html
+│   ├── project-safegram.html
 │   ├── project-minesweeper.html
 │   ├── project-mandelbrot.html
 │   ├── styles.css          # Estilos: brutalismo, grids, variables de color
