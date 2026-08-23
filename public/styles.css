@@ -58,6 +58,7 @@ html {
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -785,13 +786,15 @@ img {
 
 .proj__title {
   font-family: var(--proj-font);
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 5vw, 4rem);
   font-weight: 800;
   letter-spacing: -2px;
   line-height: 1.02;
   text-transform: uppercase;
   color: var(--proj-primary);
   margin-top: var(--space-xs);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Hover stays inside the project palette (same hue, slight glow — never the
@@ -808,6 +811,8 @@ img {
   margin-top: var(--space-xs);
   text-transform: uppercase;
   letter-spacing: 1px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* ——— Asymmetric grid ——— */
