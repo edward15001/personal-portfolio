@@ -38,7 +38,7 @@
   --duration: 0.5s;
 
   /* Layout */
-  --max-width: 1100px;
+  --max-width: 70vw;
 }
 
 /* ============================================================
@@ -756,9 +756,10 @@ img {
 }
 
 /* Projects use the full viewport width (no inherited 1100px cap) with a
-   consistent lateral padding */
+   consistent lateral padding, but still capped at 70vw on ultrawide */
 .proj .section__inner {
-  max-width: none;
+  max-width: 70vw;
+  margin: 0 auto;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
 }
@@ -852,12 +853,22 @@ img {
   aspect-ratio: 3 / 4;
 }
 
-.proj__media img {
+.proj__media img,
+.proj__media video {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
   border: 1px solid var(--border);
+}
+
+/* Text + list block inside the grid — behaves like a desc/features combo
+   but grouped in a single grid cell for layout control */
+.proj__text-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-self: center;
 }
 
 /* Reserved slot for a mockup that doesn't exist yet: same size and proportion
