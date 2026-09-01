@@ -37,8 +37,8 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 0.5s;
 
-  /* Layout */
-  --max-width: 70vw;
+  /* Layout — mobile: full width; desktop: capped at 70vw (ultrawide) */
+  --max-width: 100%;
 }
 
 /* ============================================================
@@ -758,10 +758,20 @@ img {
 /* Projects use the full viewport width (no inherited 1100px cap) with a
    consistent lateral padding, but still capped at 70vw on ultrawide */
 .proj .section__inner {
-  max-width: 70vw;
+  max-width: 100%;
   margin: 0 auto;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
+}
+
+@media (min-width: 901px) {
+  :root {
+    --max-width: 70vw;
+  }
+
+  .proj .section__inner {
+    max-width: 70vw;
+  }
 }
 
 .proj:first-child {
