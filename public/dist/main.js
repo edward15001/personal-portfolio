@@ -1235,20 +1235,39 @@
         else {
             revealTargets.forEach((el) => el.classList.add('is-visible'));
         }
-        /* visitor counter — bumped once, the first time the window is opened */
+        /* visitor counter — a real, global count via Abacus (abacus.jasoncameron.dev), a
+           free no-auth hit-counter API: /hit increments and returns the new total. Bumped
+           once, the first time the window is opened each page load. Falls back to the
+           last value we saw (cached locally) if the network/API is unavailable. */
+        const HITS_CACHE_KEY = 'eduardoos-hist-hits-cache';
         const hitsEl = document.getElementById('historia-hits-count');
         const aboutWin = document.getElementById('win-about');
         const bumpHits = () => {
             if (!hitsEl)
                 return;
-            try {
-                const n = (parseInt(localStorage.getItem('eduardoos-hist-hits') ?? '', 10) || 41000) + 1;
-                localStorage.setItem('eduardoos-hist-hits', String(n));
-                hitsEl.textContent = String(n).padStart(6, '0');
-            }
-            catch {
-                hitsEl.textContent = '041337';
-            }
+            fetch('https://abacus.jasoncameron.dev/hit/eduardoos-eduardo-holanda-portfolio/sobre-mi')
+                .then((res) => (res.ok ? res.json() : Promise.reject(new Error('bad response'))))
+                .then((data) => {
+                if (typeof data.value !== 'number')
+                    throw new Error('malformed response');
+                hitsEl.textContent = String(data.value).padStart(6, '0');
+                try {
+                    localStorage.setItem(HITS_CACHE_KEY, String(data.value));
+                }
+                catch {
+                    /* localStorage unavailable — counter still shows the live value */
+                }
+            })
+                .catch(() => {
+                let cached = null;
+                try {
+                    cached = localStorage.getItem(HITS_CACHE_KEY);
+                }
+                catch {
+                    /* localStorage unavailable */
+                }
+                hitsEl.textContent = cached ? String(cached).padStart(6, '0') : '------';
+            });
         };
         if (aboutWin) {
             if (!aboutWin.classList.contains('hidden')) {
