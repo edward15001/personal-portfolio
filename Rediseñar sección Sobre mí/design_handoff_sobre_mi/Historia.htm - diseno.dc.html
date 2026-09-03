@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+html,body{margin:0;background:#DCDEE1}
+a{color:#2b5cab}
+a:hover{color:#3B78D8}
+@keyframes hist-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes hist-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes hist-glitch-r{0%,100%{transform:translate(0,0)}20%{transform:translate(-2px,1px)}40%{transform:translate(2px,-1px)}60%{transform:translate(-1px,0)}80%{transform:translate(1px,1px)}}
+@keyframes hist-glitch-c{0%,100%{transform:translate(0,0)}20%{transform:translate(2px,-1px)}40%{transform:translate(-2px,1px)}60%{transform:translate(1px,0)}80%{transform:translate(-1px,-1px)}}
+.hist-glitch-heading:hover > span:nth-child(2) { opacity:.65; animation:hist-glitch-r .3s steps(2) infinite; }
+.hist-glitch-heading:hover > span:nth-child(3) { opacity:.65; animation:hist-glitch-c .3s steps(2) infinite; }
+.hist-skill-tag:hover { background:#1c222b !important; color:#fff !important; }
+.hist-submit:hover { filter:brightness(.92); }
+#hist-2a { overflow-x:visible; }
+#hist-2a-wrapper { display:flex; overflow-x:auto; width:100%; padding-bottom:20px; }
+</style>
+</helmet>
+
+<section style="padding:40px;display:flex;flex-direction:column;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;color:#1c222b;overflow:hidden">
+  <div style="display:flex;align-items:baseline;gap:12px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;background:#1c222b;color:#fff;padding:3px 8px;border-radius:3px">2a</span>
+    <span style="font-size:13px;font-weight:700">HISTORIA.HTM — HOMENAJE WEB 1.0</span>
+    <span style="font-size:12px;opacity:.65">página independiente enlazada desde eduardo.OS · scroll horizontal para ver completo · Times New Roman, tablas, contador, libro de visitas — con scroll-reveal y hover glitch reales</span>
+  </div>
+
+  <div id="hist-2a-wrapper">
+  <div id="2a" style="width:900px;background:repeating-linear-gradient(45deg,#b9bcc2 0 2px,#c7cad0 2px 4px);border:2px outset #fff;padding:24px 0 40px;display:flex;flex-direction:column;align-items:center;min-width:fit-content;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+
+    <div style="width:780px;background:#FFFFFF;border:1px solid #7d828a;box-shadow:2px 3px 10px rgba(0,0,0,.35);color:#000;font-family:Georgia,'Times New Roman',serif">
+
+      <div style="background:repeating-linear-gradient(180deg,#fff 0 2px,#dfe1e4 2px 4px);padding:3px 8px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:10px;border-bottom:1px solid #9a9fa6;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+        <span style="width:11px;height:11px;border:1px solid #7d828a;background:#eee"></span>
+        <span style="flex:1;text-align:center">eduardo.os — Historia</span>
+        <span style="width:11px;height:11px;border:1px solid #7d828a;background:#eee"></span>
+      </div>
+      <div style="padding:5px 10px;font-size:11px;color:#333;border-bottom:1px solid #c7cad0;display:flex;gap:14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+        <span>File</span><span>Edit</span><span>Options</span><span>Navigate</span><span>Hotlist</span>
+      </div>
+      <div style="padding:6px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #c7cad0;background:#ECEEF0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+        <a href="#1b" style="border:1px solid #9a9fa6;border-radius:4px;background:linear-gradient(180deg,#fff,#d6d9dd);padding:2px 8px;font-size:12px;text-decoration:none;color:#333">◂</a>
+        <span style="border:1px solid #d5d7db;border-radius:4px;background:linear-gradient(180deg,#f4f5f6,#dfe1e4);padding:2px 8px;font-size:12px;color:#999">▸</span>
+        <a href="#hist-guestbook" style="border:1px solid #9a9fa6;border-radius:4px;background:linear-gradient(180deg,#fff,#d6d9dd);padding:2px 8px;font-size:12px;text-decoration:none;color:#333">⌂</a>
+        <div style="flex:1;background:#fff;border:1px solid #9a9fa6;border-radius:9px;padding:3px 10px;font-size:11px;color:#333;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">eduardo.os/historia.html</div>
+      </div>
+
+      <div style="position:relative;padding:30px 30px 26px;background:#F3F4F5;overflow:hidden;display:flex;gap:26px;align-items:flex-start">
+        <div ref="{{ heroRef }}" style="position:relative;flex:1;opacity:{{ heroVisible }};transform:translateY({{ heroOffset }}px);transition:opacity .6s ease,transform .6s ease">
+          <h1 style="margin:0 0 6px;font-size:30px;font-weight:800;letter-spacing:-.5px;color:#1c222b">Eduardo Holanda Fernández</h1>
+          <p style="margin:0 0 16px;font-size:14px;font-weight:500;color:#555;max-width:34ch">Backend, infraestructura y automatización con IA — último año de Ingeniería de Computadores</p>
+          <div style="display:flex;flex-direction:column;gap:6px;max-width:300px">
+            <a href="#hist-bio" style="background:#fff;border:1px solid #d5d7db;border-radius:4px;padding:6px 12px;font-size:13px;font-weight:700;color:#1c222b;text-decoration:none">Sobre mí</a>
+            <a href="#hist-exp" style="background:#fff;border:1px solid #d5d7db;border-radius:4px;padding:6px 12px;font-size:13px;font-weight:700;color:#1c222b;text-decoration:none">Experiencia y estudios</a>
+            <a href="#hist-skills" style="background:#fff;border:1px solid #d5d7db;border-radius:4px;padding:6px 12px;font-size:13px;font-weight:700;color:#1c222b;text-decoration:none">Con qué trabajo</a>
+            <a href="#hist-guestbook" style="background:#fff;border:1px solid #d5d7db;border-radius:4px;padding:6px 12px;font-size:13px;font-weight:700;color:#1c222b;text-decoration:none">Libro de visitas</a>
+          </div>
+        </div>
+        <div style="flex:none;width:130px;height:154px;border:1px solid #d5d7db;box-shadow:1px 2px 6px rgba(0,0,0,.15)">
+          <img src="public/img/foto_perfil/foto_perfil.JPG" alt="Foto de Eduardo Holanda Fernández" style="width:100%;height:100%;object-fit:cover;display:block" />
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:center;padding:8px 0;border-bottom:1px solid #c7cad0;background:#ECEEF0">
+        <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:#555">
+          <span>has sido el visitante número</span>
+          <span style="background:#1c222b;color:#e9c531;font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;letter-spacing:2px;padding:3px 8px;border-radius:3px">{{ hitsDisplay }}</span>
+          <span>desde 03/09/2026</span>
+        </div>
+      </div>
+
+      <div id="hist-bio" ref="{{ bioRef }}" style="padding:22px 28px;opacity:{{ bioVisible }};transform:translateY({{ bioOffset }}px);transition:opacity .6s ease,transform .6s ease">
+        <h2 class="hist-glitch-heading" style="position:relative;margin:0 0 10px;font-size:18px;font-weight:800;color:#1c222b;display:inline-block;text-transform:uppercase;letter-spacing:.3px">
+          <span style="position:relative;z-index:2">Sobre mí</span>
+          <span aria-hidden="true" style="position:absolute;left:0;top:0;z-index:1;color:#d5372f;opacity:0">Sobre mí</span>
+          <span aria-hidden="true" style="position:absolute;left:0;top:0;z-index:1;color:#e07a2c;opacity:0">Sobre mí</span>
+        </h2>
+        <p style="margin:0 0 12px;font-size:14px;line-height:1.65;color:#333">Estudiante de último año de Ingeniería de Computadores en la Universidad Rey Juan Carlos, apasionado por el desarrollo de software y la eficiencia operativa. He trabajado como Responsable Técnico en Gextia (Factor Libre), donde gestioné el mantenimiento de servicios backend, despliegues en producción y el desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
+        <p style="margin:0;font-size:14px;line-height:1.65;color:#333">Además de mi perfil backend y de sistemas, cuento con experiencia sólida desarrollando aplicaciones web (TypeScript, Angular) y una gran vocación por el trabajo en equipo y el soporte técnico — reflejada en proyectos como un vigilante de seguridad multiplataforma, una plataforma de salud, fractales concurrentes y algún clásico reconstruido desde cero.</p>
+      </div>
+
+      <div style="height:2px;background:linear-gradient(90deg,#3fae54,#e9c531,#e07a2c,#d5372f,#8a3a9c);margin:0 28px"></div>
+
+      <div id="hist-exp" ref="{{ expRef }}" style="padding:22px 28px;opacity:{{ expVisible }};transform:translateY({{ expOffset }}px);transition:opacity .6s ease,transform .6s ease">
+        <h2 style="margin:0 0 12px;font-size:18px;font-weight:800;color:#1c222b;text-transform:uppercase;letter-spacing:.3px">Experiencia y estudios</h2>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:14px;border:1px solid #d5d7db;border-radius:6px;padding:10px 14px;background:#F7F8F9">
+            <span style="flex:none;width:80px;font-size:11px;font-weight:700;color:#d5372f">mayo — ago 2026</span>
+            <div><strong style="font-size:13px">Responsable Técnico — Gextia (Factor Libre)</strong><p style="margin:4px 0 0;font-size:12.5px;color:#444;line-height:1.5">Mantenimiento de servicios backend, despliegues en producción y desarrollo de herramientas internas integrando modelos de IA como Claude.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;border:1px solid #d5d7db;border-radius:6px;padding:10px 14px;background:#F7F8F9">
+            <span style="flex:none;width:80px;font-size:11px;font-weight:700;color:#8a3a9c">último año</span>
+            <div><strong style="font-size:13px">Ingeniería de Computadores — Universidad Rey Juan Carlos</strong><p style="margin:4px 0 0;font-size:12.5px;color:#444;line-height:1.5">Sistemas, concurrencia y ciberseguridad.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:2px;background:linear-gradient(90deg,#3fae54,#e9c531,#e07a2c,#d5372f,#8a3a9c);margin:0 28px"></div>
+
+      <div id="hist-skills" ref="{{ skillsRef }}" style="padding:22px 28px;opacity:{{ skillsVisible }};transform:translateY({{ skillsOffset }}px);transition:opacity .6s ease,transform .6s ease">
+        <h2 style="margin:0 0 4px;font-size:18px;font-weight:800;color:#1c222b;text-transform:uppercase;letter-spacing:.3px">Con qué trabajo</h2>
+        <p style="margin:0 0 12px;font-size:11px;color:#888">pasa el ratón por encima</p>
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:10px 14px;align-items:start">
+          <span style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;padding-top:5px">Backend</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">Python</span>
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">Java</span>
+          </div>
+          <span style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;padding-top:5px">Web</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">TypeScript</span>
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">Angular</span>
+          </div>
+          <span style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;padding-top:5px">Infra</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">Docker</span>
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">Producción</span>
+          </div>
+          <span style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;padding-top:5px">IA</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">IA/LLM</span>
+            <span class="hist-skill-tag" style="border:1px solid #d5d7db;border-radius:20px;padding:4px 12px;background:#fff;cursor:pointer;font-size:12px">Claude</span>
+          </div>
+        </div>
+        <p style="margin:16px 0 0">
+          <a href="uploads/CV_Eduardo_Holanda_Fernandez.pdf" download style="display:inline-block;border:1px solid #6b7178;border-radius:5px;background:linear-gradient(180deg,#fff,#ABB0B6);color:#1c222b;text-decoration:none;padding:8px 16px;font-weight:700;font-size:13px">Descargar CV ↓</a>
+        </p>
+      </div>
+
+      <div id="hist-guestbook" ref="{{ guestRef }}" style="padding:22px 28px;background:#F7F8F9;opacity:{{ guestVisible }};transform:translateY({{ guestOffset }}px);transition:opacity .6s ease,transform .6s ease">
+        <h2 style="margin:0 0 12px;font-size:18px;font-weight:800;color:#1c222b;text-transform:uppercase;letter-spacing:.3px">Libro de visitas</h2>
+        <div style="border:1px solid #d5d7db;border-radius:6px;background:#fff;padding:10px;margin-bottom:12px;max-height:160px;overflow-y:auto">
+          <sc-for list="{{ guestEntries }}" as="entry" hint-placeholder-count="0">
+            <div style="padding:6px 0;border-bottom:1px solid #eee;font-size:12px">
+              <strong style="color:#1c222b">{{ entry.name }}</strong>
+              <span style="color:#999;font-size:10px"> — {{ entry.date }}</span>
+              <div style="margin-top:2px;color:#333">{{ entry.msg }}</div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ noEntries }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:12px;color:#999;text-align:center;padding:14px 0">Aún nadie ha firmado — sé el primero.</div>
+          </sc-if>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;max-width:360px">
+          <input type="text" placeholder="Nombre" value="{{ guestName }}" onChange="{{ onGuestNameChange }}" style="border:1px solid #d5d7db;border-radius:5px;padding:6px 10px;font-family:inherit;font-size:12px" />
+          <textarea rows="2" placeholder="Mensaje" value="{{ guestMsg }}" onChange="{{ onGuestMsgChange }}" style="border:1px solid #d5d7db;border-radius:5px;padding:6px 10px;font-family:inherit;font-size:12px;resize:vertical"></textarea>
+          <button class="hist-submit" onClick="{{ onGuestSubmit }}" style="align-self:flex-start;border:1px solid #6b7178;border-radius:5px;background:linear-gradient(180deg,#fff,#ABB0B6);color:#1c222b;padding:7px 16px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12px">Firmar el libro »</button>
+        </div>
+      </div>
+
+      <div style="padding:14px 28px;text-align:center;background:#1c222b">
+        <p style="margin:0;color:#aab0b8;font-size:11px">© 2026 Eduardo Holanda Fernández · <a href="#2a" style="color:#e9c531">volver arriba</a> · <a href="#1b" style="color:#e9c531">eduardo.OS</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="padding:40px;display:flex;flex-direction:column;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;color:#1c222b">
+  <div style="display:flex;align-items:baseline;gap:12px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.6px">TURNO 1 — SOBRE_MI.TXT REDISEÑADO</span>
+    <span style="font-size:12px;opacity:.6">misma ventana, mismo chrome Platinum · scroll dentro de la ventana</span>
+  </div>
+
+  <div style="display:flex;flex-wrap:nowrap;gap:40px;align-items:flex-start;width:1320px">
+
+    <div id="1a" style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;background:#1c222b;color:#fff;padding:3px 8px;border-radius:3px">1a</span>
+        <span style="font-size:13px;font-weight:700">EXPEDIENTE</span>
+        <span style="font-size:12px;opacity:.65">ficha de sistema: datos, timeline, skills por categoría</span>
+      </div>
+
+      <div data-screen-label="1a Expediente" style="width:620px;height:820px;background:#DCDEE1;border:1px solid #6b7178;border-radius:7px;box-shadow:3px 5px 14px rgba(30,33,38,.35);display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:21px;background:repeating-linear-gradient(180deg,#fff 0 2px,#d3d6da 2px 4px);padding:0 5px;display:flex;align-items:center;justify-content:space-between;gap:6px;flex:none;border-bottom:1px solid #6b7178">
+          <span style="width:15px;height:15px;flex:none;border:1px solid #6b7178;border-radius:3px;background:linear-gradient(180deg,#fff,#e79a92);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:8px;color:#6b241c;line-height:1">✕</span>
+          <span style="flex:1;min-width:0;text-align:center;background:#fff;border:1px solid #6b7178;border-radius:9px;font-size:11px;font-weight:600;padding:1px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Sobre_mi.txt</span>
+          <span style="display:flex;gap:5px;flex:none">
+            <span style="width:15px;height:15px;border:1px solid #6b7178;border-radius:3px;background:linear-gradient(180deg,#fff,#c7cbd0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#3a3f45;line-height:1">−</span>
+            <span style="width:15px;height:15px;border:1px solid #6b7178;border-radius:3px;background:linear-gradient(180deg,#fff,#c7cbd0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;line-height:1"><span style="width:8px;height:8px;border:1.4px solid #3a3f45;box-sizing:border-box;display:block"></span></span>
+          </span>
+        </div>
+
+        <div style="flex:none;padding:6px 8px;background:#DCDEE1;border-bottom:1px solid #6b7178">
+          <div style="background:#fff;border:1px solid #6b7178;border-radius:9px;padding:5px 10px;font-size:11px;display:flex;align-items:center;gap:6px">eduardo.os/sobre-mi</div>
+        </div>
+
+        <div style="flex:1;min-height:0;overflow:auto;background:#F6F7F8;padding:18px 22px;font-size:12px;line-height:1.65">
+
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div style="flex:none;padding:4px;background:linear-gradient(180deg,#fff,#EFF0F2);border:1px solid #6b7178;border-radius:4px;box-shadow:1px 2px 4px rgba(30,33,38,.2)">
+              <img src="public/img/foto_perfil/foto_perfil.JPG" alt="Foto de Eduardo Holanda Fernández" style="width:112px;height:132px;object-fit:cover;display:block;border:1px solid #ABB0B6" />
+            </div>
+            <div style="flex:1;min-width:0">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.6px;opacity:.6;margin-bottom:6px">EDUARDO.OS — FICHA DE USUARIO</span>
+              <h3 style="margin:0 0 4px;font-size:24px;line-height:1.1;letter-spacing:-.3px">Eduardo Holanda<br />Fernández</h3>
+              <p style="margin:0 0 10px;font-size:12px;color:#5a616a;line-height:1.45">Backend, Infraestructura y Automatización con IA — último año de Ingeniería de Computadores</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <a href="https://github.com/edward15001" target="_blank" rel="noopener" style="border:1px solid #6b7178;border-radius:5px;padding:5px 10px;font-size:11px;text-decoration:none;color:#1c222b;background:linear-gradient(180deg,#fff,#ABB0B6)">GitHub</a>
+                <a href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235" target="_blank" rel="noopener" style="border:1px solid #6b7178;border-radius:5px;padding:5px 10px;font-size:11px;text-decoration:none;color:#1c222b;background:linear-gradient(180deg,#fff,#ABB0B6)">LinkedIn</a>
+                <a href="uploads/CV_Eduardo_Holanda_Fernandez.pdf" download style="border:1px solid #2b5cab;border-radius:5px;padding:5px 10px;font-size:11px;font-weight:600;text-decoration:none;color:#fff;background:linear-gradient(180deg,#5b93e6,#3B78D8)">Descargar CV ↓</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:18px 0 4px">
+            <div style="border:1px solid #ABB0B6;border-radius:6px;background:#fff;padding:9px 12px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;line-height:1.15">Madrid, ES</div>
+              <div style="font-size:9px;letter-spacing:.4px;text-transform:uppercase;opacity:.65;margin-top:2px">Ubicación</div>
+            </div>
+            <div style="border:1px solid #ABB0B6;border-radius:6px;background:#fff;padding:9px 12px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;line-height:1.15">URJC</div>
+              <div style="font-size:9px;letter-spacing:.4px;text-transform:uppercase;opacity:.65;margin-top:2px">Ing. de Computadores</div>
+            </div>
+            <div style="border:1px solid #ABB0B6;border-radius:6px;background:#fff;padding:9px 12px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;line-height:1.15">5</div>
+              <div style="font-size:9px;letter-spacing:.4px;text-transform:uppercase;opacity:.65;margin-top:2px">Proyectos publicados</div>
+            </div>
+            <div style="border:1px solid #ABB0B6;border-radius:6px;background:#fff;padding:9px 12px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;line-height:1.15">ES / EN</div>
+              <div style="font-size:9px;letter-spacing:.4px;text-transform:uppercase;opacity:.65;margin-top:2px">Idiomas</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding-top:14px;border-top:1px dashed #6b7178">
+            <h4 style="margin:0 0 8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.6px;opacity:.65">QUIÉN SOY</h4>
+            <p style="margin:0 0 10px">Estudiante de último año de Ingeniería de Computadores en la Universidad Rey Juan Carlos, apasionado por el desarrollo de software y la eficiencia operativa. He trabajado como Responsable Técnico en Gextia (Factor Libre), donde gestioné el mantenimiento de servicios backend, despliegues en producción y el desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
+            <p style="margin:0">Además de mi perfil backend y de sistemas, cuento con experiencia sólida desarrollando aplicaciones web (TypeScript, Angular) y una gran vocación por el trabajo en equipo y el soporte técnico — reflejada en proyectos como un vigilante de seguridad multiplataforma, una plataforma de salud, fractales concurrentes y algún clásico reconstruido desde cero.</p>
+          </div>
+
+          <div style="margin-top:20px;padding-top:14px;border-top:1px dashed #6b7178">
+            <h4 style="margin:0 0 12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.6px;opacity:.65">TRAYECTORIA</h4>
+            <div style="display:flex;flex-direction:column;gap:0">
+              <div style="display:flex;gap:14px;padding-bottom:20px;position:relative">
+                <div style="flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #6b7178;border-radius:50%;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;z-index:1">1</div>
+                <div style="position:absolute;left:13px;top:26px;bottom:0;width:1px;background:#6b7178;opacity:.35"></div>
+                <div style="flex:1;min-width:0;padding-top:2px">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
+                    <strong style="font-size:13px">Responsable Técnico — Gextia (Factor Libre)</strong>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.6;white-space:nowrap">mayo — agosto 2026</span>
+                  </div>
+                  <p style="margin:4px 0 0">Mantenimiento de servicios backend, despliegues en producción y desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
+                </div>
+              </div>
+              <div style="display:flex;gap:14px;padding-bottom:20px;position:relative">
+                <div style="flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #6b7178;border-radius:50%;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;z-index:1">2</div>
+                <div style="position:absolute;left:13px;top:26px;bottom:0;width:1px;background:#6b7178;opacity:.35"></div>
+                <div style="flex:1;min-width:0;padding-top:2px">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
+                    <strong style="font-size:13px">Ingeniería de Computadores — URJC</strong>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.6;white-space:nowrap">último año</span>
+                  </div>
+                  <p style="margin:4px 0 0">Sistemas, concurrencia y ciberseguridad. De ahí salen los fractales concurrentes y el vigilante de seguridad multiplataforma.</p>
+                </div>
+              </div>
+              <div style="display:flex;gap:14px;position:relative">
+                <div style="flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid #6b7178;border-radius:50%;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;z-index:1">3</div>
+                <div style="flex:1;min-width:0;padding-top:2px">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
+                    <strong style="font-size:13px">Proyectos propios</strong>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.6;white-space:nowrap">ver PROYECTOS</span>
+                  </div>
+                  <p style="margin:4px 0 0">SafeGram, NutroVia, Angular Task Manager, generador de Mandelbrot y Buscaminas — cada uno con su identidad visual documentada.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding-top:14px;border-top:1px dashed #6b7178">
+            <h4 style="margin:0 0 12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.6px;opacity:.65">STACK</h4>
+            <div style="display:grid;grid-template-columns:120px 1fr;gap:12px 18px;align-items:start">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.6;padding-top:5px">Backend</span>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">Python</span>
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">Java</span>
+              </div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.6;padding-top:5px">Web</span>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">TypeScript</span>
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">Angular</span>
+              </div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.6;padding-top:5px">Infra</span>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">Docker</span>
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">Despliegues en producción</span>
+              </div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.6;padding-top:5px">IA</span>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">IA/LLM</span>
+                <span style="font-size:10px;padding:3px 8px;background:linear-gradient(180deg,#fff,#ABB0B6);border:1px solid #6b7178;border-radius:9px">Claude</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding-top:14px;border-top:1px dashed #6b7178">
+            <h4 style="margin:0 0 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.6px;opacity:.65">FUERA DEL EDITOR</h4>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+              <div style="border:1px solid #ABB0B6;border-radius:6px;background:#fff;padding:10px 12px;font-size:11px;color:#5a616a">Me gusta el baloncesto</div>
+              <div style="border:1px solid #ABB0B6;border-radius:6px;background:#fff;padding:10px 12px;font-size:11px;color:#5a616a">Escalo</div>
+              <div style="border:1px solid #ABB0B6;border-radius:6px;background:#fff;padding:10px 12px;font-size:11px;color:#5a616a">Estoy desarrollando un videojuego</div>
+            </div>
+          </div>
+
+        </div>
+        <div aria-hidden="true" style="position:relative;height:0"><span style="position:absolute;right:1px;bottom:1px;width:14px;height:14px;display:block;background:linear-gradient(135deg,transparent 0 40%,#6b7178 40% 55%,transparent 55% 65%,#6b7178 65% 80%,transparent 80%)"></span></div>
+      </div>
+    </div>
+
+    <div id="1b" style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;background:#1c222b;color:#fff;padding:3px 8px;border-radius:3px">1b</span>
+        <span style="font-size:13px;font-weight:700">README EN TERMINAL</span>
+        <span style="font-size:12px;opacity:.65">narrativa a scroll, tipografía grande, verde terminal</span>
+      </div>
+
+      <div data-screen-label="1b README terminal" style="width:620px;height:820px;background:#DCDEE1;border:1px solid #6b7178;border-radius:7px;box-shadow:3px 5px 14px rgba(30,33,38,.35);display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:21px;background:repeating-linear-gradient(180deg,#fff 0 2px,#d3d6da 2px 4px);padding:0 5px;display:flex;align-items:center;justify-content:space-between;gap:6px;flex:none;border-bottom:1px solid #6b7178">
+          <span style="width:15px;height:15px;flex:none;border:1px solid #6b7178;border-radius:3px;background:linear-gradient(180deg,#fff,#e79a92);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:8px;color:#6b241c;line-height:1">✕</span>
+          <span style="flex:1;min-width:0;text-align:center;background:#fff;border:1px solid #6b7178;border-radius:9px;font-size:11px;font-weight:600;padding:1px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Sobre_mi.txt</span>
+          <span style="display:flex;gap:5px;flex:none">
+            <span style="width:15px;height:15px;border:1px solid #6b7178;border-radius:3px;background:linear-gradient(180deg,#fff,#c7cbd0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#3a3f45;line-height:1">−</span>
+            <span style="width:15px;height:15px;border:1px solid #6b7178;border-radius:3px;background:linear-gradient(180deg,#fff,#c7cbd0);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;line-height:1"><span style="width:8px;height:8px;border:1.4px solid #3a3f45;box-sizing:border-box;display:block"></span></span>
+          </span>
+        </div>
+
+        <div style="flex:1;min-height:0;overflow:auto;background:#050a08;color:#c9ffe0;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;padding:18px 22px">
+          <div style="display:flex;align-items:center;gap:8px;color:#39FF88;font-size:11px;opacity:.9">
+            <span>visitante@eduardo:~$</span><span>cat sobre_mi.txt</span>
+          </div>
+
+          <h3 style="margin:22px 0 0;font-size:34px;line-height:1.08;letter-spacing:-1px;color:#39FF88;font-weight:600">Me llamo Eduardo<br />Holanda Fernández.</h3>
+          <p style="margin:14px 0 0;font-size:16px;line-height:1.5;color:#c9ffe0;max-width:34ch">Backend, infraestructura y automatización con IA. Último año de Ingeniería de Computadores.</p>
+
+          <div style="display:flex;gap:16px;align-items:flex-start;margin:26px 0 0">
+            <img src="public/img/foto_perfil/foto_perfil.JPG" alt="Foto de Eduardo Holanda Fernández" style="width:150px;height:190px;object-fit:cover;flex:none;border:1px solid #1f8f52;filter:saturate(.75)" />
+            <p style="margin:0;font-size:12px;line-height:1.75;opacity:.9">Estudiante de último año de Ingeniería de Computadores en la Universidad Rey Juan Carlos, apasionado por el desarrollo de software y la eficiencia operativa. He trabajado como Responsable Técnico en Gextia (Factor Libre), donde gestioné el mantenimiento de servicios backend, despliegues en producción y el desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
+          </div>
+
+          <p style="margin:18px 0 0;font-size:12px;line-height:1.75;opacity:.9">Además de mi perfil backend y de sistemas, cuento con experiencia sólida desarrollando aplicaciones web (TypeScript, Angular) y una gran vocación por el trabajo en equipo y el soporte técnico — reflejada en proyectos como un vigilante de seguridad multiplataforma, una plataforma de salud, fractales concurrentes y algún clásico reconstruido desde cero.</p>
+
+
+
+          <div style="margin:34px 0 0;padding-top:16px;border-top:1px dashed #1f8f52">
+            <h4 style="margin:0 0 14px;font-size:11px;letter-spacing:.8px;color:#39FF88;opacity:.85">DÓNDE HE ESTADO</h4>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:12px 16px;align-items:baseline">
+              <span style="font-size:11px;color:#6F9188;white-space:nowrap">mayo — agosto 2026</span>
+              <div>
+                <strong style="font-size:14px;color:#c9ffe0;font-weight:600">Responsable Técnico — Gextia (Factor Libre)</strong>
+                <p style="margin:4px 0 0;font-size:12px;opacity:.85">Backend en producción, despliegues y herramientas internas con Claude.</p>
+              </div>
+              <span style="font-size:11px;color:#6F9188;white-space:nowrap">último año</span>
+              <div>
+                <strong style="font-size:14px;color:#c9ffe0;font-weight:600">Ing. de Computadores — URJC</strong>
+                <p style="margin:4px 0 0;font-size:12px;opacity:.85">Sistemas, concurrencia, ciberseguridad.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin:30px 0 0;padding-top:16px;border-top:1px dashed #1f8f52">
+            <h4 style="margin:0 0 14px;font-size:11px;letter-spacing:.8px;color:#39FF88;opacity:.85">CON QUÉ TRABAJO</h4>
+            <div style="display:grid;grid-template-columns:90px 1fr;gap:10px 16px;align-items:start">
+              <span style="font-size:10px;letter-spacing:.6px;color:#6F9188;padding-top:5px">BACKEND</span>
+              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">Python</span>
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">Java</span>
+              </div>
+              <span style="font-size:10px;letter-spacing:.6px;color:#6F9188;padding-top:5px">WEB</span>
+              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">TypeScript</span>
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">Angular</span>
+              </div>
+              <span style="font-size:10px;letter-spacing:.6px;color:#6F9188;padding-top:5px">INFRA</span>
+              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">Docker</span>
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">Producción</span>
+              </div>
+              <span style="font-size:10px;letter-spacing:.6px;color:#6F9188;padding-top:5px">IA</span>
+              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">IA/LLM</span>
+                <span class="hist-skill-tag" style="font-size:10px;padding:3px 9px;border:1px solid #1f8f52;color:#39FF88;cursor:pointer">Claude</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin:30px 0 0;padding-top:16px;border-top:1px dashed #1f8f52">
+            <h4 style="margin:0 0 12px;font-size:11px;letter-spacing:.8px;color:#39FF88;opacity:.85">FUERA DEL EDITOR</h4>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#6F9188">
+              <span>&gt; Me gusta el baloncesto</span>
+              <span>&gt; Escalo</span>
+              <span>&gt; Estoy desarrollando un videojuego</span>
+            </div>
+          </div>
+
+          <div style="margin:32px 0 6px;display:flex;flex-wrap:wrap;gap:8px">
+            <a href="uploads/CV_Eduardo_Holanda_Fernandez.pdf" download style="border:1px solid #39FF88;padding:8px 14px;font-size:11px;text-decoration:none;color:#050a08;background:#39FF88;font-weight:600">Descargar CV ↓</a>
+            <a href="https://github.com/edward15001" target="_blank" rel="noopener" style="border:1px solid #1f8f52;padding:8px 14px;font-size:11px;text-decoration:none;color:#39FF88">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235" target="_blank" rel="noopener" style="border:1px solid #1f8f52;padding:8px 14px;font-size:11px;text-decoration:none;color:#39FF88">LinkedIn ↗</a>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-top:22px;color:#39FF88;font-size:11px;opacity:.9">
+            <span>visitante@eduardo:~$</span><span style="width:7px;height:13px;background:#39FF88;display:inline-block"></span>
+          </div>
+        </div>
+        <div aria-hidden="true" style="position:relative;height:0"><span style="position:absolute;right:1px;bottom:1px;width:14px;height:14px;display:block;background:linear-gradient(135deg,transparent 0 40%,#6b7178 40% 55%,transparent 55% 65%,#6b7178 65% 80%,transparent 80%)"></span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    hits: null,
+    guestEntries: [],
+    guestName: '',
+    guestMsg: '',
+    visible: {}
+  };
+
+  els = {};
+
+  componentDidMount() {
+    try {
+      const key = 'eduardoos-hist-hits';
+      const n = (parseInt(localStorage.getItem(key), 10) || 41000) + 1;
+      localStorage.setItem(key, String(n));
+      this.setState({ hits: n });
+    } catch (e) { this.setState({ hits: 41337 }); }
+
+    try {
+      const raw = localStorage.getItem('eduardoos-hist-guestbook');
+      this.setState({ guestEntries: raw ? JSON.parse(raw) : [] });
+    } catch (e) {}
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const key = entry.target.dataset.revealKey;
+          this.setState((s) => ({ visible: { ...s.visible, [key]: true } }));
+        }
+      });
+    }, { threshold: 0.15 });
+
+    Object.keys(this.els).forEach((key) => {
+      const el = this.els[key];
+      if (el) { el.dataset.revealKey = key; io.observe(el); }
+    });
+  }
+
+  makeRef(key) {
+    return (el) => { this.els[key] = el; };
+  }
+
+  renderVals() {
+    const hits = this.state.hits;
+    const hitsDisplay = hits == null ? '------' : String(hits).padStart(6, '0');
+    const v = this.state.visible;
+    const off = (k) => (v[k] ? 0 : 16);
+    const op = (k) => (v[k] ? 1 : 0);
+
+    return {
+      hitsDisplay,
+      heroRef: this.makeRef('hero'), heroVisible: 1, heroOffset: 0,
+      bioRef: this.makeRef('bio'), bioVisible: op('bio'), bioOffset: off('bio'),
+      expRef: this.makeRef('exp'), expVisible: op('exp'), expOffset: off('exp'),
+      skillsRef: this.makeRef('skills'), skillsVisible: op('skills'), skillsOffset: off('skills'),
+      guestRef: this.makeRef('guest'), guestVisible: op('guest'), guestOffset: off('guest'),
+      guestEntries: this.state.guestEntries,
+      noEntries: this.state.guestEntries.length === 0,
+      guestName: this.state.guestName,
+      guestMsg: this.state.guestMsg,
+      onGuestNameChange: (e) => this.setState({ guestName: e.target.value }),
+      onGuestMsgChange: (e) => this.setState({ guestMsg: e.target.value }),
+      onGuestSubmit: () => {
+        const name = this.state.guestName.trim();
+        const msg = this.state.guestMsg.trim();
+        if (!name || !msg) return;
+        const entry = { name, msg, date: new Date().toLocaleDateString('es-ES') };
+        const entries = [...this.state.guestEntries, entry];
+        this.setState({ guestEntries: entries, guestName: '', guestMsg: '' });
+        try { localStorage.setItem('eduardoos-hist-guestbook', JSON.stringify(entries)); } catch (e) {}
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

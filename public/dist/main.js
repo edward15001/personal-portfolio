@@ -15,7 +15,6 @@
         const boot = document.getElementById('boot');
         window.setTimeout(() => {
             boot?.classList.add('hide');
-            openWin('win-about');
         }, 2000);
     });
     /* ————————————————————— clock ————————————————————— */
@@ -36,6 +35,7 @@
         'win-explorer': '<img src="img/icons-win98/explorer.png" alt="" />',
         'win-identity': '<img src="img/icons-win98/palette.png" alt="" />',
         'win-process': '<img src="img/icons-win98/gears.png" alt="" />',
+        'win-whoami': '<img src="img/icons-win98/document.png" alt="" />',
     };
     const renderAppSwitcher = () => {
         const box = document.getElementById('cs-apps');
@@ -1108,7 +1108,7 @@
     };
     const commands = {
         help: () => 'comandos: help, whoami, projects, skills, contact, open <proyecto>, sudo, clear',
-        whoami: () => 'Eduardo Holanda Fernández — ingeniero de computadores.\nCiberseguridad · IA/LLM · productos web.',
+        whoami: () => 'cat sobre_mi.txt',
         projects: () => PROJECT_ORDER.map((k) => `${PROJECTS[k].tabLabel.padEnd(20)}[${PROJECTS[k].stack[0]}]`).join('\n') +
             '\n\nescribe "open <nombre>" para abrir el proyecto',
         skills: () => '>> cargando stack...\nciberseguridad ofensiva · modelos LLM · desarrollo web · automatización',
@@ -1150,6 +1150,8 @@
             typeLine(commands[cmd]());
             if (cmd === 'contact')
                 openWin('win-contact');
+            if (cmd === 'whoami')
+                openWin('win-whoami');
         }
         else if (cmd !== '') {
             typeLine(`comando no reconocido: "${raw}" — escribe "help"`);
@@ -1210,6 +1212,107 @@
                 .catch(() => {
                 contactStatus.textContent = 'No se pudo enviar. Inténtalo de nuevo o escríbeme por email.';
             });
+        });
+    }
+    /* ————————————————————— sobre_mi.txt (Historia.htm) ————————————————————— */
+    const historiaPage = document.getElementById('historia-page');
+    if (historiaPage) {
+        const HTML_ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+        const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => HTML_ESCAPES[c] ?? c);
+        /* scroll-reveal: each section fades/rises in once, the first time it enters the viewport */
+        const revealTargets = historiaPage.querySelectorAll('[data-reveal]');
+        if (revealTargets.length && 'IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting)
+                        return;
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                });
+            }, { root: historiaPage, threshold: 0.15 });
+            revealTargets.forEach((el) => io.observe(el));
+        }
+        else {
+            revealTargets.forEach((el) => el.classList.add('is-visible'));
+        }
+        /* visitor counter — bumped once, the first time the window is opened */
+        const hitsEl = document.getElementById('historia-hits-count');
+        const aboutWin = document.getElementById('win-about');
+        const bumpHits = () => {
+            if (!hitsEl)
+                return;
+            try {
+                const n = (parseInt(localStorage.getItem('eduardoos-hist-hits') ?? '', 10) || 41000) + 1;
+                localStorage.setItem('eduardoos-hist-hits', String(n));
+                hitsEl.textContent = String(n).padStart(6, '0');
+            }
+            catch {
+                hitsEl.textContent = '041337';
+            }
+        };
+        if (aboutWin) {
+            if (!aboutWin.classList.contains('hidden')) {
+                bumpHits();
+            }
+            else {
+                const hitsObserver = new MutationObserver(() => {
+                    if (!aboutWin.classList.contains('hidden')) {
+                        bumpHits();
+                        hitsObserver.disconnect();
+                    }
+                });
+                hitsObserver.observe(aboutWin, { attributes: true, attributeFilter: ['class'] });
+            }
+        }
+        const GUEST_KEY = 'eduardoos-hist-guestbook';
+        const guestListEl = document.getElementById('historia-guest-list');
+        const guestForm = document.getElementById('historia-guest-form');
+        const loadGuestEntries = () => {
+            try {
+                const raw = localStorage.getItem(GUEST_KEY);
+                const parsed = raw ? JSON.parse(raw) : [];
+                return Array.isArray(parsed) ? parsed : [];
+            }
+            catch {
+                return [];
+            }
+        };
+        const renderGuestEntries = (entries) => {
+            if (!guestListEl)
+                return;
+            if (entries.length === 0) {
+                guestListEl.innerHTML = '<div class="historia-guest-empty">Aún nadie ha firmado — sé el primero.</div>';
+                return;
+            }
+            guestListEl.innerHTML = entries
+                .map((entry) => `
+            <div class="historia-guest-entry">
+              <strong>${escapeHtml(entry.name)}</strong>
+              <span class="historia-guest-entry__date"> — ${escapeHtml(entry.date)}</span>
+              <div class="historia-guest-entry__msg">${escapeHtml(entry.msg)}</div>
+            </div>
+          `)
+                .join('');
+        };
+        let guestEntries = loadGuestEntries();
+        renderGuestEntries(guestEntries);
+        guestForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fd = new FormData(guestForm);
+            const name = String(fd.get('name') ?? '').trim();
+            const msg = String(fd.get('msg') ?? '').trim();
+            if (!name || !msg)
+                return;
+            const entry = { name, msg, date: new Date().toLocaleDateString('es-ES') };
+            guestEntries = [entry, ...guestEntries];
+            renderGuestEntries(guestEntries);
+            try {
+                localStorage.setItem(GUEST_KEY, JSON.stringify(guestEntries));
+            }
+            catch {
+                /* localStorage unavailable (private mode, quota) — entry still shows for this session */
+            }
+            guestForm.reset();
         });
     }
 })();

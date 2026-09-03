@@ -263,23 +263,212 @@ a { color: var(--mac-blue-dim); }
   border: 1px solid var(--chrome-border); border-radius: 9px; color: var(--text-dark);
 }
 
-/* about window */
-.about-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.about-photo {
-  width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex: none;
-  border: 1px solid var(--chrome-border);
-  box-shadow: inset 0 0 0 2px #fff;
+/* ---------- ABOUT WINDOW (Sobre_mi.txt = Historia.htm del handoff, tema claro) ---------- */
+#win-about .window-body { padding: 0; display: flex; flex-direction: column; overflow: hidden; background: #fff; }
+
+.historia-menubar {
+  display: flex; gap: 14px; padding: 5px 10px; font-size: 11px; color: #333;
+  border-bottom: 1px solid #c7cad0; background: #fff; flex: none;
 }
-.about-heading h3 { margin: 0 0 3px; }
-.about-role { margin: 0; font-size: 11px; color: var(--text-dim, #6b7178); line-height: 1.4; }
-.about-tags { margin-top: 12px; }
-.about-links { display: flex; gap: 10px; margin-top: 12px; }
-.about-links a {
-  border: 1px solid var(--chrome-border); border-radius: 5px; padding: 5px 10px; font-size: 11px;
-  text-decoration: none; color: var(--text-dark);
-  background: linear-gradient(180deg, #fff, var(--platinum-dk));
+.historia-toolbar {
+  display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+  border-bottom: 1px solid #c7cad0; background: #ECEEF0; flex: none;
 }
-.about-links a:hover { background: linear-gradient(180deg, #fff, var(--mac-blue)); color: #fff; }
+.historia-nav-btn {
+  border: 1px solid #9a9fa6; border-radius: 4px; background: linear-gradient(180deg, #fff, #d6d9dd);
+  padding: 2px 8px; font-size: 12px; color: #333; text-decoration: none; cursor: pointer;
+  font-family: var(--font-ui); line-height: 1.6;
+}
+.historia-nav-btn--disabled {
+  color: #999; background: linear-gradient(180deg, #f4f5f6, #dfe1e4); border-color: #d5d7db; cursor: default;
+}
+.historia-addr {
+  flex: 1; min-width: 0; background: #fff; border: 1px solid #9a9fa6; border-radius: 9px;
+  padding: 3px 10px; font-size: 11px; color: #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.historia-page {
+  flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden;
+  font-family: Georgia, 'Times New Roman', serif; color: #000;
+}
+
+.historia-hero {
+  display: flex; gap: 26px; align-items: flex-start;
+  padding: 30px 30px 26px; background: #F3F4F5;
+}
+.historia-hero__text { flex: 1; min-width: 0; }
+.historia-hero__text h1 { margin: 0 0 6px; font-size: 28px; font-weight: 800; letter-spacing: -.5px; color: #1c222b; }
+.historia-tagline { margin: 0 0 16px; font-size: 14px; font-weight: 500; color: #555; max-width: 34ch; }
+.historia-hero-nav { display: flex; flex-direction: column; gap: 6px; max-width: 300px; }
+.historia-hero-nav a {
+  background: #fff; border: 1px solid #d5d7db; border-radius: 4px; padding: 6px 12px;
+  font-size: 13px; font-weight: 700; color: #1c222b; text-decoration: none; font-family: var(--font-ui);
+}
+.historia-hero-nav a:hover { border-color: #1c222b; }
+.historia-hero__photo {
+  flex: none; width: 130px; height: 154px; border: 1px solid #d5d7db; box-shadow: 1px 2px 6px rgba(0, 0, 0, .15);
+}
+.historia-hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.historia-hits {
+  display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 8px 12px; border-bottom: 1px solid #c7cad0; background: #ECEEF0;
+  font-size: 10px; color: #555; font-family: var(--font-ui); text-align: center;
+}
+.historia-hits__count {
+  background: #1c222b; color: #e9c531; font-family: var(--font-mono);
+  font-size: 15px; font-weight: 700; letter-spacing: 2px; padding: 3px 8px; border-radius: 3px;
+}
+
+.historia-section {
+  padding: 22px 28px; opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease;
+}
+.historia-section.is-visible { opacity: 1; transform: translateY(0); }
+.historia-section h2 {
+  position: relative; margin: 0 0 10px; font-size: 18px; font-weight: 800; color: #1c222b;
+  text-transform: uppercase; letter-spacing: .3px; display: inline-block;
+}
+.historia-section p { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #333; }
+.historia-section p:last-child { margin-bottom: 0; }
+
+.historia-glitch-heading > span:nth-child(2), .historia-glitch-heading > span:nth-child(3) {
+  position: absolute; left: 0; top: 0; z-index: 1; opacity: 0;
+}
+.historia-glitch-heading > span:nth-child(1) { position: relative; z-index: 2; }
+.historia-glitch-heading > span:nth-child(2) { color: #d5372f; }
+.historia-glitch-heading > span:nth-child(3) { color: #e07a2c; }
+.historia-glitch-heading:hover > span:nth-child(2) { opacity: .65; animation: historia-glitch-r .3s steps(2) infinite; }
+.historia-glitch-heading:hover > span:nth-child(3) { opacity: .65; animation: historia-glitch-c .3s steps(2) infinite; }
+@keyframes historia-glitch-r {
+  0%, 100% { transform: translate(0, 0); } 20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); } 60% { transform: translate(-1px, 0); } 80% { transform: translate(1px, 1px); }
+}
+@keyframes historia-glitch-c {
+  0%, 100% { transform: translate(0, 0); } 20% { transform: translate(2px, -1px); }
+  40% { transform: translate(-2px, 1px); } 60% { transform: translate(1px, 0); } 80% { transform: translate(-1px, -1px); }
+}
+
+.historia-divider {
+  height: 2px; margin: 0 28px; flex: none;
+  background: linear-gradient(90deg, #3fae54, #e9c531, #e07a2c, #d5372f, #8a3a9c);
+}
+
+.historia-timeline { display: flex; flex-direction: column; gap: 12px; }
+.historia-card {
+  display: flex; gap: 14px; border: 1px solid #d5d7db; border-radius: 6px; padding: 10px 14px; background: #F7F8F9;
+}
+.historia-card__date { flex: none; width: 90px; font-size: 11px; font-weight: 700; font-family: var(--font-ui); }
+.historia-card__date--red { color: #d5372f; }
+.historia-card__date--purple { color: #8a3a9c; }
+.historia-card strong { font-size: 13px; font-family: var(--font-ui); }
+.historia-card p { margin: 4px 0 0; font-size: 12.5px; color: #444; line-height: 1.5; }
+
+.historia-hint { margin: -8px 0 12px; font-size: 11px; color: #888; font-family: var(--font-ui); }
+.historia-skills-grid { display: grid; grid-template-columns: 80px 1fr; gap: 10px 14px; align-items: start; }
+.historia-skills-label {
+  font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; padding-top: 5px; font-family: var(--font-ui);
+}
+.historia-skills-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.historia-pill {
+  border: 1px solid #d5d7db; border-radius: 20px; padding: 4px 12px; background: #fff;
+  cursor: pointer; font-size: 12px; font-family: var(--font-ui); transition: background .1s, color .1s;
+}
+.historia-pill:hover { background: #1c222b; color: #fff; }
+
+.historia-section p.historia-cv { margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.historia-btn {
+  display: inline-block; border: 1px solid #6b7178; border-radius: 5px;
+  background: linear-gradient(180deg, #fff, #ABB0B6); color: #1c222b; text-decoration: none;
+  padding: 8px 16px; font-weight: 700; font-size: 13px; font-family: var(--font-ui); cursor: pointer;
+}
+.historia-btn:hover { filter: brightness(.96); }
+
+.historia-section--guestbook { background: #F7F8F9; }
+.historia-guest-list {
+  border: 1px solid #d5d7db; border-radius: 6px; background: #fff; padding: 10px;
+  margin-bottom: 12px; max-height: 160px; overflow-y: auto; font-family: var(--font-ui);
+}
+.historia-guest-entry { padding: 6px 0; border-bottom: 1px solid #eee; font-size: 12px; }
+.historia-guest-entry:last-child { border-bottom: none; }
+.historia-guest-entry strong { color: #1c222b; }
+.historia-guest-entry__date { color: #999; font-size: 10px; }
+.historia-guest-entry__msg { margin-top: 2px; color: #333; }
+.historia-guest-empty { font-size: 12px; color: #999; text-align: center; padding: 14px 0; }
+.historia-guest-form { display: flex; flex-direction: column; gap: 8px; max-width: 360px; font-family: var(--font-ui); }
+.historia-guest-form input, .historia-guest-form textarea {
+  border: 1px solid #d5d7db; border-radius: 5px; padding: 6px 10px; font-family: inherit; font-size: 12px;
+}
+.historia-guest-form textarea { resize: vertical; }
+.historia-btn--submit { align-self: flex-start; border: none; }
+
+.historia-footer { padding: 14px 28px; text-align: center; background: #1c222b; }
+.historia-footer p { margin: 0; color: #aab0b8; font-size: 11px; font-family: var(--font-ui); }
+.historia-footer a { color: #e9c531; text-decoration: underline; }
+
+@media (max-width: 860px) {
+  .historia-hero { flex-direction: column; }
+  .historia-hero__photo { align-self: flex-start; }
+}
+
+/* ---------- WHOAMI EASTER EGG (Sobre_mi.txt en versión terminal — solo vía "whoami") ---------- */
+.whoami-term {
+  background: #050a08; color: #c9ffe0; font-family: var(--font-mono);
+  font-size: 12px; line-height: 1.7; padding: 18px 22px;
+}
+.whoami-prompt { display: flex; align-items: center; gap: 8px; color: var(--accent); font-size: 11px; opacity: .9; }
+.whoami-prompt--end { margin-top: 22px; }
+.whoami-cursor {
+  width: 7px; height: 13px; background: var(--accent); display: inline-block;
+  animation: whoami-cursor-blink 1s step-end infinite;
+}
+@keyframes whoami-cursor-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+.whoami-heading {
+  margin: 22px 0 0; font-size: 30px; line-height: 1.08; letter-spacing: -1px;
+  color: var(--accent); font-weight: 600;
+}
+.whoami-tagline { margin: 14px 0 0; font-size: 15px; line-height: 1.5; color: #c9ffe0; max-width: 34ch; }
+
+.whoami-hero-row { display: flex; gap: 16px; align-items: flex-start; margin: 26px 0 0; }
+.whoami-hero-row p { margin: 0; font-size: 12px; line-height: 1.75; opacity: .9; }
+.whoami-photo {
+  width: 150px; height: 190px; object-fit: cover; flex: none;
+  border: 1px solid var(--accent-dim); filter: saturate(.75);
+}
+.whoami-p { margin: 18px 0 0; font-size: 12px; line-height: 1.75; opacity: .9; }
+
+.whoami-block { margin: 30px 0 0; padding-top: 16px; border-top: 1px dashed var(--accent-dim); }
+.whoami-block h4 { margin: 0 0 14px; font-size: 11px; letter-spacing: .8px; color: var(--accent); opacity: .85; }
+
+.whoami-timeline { display: grid; grid-template-columns: auto 1fr; gap: 12px 16px; align-items: baseline; }
+.whoami-timeline__when { font-size: 11px; color: #6F9188; white-space: nowrap; }
+.whoami-timeline strong { font-size: 14px; color: #c9ffe0; font-weight: 600; }
+.whoami-timeline p { margin: 4px 0 0; font-size: 12px; opacity: .85; }
+
+.whoami-skills-grid { display: grid; grid-template-columns: 90px 1fr; gap: 10px 16px; align-items: start; }
+.whoami-skills-label { font-size: 10px; letter-spacing: .6px; color: #6F9188; padding-top: 5px; }
+.whoami-skills-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+.whoami-pill {
+  font-size: 10px; padding: 3px 9px; border: 1px solid var(--accent-dim); color: var(--accent);
+  cursor: pointer; transition: background .1s, color .1s;
+}
+.whoami-pill:hover { background: var(--accent); color: #050a08; }
+
+.whoami-curios { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #6F9188; }
+
+.whoami-actions { margin: 32px 0 6px; display: flex; flex-wrap: wrap; gap: 8px; }
+.whoami-btn {
+  border: 1px solid var(--accent-dim); padding: 8px 14px; font-size: 11px; text-decoration: none;
+  color: var(--accent); font-family: var(--font-mono); cursor: pointer;
+}
+.whoami-btn:hover { background: rgba(57, 255, 136, .12); }
+.whoami-btn--solid { border-color: var(--accent); color: #050a08; background: var(--accent); font-weight: 600; }
+.whoami-btn--solid:hover { filter: brightness(.92); background: var(--accent); }
+
+@media (max-width: 860px) {
+  .whoami-hero-row { flex-direction: column; }
+  .whoami-photo { width: 100%; height: auto; aspect-ratio: 130 / 154; align-self: flex-start; max-width: 220px; }
+}
 
 /* terminal window specifics */
 #win-terminal .window-body {

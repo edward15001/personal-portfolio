@@ -107,9 +107,9 @@
       <span class="label">Papelera</span>
     </button>
 
-    <!-- ABOUT WINDOW -->
+    <!-- ABOUT WINDOW (Historia.htm — homenaje web 1.0, del handoff) -->
     <div class="window hidden" id="win-about" data-win="win-about"
-      style="--win-x:160px; --win-y:50px; --win-w:420px; --win-h:500px;">
+      style="--win-x:160px; --win-y:50px; --win-w:760px; --win-h:640px;">
       <div class="titlebar" data-drag="win-about">
         <button class="mac-box close" data-close="win-about" aria-label="Cerrar"></button>
         <span class="t-title">Sobre_mi.txt</span>
@@ -119,36 +119,230 @@
         </span>
       </div>
       <div class="window-body">
-        <div class="site-inner">
-          <div class="about-header">
-            <img class="about-photo" src="img/foto_perfil/foto_perfil.JPG" alt="Foto de Eduardo Holanda Fernández" />
-            <div class="about-heading">
-              <h3>EDUARDO HOLANDA FERNÁNDEZ</h3>
-              <p class="about-role">Backend, Infraestructura y Automatización con IA — último año de Ingeniería
-                de Computadores</p>
+        <div class="historia-menubar">
+          <span>File</span><span>Edit</span><span>Options</span><span>Navigate</span><span>Hotlist</span>
+        </div>
+        <div class="historia-toolbar">
+          <span class="historia-nav-btn historia-nav-btn--disabled" aria-hidden="true">◂</span>
+          <span class="historia-nav-btn historia-nav-btn--disabled" aria-hidden="true">▸</span>
+          <a class="historia-nav-btn" href="#hist-guestbook" aria-label="Ir al libro de visitas">⌂</a>
+          <div class="historia-addr">eduardo.os/sobre-mi.html</div>
+        </div>
+        <div class="historia-page" id="historia-page">
+         <div class="site-inner">
+          <div class="historia-hero" id="historia-top">
+            <div class="historia-hero__text">
+              <h1>Eduardo Holanda Fernández</h1>
+              <p class="historia-tagline">Backend, infraestructura y automatización con IA — último año de
+                Ingeniería de Computadores</p>
+              <nav class="historia-hero-nav">
+                <a href="#hist-bio">Sobre mí</a>
+                <a href="#hist-exp">Experiencia y estudios</a>
+                <a href="#hist-skills">Con qué trabajo</a>
+                <a href="#hist-guestbook">Libro de visitas</a>
+              </nav>
+            </div>
+            <div class="historia-hero__photo">
+              <img src="img/foto_perfil/foto_perfil.JPG" alt="Foto de Eduardo Holanda Fernández" />
             </div>
           </div>
-          <p>Estudiante de último año de Ingeniería de Computadores en la Universidad Rey Juan Carlos, apasionado
-            por el desarrollo de software y la eficiencia operativa. He trabajado como Responsable Técnico en
-            Gextia (Factor Libre), donde gestioné el mantenimiento de servicios backend, despliegues en
-            producción y el desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
-          <p>Además de mi perfil backend y de sistemas, cuento con experiencia sólida desarrollando aplicaciones
-            web (TypeScript, Angular) y una gran vocación por el trabajo en equipo y el soporte técnico —
-            reflejada en proyectos como un vigilante de seguridad multiplataforma, una plataforma de salud,
-            fractales concurrentes y algún clásico reconstruido desde cero.</p>
-          <div class="about-tags">
-            <span class="project-tag">Python</span><span class="project-tag">TypeScript</span><span
-              class="project-tag">Java</span><span class="project-tag">Angular</span><span
-              class="project-tag">Docker</span><span class="project-tag">IA/LLM</span>
+
+          <div class="historia-hits">
+            <span>has sido el visitante número</span>
+            <span class="historia-hits__count" id="historia-hits-count">------</span>
+            <span>desde 03/09/2026</span>
           </div>
-          <div class="about-links">
-            <a href="https://github.com/edward15001" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235" target="_blank"
-              rel="noopener">LinkedIn</a>
+
+          <section class="historia-section" id="hist-bio" data-reveal>
+            <h2 class="historia-glitch-heading">
+              <span>Sobre mí</span>
+              <span aria-hidden="true">Sobre mí</span>
+              <span aria-hidden="true">Sobre mí</span>
+            </h2>
+            <p>Estudiante de último año de Ingeniería de Computadores en la Universidad Rey Juan Carlos,
+              apasionado por el desarrollo de software y la eficiencia operativa. He trabajado como Responsable
+              Técnico en Gextia (Factor Libre), donde gestioné el mantenimiento de servicios backend, despliegues
+              en producción y el desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
+            <p>Además de mi perfil backend y de sistemas, cuento con experiencia sólida desarrollando
+              aplicaciones web (TypeScript, Angular) y una gran vocación por el trabajo en equipo y el soporte
+              técnico — reflejada en proyectos como un vigilante de seguridad multiplataforma, una plataforma de
+              salud, fractales concurrentes y algún clásico reconstruido desde cero.</p>
+          </section>
+
+          <div class="historia-divider"></div>
+
+          <section class="historia-section" id="hist-exp" data-reveal>
+            <h2>Experiencia y estudios</h2>
+            <div class="historia-timeline">
+              <div class="historia-card">
+                <span class="historia-card__date historia-card__date--red">mayo — ago 2026</span>
+                <div>
+                  <strong>Responsable Técnico — Gextia (Factor Libre)</strong>
+                  <p>Mantenimiento de servicios backend, despliegues en producción y desarrollo de herramientas
+                    internas integrando modelos de IA como Claude.</p>
+                </div>
+              </div>
+              <div class="historia-card">
+                <span class="historia-card__date historia-card__date--purple">último año</span>
+                <div>
+                  <strong>Ingeniería de Computadores — Universidad Rey Juan Carlos</strong>
+                  <p>Sistemas, concurrencia y ciberseguridad.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="historia-divider"></div>
+
+          <section class="historia-section" id="hist-skills" data-reveal>
+            <h2>Con qué trabajo</h2>
+            <p class="historia-hint">pasa el ratón por encima</p>
+            <div class="historia-skills-grid">
+              <span class="historia-skills-label">Backend</span>
+              <div class="historia-skills-pills">
+                <span class="historia-pill">Python</span><span class="historia-pill">Java</span>
+              </div>
+              <span class="historia-skills-label">Web</span>
+              <div class="historia-skills-pills">
+                <span class="historia-pill">TypeScript</span><span class="historia-pill">Angular</span>
+              </div>
+              <span class="historia-skills-label">Infra</span>
+              <div class="historia-skills-pills">
+                <span class="historia-pill">Docker</span><span class="historia-pill">Producción</span>
+              </div>
+              <span class="historia-skills-label">IA</span>
+              <div class="historia-skills-pills">
+                <span class="historia-pill">IA/LLM</span><span class="historia-pill">Claude</span>
+              </div>
+            </div>
+            <p class="historia-cv">
+              <a class="historia-btn" href="CV_Eduardo_Holanda_Fernandez.pdf" download>Descargar CV ↓</a>
+              <a class="historia-btn" href="https://github.com/edward15001" target="_blank" rel="noopener">GitHub</a>
+              <a class="historia-btn" href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235"
+                target="_blank" rel="noopener">LinkedIn</a>
+            </p>
+          </section>
+
+          <div class="historia-divider"></div>
+
+          <section class="historia-section historia-section--guestbook" id="hist-guestbook" data-reveal>
+            <h2>Libro de visitas</h2>
+            <div class="historia-guest-list" id="historia-guest-list">
+              <div class="historia-guest-empty">Aún nadie ha firmado — sé el primero.</div>
+            </div>
+            <form class="historia-guest-form" id="historia-guest-form">
+              <input type="text" name="name" placeholder="Nombre" maxlength="60" required />
+              <textarea name="msg" rows="2" placeholder="Mensaje" maxlength="240" required></textarea>
+              <button type="submit" class="historia-btn historia-btn--submit">Firmar el libro »</button>
+            </form>
+          </section>
+
+          <div class="historia-footer">
+            <p>© 2026 Eduardo Holanda Fernández · <a href="#historia-top">volver arriba</a></p>
           </div>
+         </div>
         </div>
       </div>
       <div class="resize-handle" data-resize="win-about" aria-hidden="true"></div>
+    </div>
+
+    <!-- WHOAMI EASTER-EGG WINDOW (README en terminal, del handoff — solo se abre con "whoami") -->
+    <div class="window hidden" id="win-whoami" data-win="win-whoami"
+      style="--win-x:230px; --win-y:90px; --win-w:640px; --win-h:600px;">
+      <div class="titlebar" data-drag="win-whoami">
+        <button class="mac-box close" data-close="win-whoami" aria-label="Cerrar"></button>
+        <span class="t-title">Sobre_mi.txt</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-whoami" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-whoami" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body whoami-term">
+        <div class="site-inner">
+          <div class="whoami-prompt">
+            <span>visitante@eduardo:~$</span><span>cat sobre_mi.txt</span>
+          </div>
+
+          <h1 class="whoami-heading">Me llamo Eduardo<br />Holanda Fernández.</h1>
+          <p class="whoami-tagline">Backend, infraestructura y automatización con IA. Último año de Ingeniería
+            de Computadores.</p>
+
+          <div class="whoami-hero-row">
+            <img class="whoami-photo" src="img/foto_perfil/foto_perfil.JPG"
+              alt="Foto de Eduardo Holanda Fernández" />
+            <p>Estudiante de último año de Ingeniería de Computadores en la Universidad Rey Juan Carlos,
+              apasionado por el desarrollo de software y la eficiencia operativa. He trabajado como Responsable
+              Técnico en Gextia (Factor Libre), donde gestioné el mantenimiento de servicios backend, despliegues
+              en producción y el desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
+          </div>
+
+          <p class="whoami-p">Además de mi perfil backend y de sistemas, cuento con experiencia sólida
+            desarrollando aplicaciones web (TypeScript, Angular) y una gran vocación por el trabajo en equipo y
+            el soporte técnico — reflejada en proyectos como un vigilante de seguridad multiplataforma, una
+            plataforma de salud, fractales concurrentes y algún clásico reconstruido desde cero.</p>
+
+          <div class="whoami-block">
+            <h4>DÓNDE HE ESTADO</h4>
+            <div class="whoami-timeline">
+              <span class="whoami-timeline__when">mayo — agosto 2026</span>
+              <div>
+                <strong>Responsable Técnico — Gextia (Factor Libre)</strong>
+                <p>Backend en producción, despliegues y herramientas internas con Claude.</p>
+              </div>
+              <span class="whoami-timeline__when">último año</span>
+              <div>
+                <strong>Ing. de Computadores — URJC</strong>
+                <p>Sistemas, concurrencia, ciberseguridad.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="whoami-block">
+            <h4>CON QUÉ TRABAJO</h4>
+            <div class="whoami-skills-grid">
+              <span class="whoami-skills-label">Backend</span>
+              <div class="whoami-skills-pills">
+                <span class="whoami-pill">Python</span><span class="whoami-pill">Java</span>
+              </div>
+              <span class="whoami-skills-label">Web</span>
+              <div class="whoami-skills-pills">
+                <span class="whoami-pill">TypeScript</span><span class="whoami-pill">Angular</span>
+              </div>
+              <span class="whoami-skills-label">Infra</span>
+              <div class="whoami-skills-pills">
+                <span class="whoami-pill">Docker</span><span class="whoami-pill">Producción</span>
+              </div>
+              <span class="whoami-skills-label">IA</span>
+              <div class="whoami-skills-pills">
+                <span class="whoami-pill">IA/LLM</span><span class="whoami-pill">Claude</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="whoami-block">
+            <h4>FUERA DEL EDITOR</h4>
+            <div class="whoami-curios">
+              <span>&gt; Me gusta el baloncesto</span>
+              <span>&gt; Escalo</span>
+              <span>&gt; Estoy desarrollando un videojuego</span>
+            </div>
+          </div>
+
+          <div class="whoami-actions">
+            <a class="whoami-btn whoami-btn--solid" href="CV_Eduardo_Holanda_Fernandez.pdf" download>Descargar CV
+              ↓</a>
+            <a class="whoami-btn" href="https://github.com/edward15001" target="_blank" rel="noopener">GitHub
+              ↗</a>
+            <a class="whoami-btn" href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235"
+              target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+
+          <div class="whoami-prompt whoami-prompt--end">
+            <span>visitante@eduardo:~$</span><span class="whoami-cursor" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle" data-resize="win-whoami" aria-hidden="true"></div>
     </div>
 
     <!-- PROJECTS WINDOW (retro browser with per-project tabs) -->
