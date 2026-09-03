@@ -1,36 +1,36 @@
-# Personal Portfolio
+# eduardo.OS
 
-Portfolio personal con estética oscura brutalista y acento verde menta, con una
-experiencia **scroll-driven**: hero animado letra a letra, marquee infinito,
-secciones numeradas y un showcase de proyectos a pantalla completa con secciones
-fijadas (pinned) mientras haces scroll. Accesible desde [aquí](https://www.eduardo-projects.es/)
+Portfolio personal en forma de **escritorio retro** (estética años 90 con alma
+de terminal): pantalla de arranque, iconos de escritorio, ventanas arrastrables
+con barra de tareas, un navegador falso con una pestaña por proyecto y un
+terminal con comandos reales (`help`, `whoami`, `projects`, `open <proyecto>`...).
+Accesible desde [aquí](https://www.eduardo-projects.es/)
 
 ![HTML](https://img.shields.io/badge/HTML5-0a0a0a?style=flat&logo=html5)
 ![CSS](https://img.shields.io/badge/CSS3-0a0a0a?style=flat&logo=css3&logoColor=2965f1)
 ![TypeScript](https://img.shields.io/badge/TypeScript-0a0a0a?style=flat&logo=typescript)
-![GSAP](https://img.shields.io/badge/GSAP-0a0a0a?style=flat&logo=greensock)
 
 ## Características del Diseño
 
-* **Tipografías:** `Space Grotesk` (primaria) y `JetBrains Mono` (interfaz técnica).
-* **Paleta:** Fondo oscuro con matiz verdoso (`#070907`), acento verde menta suave (`#7ee08f`) y grises técnicos.
-* **Layouts Angulares:** Radios de borde rígidos (`0px`), sombras duras y botones de alto contraste.
-* **Interacciones:** Smooth scroll (Lenis), animaciones de scroll con GSAP + ScrollTrigger,
-  letras del hero con máscara, contadores animados, palabras de los títulos con revelado
-  y efecto hover, parallax en las imágenes y barra de progreso de scroll.
-
-## Stack de animación
-
-* **GSAP + ScrollTrigger** y **Lenis** se cargan por CDN en `index.html`.
-  Si fallan (sin conexión), la página funciona igual: el contenido nunca queda oculto
-  y se usan fade-ins con `IntersectionObserver` como mejora progresiva.
-* Se respeta `prefers-reduced-motion`.
+* **Tipografías:** `Press Start 2P` (chrome pixel-art) y `IBM Plex Mono` (cuerpo de texto/terminal).
+* **Paleta:** Fondo azul-noche con scanlines y viñeta CRT, acento verde terminal (`#39FF88`),
+  chrome gris de ventana estilo Windows 9x, y un tema de color distinto por proyecto
+  (verde hacker, papel cálido con savia para NutroVia, azul corporativo, púrpura computacional,
+  amarillo hazard).
+* **Identidades visuales:** dentro de PROYECTOS.EXE, cada proyecto documenta su identidad visual
+  (paleta, tipografía, iconografía...) con muestras de color en la página. NutroVia es la primera
+  con su sistema completo (`public/visual-identity/`), cuyo PDF también se puede descargar desde
+  la ventana Recursos.
+* **Ventanas:** gestor de ventanas propio (abrir/cerrar/minimizar/enfocar/arrastrar) con
+  Pointer Events, barra de tareas con pestañas de las ventanas abiertas y reloj.
+* **Móvil:** por debajo de 860px las ventanas se abren a pantalla completa (sin arrastre)
+  y las pestañas de proyectos hacen scroll horizontal.
 
 ## Formulario de contacto (Web3Forms)
 
-El botón "Escríbeme" abre un modal con un formulario cuyos mensajes llegan a tu
-email mediante [Web3Forms](https://web3forms.com) (gratis, sin base de datos).
-Incluye un campo oculto honeypot anti-spam.
+La ventana `CONTACTO.EXE` incluye un formulario cuyos mensajes llegan a tu email
+mediante [Web3Forms](https://web3forms.com) (gratis, sin base de datos). Incluye
+un campo oculto honeypot anti-spam.
 
 ### Configuración
 
@@ -49,14 +49,15 @@ Incluye un campo oculto honeypot anti-spam.
 
 ```text
 ├── public/                 # Archivos estáticos (servidos por Vercel)
-│   ├── index.html          # Página principal (todos los proyectos en la home)
+│   ├── index.html          # Escritorio, ventanas, iconos y taskbar
 │   ├── contact-config.js   # Access key de Web3Forms (formulario de contacto)
-│   ├── styles.css          # Sistema de diseño (tokens, hero, proyectos, modal)
+│   ├── styles.css          # Chrome de ventanas, temas por proyecto, responsive
 │   ├── img/                # Imágenes de los proyectos y mockups generados
+│   ├── visual-identity/    # Identidades visuales de los proyectos (PDFs)
 │   └── dist/
 │       └── main.js         # JavaScript compilado
 ├── src/
-│   └── main.ts             # Lógica: GSAP/ScrollTrigger/Lenis + modal Web3Forms
+│   └── main.ts             # Gestor de ventanas, terminal, navegador de proyectos, contacto
 ├── vercel.json             # Configuración de despliegue Vercel
 ├── tsconfig.json           # Configuración TypeScript
 └── package.json            # Scripts y dependencias

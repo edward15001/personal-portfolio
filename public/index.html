@@ -5,477 +5,390 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Portfolio personal de Edward — Desarrollador de software. Descubre mis proyectos más recientes." />
-  <title>Edward | Portfolio</title>
+    content="eduardo.OS — Portfolio personal de Eduardo Holanda. Ingeniero de computadores: ciberseguridad, IA/LLM y productos web, en forma de escritorio estilo Mac OS 9." />
+  <title>eduardo.OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300..700&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <!-- Identidad NutroVia (Newsreader display + Archivo interfaz) -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;1,300&family=Archivo:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <!-- Identidad Angular Task Manager (Instrument Sans display + JetBrains Mono interfaz) -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
 </head>
 
 <body>
 
-  <!-- Scroll progress -->
-  <div id="scroll-progress" class="progress-bar" aria-hidden="true"></div>
-
-  <!-- ========== NAV ========== -->
-  <nav id="main-nav" class="nav">
-    <div class="nav__logo"><a href="#hero">E<span class="accent">.</span></a></div>
-    <ul class="nav__links">
-      <li><a href="#about">Sobre mí</a></li>
-      <li><a href="#projects">Proyectos</a></li>
-      <li><a href="#contact">Contacto</a></li>
-    </ul>
-  </nav>
-
-  <!-- ========== HERO ========== -->
-  <header id="hero" class="hero">
-    <div class="tech-grid-bg" aria-hidden="true"></div>
-    <div class="hero__glow" aria-hidden="true"></div>
-    <div class="hero__content">
-      <div class="hero__tech-meta">
-        <span>sys.ver // 3.0.0</span>
-        <span>sys.id // EDW-15</span>
-        <span class="accent">[ ONLINE ]</span>
-      </div>
-      <p class="hero__greeting">HOLA, SOY</p>
-      <h1 class="hero__title" aria-label="EDUARDO">
-        <canvas class="hero__particles" aria-hidden="true"></canvas>
-        <span class="hero__title-text">EDUARDO</span>
-      </h1>
-      <p class="hero__tagline">DESARROLLADOR DE SOFTWARE</p>
-      <p class="hero__sub">CREO EXPERIENCIAS DIGITALES LIMPIAS, RÁPIDAS Y CON ATENCIÓN AL DETALLE.</p>
-    </div>
-    <div class="tech-corner top-left"></div>
-    <div class="tech-corner bottom-right"></div>
-  </header>
-
-  <!-- ========== MARQUEE ========== -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <div class="marquee__group">
-        <span>Desarrollo de software</span><i>✦</i>
-        <span>Python</span><i>✦</i>
-        <span>TypeScript</span><i>✦</i>
-        <span>Angular</span><i>✦</i>
-        <span>Java</span><i>✦</i>
-        <span>Docker</span><i>✦</i>
-        <span>IA &amp; LLMs</span><i>✦</i>
-        <span>MongoDB</span><i>✦</i>
-        <span>Vercel</span><i>✦</i>
-        <span>Ciberseguridad</span><i>✦</i>
-      </div>
-      <div class="marquee__group">
-        <span>Desarrollo de software</span><i>✦</i>
-        <span>Python</span><i>✦</i>
-        <span>TypeScript</span><i>✦</i>
-        <span>Angular</span><i>✦</i>
-        <span>Java</span><i>✦</i>
-        <span>Docker</span><i>✦</i>
-        <span>IA &amp; LLMs</span><i>✦</i>
-        <span>MongoDB</span><i>✦</i>
-        <span>Vercel</span><i>✦</i>
-        <span>Ciberseguridad</span><i>✦</i>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== ABOUT ========== -->
-  <section id="about" class="section about">
-    <div class="section__inner">
-      <div class="about__head">
-        <p class="kicker reveal">01 — Sobre mí</p>
-        <h2 class="about__title split-title">
-          <span class="tw tw--weight">Construyo</span> <span class="tw tw--accent tw--dissolve">productos</span> <span
-            class="tw">que</span>
-          <span class="tw tw--wave">importan</span><span class="tw tw--accent">.</span>
-        </h2>
-      </div>
-      <div class="about__story" id="about-story">
-        <div class="about__phrase about__phrase--active">
-          <span class="about__phrase-num" aria-hidden="true">01</span>
-          <p class="about__phrase-line">Soy <span class="tw tw--lift">desarrollador</span> <span
-              class="tw tw--lift">de</span> <span class="tw tw--lift">software</span><span class="accent">.</span></p>
-          <p class="about__phrase-sub">Me gusta crear productos digitales que ofrezcan una experiencia impecable:
-            rápidos, limpios y con atención al detalle.</p>
-        </div>
-        <div class="about__phrase">
-          <span class="about__phrase-num" aria-hidden="true">02</span>
-          <p class="about__phrase-line">Trabajo de forma integral<span class="accent">.</span></p>
-          <p class="about__phrase-sub">Desde la primera línea de código hasta tener el producto en producción.</p>
-        </div>
-        <div class="about__phrase">
-          <span class="about__phrase-num" aria-hidden="true">03</span>
-          <p class="about__phrase-line">Cuido el <span class="tw tw--lift">backend</span>, el <span
-              class="tw tw--lift">frontend</span> y los detalles de la <span
-              class="tw tw--accent tw--dissolve">experiencia</span><span class="accent">.</span></p>
-          <p class="about__phrase-sub">Cada pieza importa: estructura, rendimiento y cómo se siente usarla.</p>
-        </div>
-        <div class="about__phrase">
-          <span class="about__phrase-num" aria-hidden="true">04</span>
-          <p class="about__phrase-line">Integro IA, datos y arquitecturas robustas<span class="accent">.</span></p>
-          <p class="about__phrase-sub">Modelos de lenguaje y sistemas escalables funcionando en productos reales.</p>
-        </div>
-        <div class="about__phrase">
-          <span class="about__phrase-num" aria-hidden="true">05</span>
-          <p class="about__phrase-line">He construido proyectos muy <span class="tw tw--tilt">distintos</span><span
-              class="accent">.</span></p>
-          <p class="about__phrase-sub">Ciberseguridad con IA multi-plataforma, plataformas web de nutrición, fractales
-            concurrentes y más.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROJECTS SHOWCASE ========== -->
-  <section id="projects" class="showcase">
-    <div class="showcase__intro section__inner">
-      <p class="kicker reveal">02 — Proyectos</p>
-      <h2 class="showcase__intro-title split-title">
-        <span class="tw tw--glitch">Trabajos</span> <span class="tw">que</span> <span class="tw">hablan</span>
-        <span class="tw">por</span> <span class="tw">sí</span> <span class="tw">solos</span><span
-          class="tw tw--accent">.</span>
-      </h2>
-    </div>
-
-    <div class="proj-list">
-
-      <!-- Project 01 — SafeGram · terminal -->
-      <article class="proj" id="proj-safegram" data-theme="safegram">
-        <div class="section__inner">
-          <header class="proj__head reveal">
-            <span class="proj__num">01 — Ciberseguridad</span>
-            <h3 class="proj__title tw tw--glitch">SafeGram</h3>
-            <p class="proj__sub">Sistema de ciberseguridad inteligente para Telegram, WhatsApp y Slack</p>
-          </header>
-
-          <div class="proj__grid">
-            <figure class="proj__media proj__media--wide reveal">
-              <img src="img/safegram-mockup-1.png" alt="Dashboard de SafeGram" loading="lazy" />
-            </figure>
-            <p class="proj__desc proj__w7 reveal">
-              SafeGram actúa como un <strong>vigilante silencioso</strong>: analiza cada mensaje en tiempo real
-              y frena phishing, spam e ingeniería social antes de que un empleado pueda interactuar con ellos.
-              Usa una triple capa de análisis: <strong>IA (LLM)</strong> para la clasificación semántica,
-              <strong>heurísticas deterministas</strong> como filtro rápido y <strong>feeds de inteligencia de
-                amenazas</strong> (URLhaus, PhishTank, Google Safe Browsing) como evidencia objetiva.
-            </p>
-            <ul class="proj__features proj__w5 reveal">
-              <li>Multi-plataforma: Telegram, WhatsApp y Slack</li>
-              <li>Dashboard web multi-bot con métricas en MongoDB</li>
-              <li>Alertas a administradores + modo silencioso</li>
-              <li>Serverless en Vercel o VPS con Docker Compose</li>
-              <li>Rate limiting, caché y fallback a heurísticas</li>
-            </ul>
-            <figure class="proj__media proj__w7 reveal">
-              <img src="img/safegram-mockup-2.png" alt="Detección de una amenaza en SafeGram" loading="lazy" />
-            </figure>
-            <figure class="proj__media proj__media--tall proj__w5 reveal">
-              <img src="img/safegram-mockup-3.png" alt="Métricas del dashboard de SafeGram" loading="lazy" />
-            </figure>
-          </div>
-
-          <footer class="proj__foot reveal">
-            <div class="proj__stack">
-              <span>Python</span><span>Vercel</span><span>MongoDB</span><span>IA</span><span>Multi-plataforma</span>
-            </div>
-            <div class="proj__links">
-              <a class="proj__link-live" href="https://safe-gram.vercel.app/" target="_blank" rel="noopener">Ver en vivo
-                &nearr;</a>
-              <a class="proj__link-gh" href="https://github.com/edward15001/SafeGram" target="_blank"
-                rel="noopener">GitHub</a>
-            </div>
-          </footer>
-        </div>
-      </article>
-
-      <!-- Project 02 — NutroVia · cálido -->
-      <article class="proj" id="proj-nutrovia" data-theme="nutrovia">
-        <div class="section__inner">
-          <header class="proj__head reveal">
-            <span class="proj__num">02 — Salud &amp; Fitness</span>
-            <h3 class="proj__title tw tw--lift">NutroVia</h3>
-            <p class="proj__sub">Plataforma integral de nutrición y entrenamiento</p>
-          </header>
-
-          <div class="proj__grid">
-
-            <!-- Fila 1: display grande a ancho completo -->
-            <figure class="proj__media proj__media--wide reveal">
-              <img src="img/nutrovia/display_1_mockup.png" alt="NutroVia en pantalla desktop" loading="lazy" />
-            </figure>
-
-            <!-- Fila 2: descripción a ancho completo -->
-            <div class="proj__text-block proj__w12 reveal">
-              <p class="proj__desc">
-                NutroVia democratiza el acceso a planes de salud personalizados. Analiza los parámetros físicos
-                de cada usuario, calcula <strong>macronutrientes exactos</strong> y genera rutinas dinámicas
-                adaptadas a su nivel, material disponible y objetivos: volumen, definición o mantenimiento.
-              </p>
-              <ul class="proj__features">
-                <li>Análisis paramétrico de necesidades calóricas</li>
-                <li>Generación dinámica de rutinas y dietas</li>
-                <li>Dashboard de progresión centrado en el usuario</li>
-                <li>Pasarela de pago operativa (entorno real)</li>
-              </ul>
-              <p class="proj__quote">"Planes de salud basados en datos, no en genéricos."</p>
-            </div>
-
-            <!-- Fila 3: Mac mockup grande + iPhone mockup -->
-            <figure class="proj__media proj__w8 reveal">
-              <img src="img/nutrovia/mac_1_mockup.png" alt="NutroVia en MacBook — vista principal" loading="lazy" />
-            </figure>
-            <figure class="proj__media proj__media--tall proj__w4 reveal">
-              <img src="img/nutrovia/iphone_1_mockup.png" alt="NutroVia en iPhone — pantalla de inicio"
-                loading="lazy" />
-            </figure>
-
-            <!-- Fila 4: iPhone mockup + Mac mockup -->
-            <figure class="proj__media proj__media--tall proj__w4 reveal">
-              <img src="img/nutrovia/iphone_2_mockup.png" alt="NutroVia en iPhone — detalle de rutina" loading="lazy" />
-            </figure>
-            <figure class="proj__media proj__w8 reveal">
-              <img src="img/nutrovia/mac_2_mockup.png" alt="NutroVia en MacBook — dashboard de progresión"
-                loading="lazy" />
-            </figure>
-
-          </div>
-
-          <footer class="proj__foot reveal">
-            <div class="proj__stack">
-              <span>TypeScript</span><span>Express</span><span>SQL</span>
-            </div>
-            <div class="proj__links">
-              <a class="proj__link-live" href="https://nutrovia.es/" target="_blank" rel="noopener">Ver en vivo
-                &nearr;</a>
-              <a class="proj__link-gh" href="https://github.com/edward15001/nutrovia-web-app" target="_blank"
-                rel="noopener">GitHub</a>
-            </div>
-          </footer>
-        </div>
-      </article>
-
-      <!-- Project 03 — Angular Task Manager · productivo -->
-      <article class="proj" id="proj-angular" data-theme="angular">
-        <div class="section__inner">
-          <header class="proj__head reveal">
-            <span class="proj__num">03 — Productividad</span>
-            <h3 class="proj__title tw tw--weight">Angular Task Manager</h3>
-            <p class="proj__sub">Gestión de agenda y autenticación avanzada</p>
-          </header>
-
-          <div class="proj__grid">
-            <p class="proj__desc proj__w6 reveal">
-              Un showcase de Angular diseñado como herramienta funcional y como <strong>lienzo técnico</strong>:
-              flujos de trabajo eficientes, manejo de estados complejos y gestión de usuarios con una
-              autenticación robusta mantenida a lo largo de toda la sesión.
-            </p>
-            <figure class="proj__media proj__w6 reveal">
-              <img src="img/angular-showcase.jfif" alt="Vista previa de Angular Task Manager" loading="lazy" />
-            </figure>
-            <ul class="proj__features proj__w5 reveal">
-              <li>Manejo de estados con RxJS observables</li>
-              <li>Guards (canActivate) y autenticación JWT</li>
-              <li>Modularización y arquitectura “Angular Way”</li>
-            </ul>
-            <p class="proj__quote proj__w5 reveal">
-              “Productividad corporativa: azules profundos, cero ruido.”
-            </p>
-            <figure class="proj__media proj__media--placeholder proj__w7 reveal" data-ph="angular-login.png"></figure>
-            <figure class="proj__media proj__media--placeholder proj__w5 reveal" data-ph="angular-tasks.png"></figure>
-          </div>
-
-          <footer class="proj__foot reveal">
-            <div class="proj__stack">
-              <span>Angular</span><span>TypeScript</span>
-            </div>
-            <div class="proj__links">
-              <a class="proj__link-live" href="https://angular-showcase.es/login" target="_blank" rel="noopener">Ver en
-                vivo &nearr;</a>
-              <a class="proj__link-gh" href="https://github.com/edward15001/angular-showcase" target="_blank"
-                rel="noopener">GitHub</a>
-            </div>
-          </footer>
-        </div>
-      </article>
-
-      <!-- Project 04 — Mandelbrot · computacional -->
-      <article class="proj" id="proj-mandelbrot" data-theme="mandelbrot">
-        <div class="section__inner">
-          <header class="proj__head reveal">
-            <span class="proj__num">04 — Concurrencia</span>
-            <h3 class="proj__title tw tw--tilt">Generador Mandelbrot</h3>
-            <p class="proj__sub">Renderizador paralelo y concurrente del fractal de Mandelbrot</p>
-          </header>
-
-          <div class="proj__grid">
-            <figure class="proj__media proj__w8 reveal">
-              <img src="img/mandelbrot_forkjoin.png" alt="Render del fractal de Mandelbrot" loading="lazy" />
-            </figure>
-            <p class="proj__desc proj__w4 reveal">
-              Compara estrategias de programación concurrente y paralela frente a una carga intensiva de CPU.
-              Un problema “vergonzosamente paralelo” convertido en <strong>laboratorio de benchmarking</strong>.
-            </p>
-            <ul class="proj__features proj__w5 reveal">
-              <li>Alto rendimiento computacional</li>
-              <li>Hilos, Fork/Join y parallel streams</li>
-              <li>Observación empírica de la Ley de Amdahl</li>
-            </ul>
-            <p class="proj__quote proj__w7 reveal">
-              “Visualizar el coste de la sincronización frente a la ganancia de ejecutar en paralelo.”
-            </p>
-            <figure class="proj__media proj__media--placeholder proj__w8 reveal" data-ph="mandelbrot-zoom.png"></figure>
-          </div>
-
-          <footer class="proj__foot reveal">
-            <div class="proj__stack">
-              <span>Java</span><span>Concurrency</span><span>Fork/Join</span>
-            </div>
-            <div class="proj__links">
-              <a class="proj__link-gh" href="https://github.com/edward15001/parallel-mandelbrot-java" target="_blank"
-                rel="noopener">GitHub</a>
-            </div>
-          </footer>
-        </div>
-      </article>
-
-      <!-- Project 05 — Buscaminas · lúdico -->
-      <article class="proj" id="proj-minesweeper" data-theme="minesweeper">
-        <div class="section__inner">
-          <header class="proj__head reveal">
-            <span class="proj__num">05 — Juegos</span>
-            <h3 class="proj__title tw tw--wave">Buscaminas Java</h3>
-            <p class="proj__sub">El clásico, con interfaz gráfica interactiva en Swing</p>
-          </header>
-
-          <div class="proj__grid">
-
-            <!-- Fila 1: captura principal ancha + lateral -->
-            <figure class="proj__media proj__w8 reveal">
-              <img src="img/buscaminas/javaw_mqSzgrWh3H.png" alt="Partida en curso de Buscaminas Java" loading="lazy" />
-            </figure>
-            <figure class="proj__media proj__w4 reveal">
-              <img src="img/buscaminas/javaw_QoStHDSyzB.png" alt="Buscaminas Java — vista de tablero" loading="lazy" />
-            </figure>
-
-            <!-- Fila 2: descripción + features -->
-            <p class="proj__desc proj__w5 reveal">
-              El clásico Buscaminas desarrollado íntegramente en Java: una demostración de
-              <strong>programación orientada a objetos</strong>, manejo de eventos y diseño de interfaces
-              gráficas, con la lógica de juego separada de la capa visual.
-            </p>
-            <ul class="proj__features proj__w7 reveal">
-              <li>Generación aleatoria de minas y números adyacentes</li>
-              <li>Algoritmo recursivo flood-fill para despejar casillas</li>
-              <li>Estados completos: ganada, perdida y reinicio</li>
-            </ul>
-
-            <!-- Fila 3: dos capturas en paralelo -->
-            <figure class="proj__media proj__w6 reveal">
-              <img src="img/buscaminas/javaw_ccFvOPOd0p.png" alt="Buscaminas Java — partida ganada" loading="lazy" />
-            </figure>
-            <figure class="proj__media proj__w6 reveal">
-              <img src="img/buscaminas/javaw_w5zVqdFM3I.png" alt="Buscaminas Java — partida perdida" loading="lazy" />
-            </figure>
-
-          </div>
-
-          <footer class="proj__foot reveal">
-            <div class="proj__stack">
-              <span>Java</span><span>POO</span><span>Swing</span>
-            </div>
-            <div class="proj__links">
-              <a class="proj__link-gh" href="https://github.com/edward15001/java-minesweeper" target="_blank"
-                rel="noopener">GitHub</a>
-            </div>
-          </footer>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ========== CONTACT ========== -->
-  <section id="contact" class="section contact">
-    <div class="section__inner">
-      <p class="kicker reveal">— 03 — CONTACTO</p>
-      <h2 class="contact__title split-title"><span class="tw tw--accent">¿HABLAMOS?</span></h2>
-      <p class="contact__text reveal">
-        Tienes un proyecto en mente o simplemente quieres saludar.<br />
-        No dudes en escribirme.
-      </p>
-      <button class="contact__btn reveal" id="contact-btn" type="button">
-        Escríbeme &rarr;
-      </button>
-      <p class="contact__fallback reveal">
-        O escríbeme directamente a: <br />
-        <a class="contact__mail" href="mailto:edward.15.holanda@gmail.com">edward.15.holanda@gmail.com</a>
-      </p>
-      <div class="contact__socials reveal">
-        <a href="https://github.com/edward15001" target="_blank" rel="noopener" aria-label="GitHub" class="social-link"
-          id="social-github">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
-            <path
-              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235" target="_blank" rel="noopener"
-          aria-label="LinkedIn" class="social-link" id="social-linkedin">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
-            <path
-              d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== CONTACT MODAL ========== -->
-  <div class="modal" id="contact-modal" aria-hidden="true">
-    <div class="modal__backdrop" data-modal-close></div>
-    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal__close" type="button" data-modal-close aria-label="Cerrar">&times;</button>
-      <h3 class="modal__title" id="modal-title"><span class="tw tw--dissolve">Hablemos</span><span
-          class="accent">.</span></h3>
-      <p class="modal__sub">Cuéntame tu proyecto y te responderé en cuanto pueda.</p>
-      <form id="contact-form" class="modal__form" novalidate>
-        <input type="checkbox" name="botcheck" class="modal__honeypot" tabindex="-1" autocomplete="off"
-          aria-hidden="true" />
-        <label class="modal__field">
-          <span class="modal__label">Nombre</span>
-          <input type="text" name="name" required placeholder="Tu nombre" autocomplete="name" />
-        </label>
-        <label class="modal__field">
-          <span class="modal__label">Email</span>
-          <input type="email" name="email" required placeholder="tu@email.com" autocomplete="email" />
-        </label>
-        <label class="modal__field">
-          <span class="modal__label">Mensaje</span>
-          <textarea name="message" rows="5" required placeholder="Cuéntame tu idea..."></textarea>
-        </label>
-        <button type="submit" class="modal__submit">Enviar mensaje &rarr;</button>
-        <p class="modal__status" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <p>&copy; 2026 Edward. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- SVG filter for the "liquid" text effect (feTurbulence + feDisplacementMap) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <filter id="liquid" x="-25%" y="-25%" width="150%" height="150%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.03" numOctaves="2" seed="7" result="noise" />
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="crt-red" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+      </filter>
+      <filter id="crt-green" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+      </filter>
+      <filter id="crt-blue" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+      </filter>
+    </defs>
   </svg>
+
+  <div id="boot">
+    <div class="boot-icon" aria-hidden="true">
+      <svg viewBox="0 0 32 32">
+        <rect x="3" y="3" width="26" height="20" rx="2" fill="#f4f6f8" stroke="#3a4048" stroke-width="1.6" />
+        <circle cx="12" cy="12" r="2.1" fill="#3a4048" />
+        <circle cx="20" cy="12" r="2.1" fill="#3a4048" />
+        <path d="M11 17.5c1.4 1.4 8.6 1.4 10 0" fill="none" stroke="#3a4048" stroke-width="1.6"
+          stroke-linecap="round" />
+        <rect x="12" y="24.5" width="8" height="2.5" fill="#c3c7cc" />
+        <rect x="8" y="27.5" width="16" height="1.6" rx="0.8" fill="#8b9199" />
+      </svg>
+    </div>
+    <div class="logo">Bienvenido a eduardo.OS</div>
+    <div class="boot-bar"><div class="boot-bar__seg" style="--i:0"></div><div class="boot-bar__seg" style="--i:1"></div><div class="boot-bar__seg" style="--i:2"></div><div class="boot-bar__seg" style="--i:3"></div><div class="boot-bar__seg" style="--i:4"></div><div class="boot-bar__seg" style="--i:5"></div><div class="boot-bar__seg" style="--i:6"></div><div class="boot-bar__seg" style="--i:7"></div><div class="boot-bar__seg" style="--i:8"></div><div class="boot-bar__seg" style="--i:9"></div><div class="boot-bar__seg" style="--i:10"></div><div class="boot-bar__seg" style="--i:11"></div></div>
+  </div>
+
+  <div id="menubar">
+    <div class="menubar-left">
+      <button class="apple-menu" id="apple-menu" aria-label="Acerca de eduardo.OS">
+        <img src="img/icons/apple-menu.png" alt="" />
+      </button>
+      <span class="menu-item menu-item--app">eduardo.OS</span>
+      <button class="menu-item" data-open="win-explorer">Archivo</button>
+      <button class="menu-item" data-open="win-identity">Edición</button>
+      <button class="menu-item" data-open="win-process">Especial</button>
+    </div>
+    <div class="menubar-right">
+      <span id="clock"></span>
+    </div>
+  </div>
+
+  <div id="desktop">
+
+    <div class="wallpaper" aria-hidden="true">
+      <div class="wallpaper__layer wallpaper__layer--r"></div>
+      <div class="wallpaper__layer wallpaper__layer--g"></div>
+      <div class="wallpaper__layer wallpaper__layer--b"></div>
+    </div>
+
+    <div id="control-strip">
+      <button class="cs-home" id="cs-home" aria-label="Volver al inicio">
+        <img src="img/icons/apple-menu.png" alt="" />
+      </button>
+      <div class="cs-apps" id="cs-apps"></div>
+    </div>
+
+    <div class="icons">
+      <button class="icon" data-open="win-about" aria-label="Abrir Sobre mí">
+        <span class="glyph"><img src="img/icons-win98/document.png" alt="" /></span>
+        <span class="label">Sobre_mi</span>
+      </button>
+      <button class="icon" data-open="win-browser" aria-label="Abrir Proyectos">
+        <span class="glyph"><img src="img/icons-win98/folder.png" alt="" /></span>
+        <span class="label">Proyectos</span>
+      </button>
+      <button class="icon" data-open="win-terminal" aria-label="Abrir Terminal">
+        <span class="glyph"><img src="img/icons-win98/terminal.png" alt="" /></span>
+        <span class="label">Terminal</span>
+      </button>
+      <button class="icon" data-open="win-contact" aria-label="Abrir Contacto">
+        <span class="glyph"><img src="img/icons-win98/mail.png" alt="" /></span>
+        <span class="label">Contacto</span>
+      </button>
+    </div>
+
+    <button class="icon icon--trash" id="trash-icon" aria-label="Papelera — cierra las apps seleccionadas">
+      <span class="glyph"><img src="img/icons-win98/trash.png" alt="" /></span>
+      <span class="label">Papelera</span>
+    </button>
+
+    <!-- ABOUT WINDOW -->
+    <div class="window hidden" id="win-about" data-win="win-about"
+      style="--win-x:160px; --win-y:50px; --win-w:420px; --win-h:500px;">
+      <div class="titlebar" data-drag="win-about">
+        <button class="mac-box close" data-close="win-about" aria-label="Cerrar"></button>
+        <span class="t-title">Sobre_mi.txt</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-about" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-about" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body">
+        <div class="site-inner">
+          <div class="about-header">
+            <img class="about-photo" src="img/foto_perfil/foto_perfil.JPG" alt="Foto de Eduardo Holanda Fernández" />
+            <div class="about-heading">
+              <h3>EDUARDO HOLANDA FERNÁNDEZ</h3>
+              <p class="about-role">Backend, Infraestructura y Automatización con IA — último año de Ingeniería
+                de Computadores</p>
+            </div>
+          </div>
+          <p>Estudiante de último año de Ingeniería de Computadores en la Universidad Rey Juan Carlos, apasionado
+            por el desarrollo de software y la eficiencia operativa. He trabajado como Responsable Técnico en
+            Gextia (Factor Libre), donde gestioné el mantenimiento de servicios backend, despliegues en
+            producción y el desarrollo de herramientas internas integrando modelos de IA como Claude.</p>
+          <p>Además de mi perfil backend y de sistemas, cuento con experiencia sólida desarrollando aplicaciones
+            web (TypeScript, Angular) y una gran vocación por el trabajo en equipo y el soporte técnico —
+            reflejada en proyectos como un vigilante de seguridad multiplataforma, una plataforma de salud,
+            fractales concurrentes y algún clásico reconstruido desde cero.</p>
+          <div class="about-tags">
+            <span class="project-tag">Python</span><span class="project-tag">TypeScript</span><span
+              class="project-tag">Java</span><span class="project-tag">Angular</span><span
+              class="project-tag">Docker</span><span class="project-tag">IA/LLM</span>
+          </div>
+          <div class="about-links">
+            <a href="https://github.com/edward15001" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235" target="_blank"
+              rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle" data-resize="win-about" aria-hidden="true"></div>
+    </div>
+
+    <!-- PROJECTS WINDOW (retro browser with per-project tabs) -->
+    <div class="window hidden" id="win-browser" data-win="win-browser"
+      style="--win-x:210px; --win-y:96px; --win-w:820px; --win-h:720px;">
+      <div class="titlebar" data-drag="win-browser">
+        <button class="mac-box close" data-close="win-browser" aria-label="Cerrar"></button>
+        <span class="t-title">Proyectos</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-browser" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-browser" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body">
+        <div id="tab-strip"></div>
+        <div id="browser-toolbar">
+          <button class="nav-btn" id="nav-back" aria-label="Proyecto anterior">◀</button>
+          <button class="nav-btn" id="nav-fwd" aria-label="Proyecto siguiente">▶</button>
+          <button class="nav-btn" id="nav-reload" aria-label="Recargar">⟳</button>
+          <div id="addr-bar"><span id="addr-text">eduardo.os/proyectos/</span></div>
+        </div>
+        <div id="browser-loading"></div>
+        <div id="browser-content" class="site-safegram"></div>
+      </div>
+      <div class="resize-handle" data-resize="win-browser" aria-hidden="true"></div>
+    </div>
+
+    <!-- CONTACT WINDOW -->
+    <div class="window hidden" id="win-contact" data-win="win-contact"
+      style="--win-x:260px; --win-y:150px; --win-w:400px; --win-h:500px;">
+      <div class="titlebar" data-drag="win-contact">
+        <button class="mac-box close" data-close="win-contact" aria-label="Cerrar"></button>
+        <span class="t-title">Contacto</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-contact" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-contact" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body">
+        <h3>NUEVO MENSAJE</h3>
+        <form id="contact-form" class="contact-form" novalidate>
+          <input type="checkbox" name="botcheck" class="contact-honeypot" tabindex="-1" autocomplete="off"
+            aria-hidden="true" />
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="name" required placeholder="Tu nombre" autocomplete="name" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required placeholder="tu@email.com" autocomplete="email" />
+          </label>
+          <label>
+            <span>Mensaje</span>
+            <textarea name="message" rows="4" required placeholder="Cuéntame tu idea..."></textarea>
+          </label>
+          <button type="submit" class="contact-submit">Enviar &rarr;</button>
+          <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="contact-fallback">
+          <p>O directamente a: <a href="mailto:edward.15.holanda@gmail.com">edward.15.holanda@gmail.com</a></p>
+          <div class="contact-socials">
+            <a href="https://github.com/edward15001" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/eduardo-holanda-fernández-6a27b0235" target="_blank"
+              rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle" data-resize="win-contact" aria-hidden="true"></div>
+    </div>
+
+    <!-- TERMINAL WINDOW -->
+    <div class="window hidden" id="win-terminal" data-win="win-terminal"
+      style="--win-x:310px; --win-y:210px; --win-w:420px; --win-h:360px;">
+      <div class="titlebar" data-drag="win-terminal">
+        <button class="mac-box close" data-close="win-terminal" aria-label="Cerrar"></button>
+        <span class="t-title">Terminal</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-terminal" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-terminal" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body">
+        <div id="term-output">eduardo.OS [terminal v1.0]
+escribe "help" para ver comandos disponibles
+</div>
+        <div id="term-line">
+          <span class="prompt">visitante@eduardo:~$</span>
+          <input id="term-input" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" />
+        </div>
+      </div>
+      <div class="resize-handle" data-resize="win-terminal" aria-hidden="true"></div>
+    </div>
+
+    <!-- FILE EXPLORER WINDOW (Archivo) -->
+    <div class="window hidden" id="win-explorer" data-win="win-explorer"
+      style="--win-x:180px; --win-y:80px; --win-w:760px; --win-h:640px;">
+      <div class="titlebar" data-drag="win-explorer">
+        <button class="mac-box close" data-close="win-explorer" aria-label="Cerrar"></button>
+        <span class="t-title">Recursos</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-explorer" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-explorer" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body explorer-body">
+        <p class="explorer-intro">Todos los iconos e imágenes que usa eduardo.OS, listos para descargar.</p>
+        <div id="explorer-root"></div>
+      </div>
+      <div class="resize-handle" data-resize="win-explorer" aria-hidden="true"></div>
+    </div>
+
+    <!-- VISUAL IDENTITY WINDOW (Edición) -->
+    <div class="window hidden" id="win-identity" data-win="win-identity"
+      style="--win-x:230px; --win-y:100px; --win-w:640px; --win-h:600px;">
+      <div class="titlebar" data-drag="win-identity">
+        <button class="mac-box close" data-close="win-identity" aria-label="Cerrar"></button>
+        <span class="t-title">Identidad Visual</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-identity" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-identity" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body">
+        <div id="browser-toolbar-identity" class="mini-toolbar">
+          <div class="mini-addr">eduardo.os/identidad-visual</div>
+        </div>
+        <div class="site-identity">
+          <span class="site-num">EDUARDO.OS — IDENTIDAD VISUAL</span>
+          <h3>De brutalista a Platinum</h3>
+          <p>El portfolio empezó como una web brutalista con scroll infinito, y pasó por un concepto de
+            "escritorio retro" estilo Windows 9x antes de convertirse en esto: un escritorio inspirado en
+            <strong>Mac OS 9.2</strong>, con su paleta Platinum y su lenguaje de ventanas.</p>
+
+          <div class="site-section">
+            <h4>PALETA</h4>
+            <p>Grises Platinum (<code>#DCDEE1</code> / <code>#EFF0F2</code>) para el chrome del sistema, azul de
+              selección (<code>#3B78D8</code>) para acciones y foco, y verde terminal (<code>#39FF88</code>)
+              reservado solo para la Terminal — el resto del sistema se mantiene neutro para no competir con el
+              contenido de cada proyecto.</p>
+          </div>
+          <div class="site-section">
+            <h4>TIPOGRAFÍA</h4>
+            <p>Fuente de sistema (<code>-apple-system</code>, Segoe UI, Helvetica) para todo el chrome, igual que
+              hacía el propio Mac OS 9 con sus tipos de sistema. <code>IBM Plex Mono</code> queda reservado
+              exclusivamente para la Terminal.</p>
+          </div>
+          <div class="site-section">
+            <h4>ICONOGRAFÍA</h4>
+            <p>Iconos reales extraídos de packs de sistema de Mac OS 9 y Windows 98, probados uno junto a otro
+              hasta decidir cuál encajaba mejor con cada elemento — documento, carpeta, terminal y correo entre
+              ellos (mira la ventana "Recursos" en el menú Archivo).</p>
+          </div>
+          <div class="site-section">
+            <h4>FONDO Y EFECTO CRT</h4>
+            <p>El wallpaper se procesa como tres capas de color (rojo/verde/azul) ligeramente desalineadas y
+              mezcladas en modo screen, más un barrido de scanlines — la aberración cromática y el parpadeo de
+              un monitor de tubo viejo.</p>
+          </div>
+          <div class="site-section">
+            <h4>IDENTIDAD POR PROYECTO</h4>
+            <p>Dentro de PROYECTOS.EXE cada proyecto conserva su propia identidad — tomada de cómo está
+              construido de verdad, no elegida a mano: verde neón para SafeGram, papel cálido con acento
+              savia para NutroVia, cristal negro con duotono naranja/azul para el Angular Task Manager,
+              negro con el azul y el rojo que salen del propio algoritmo para el generador de Mandelbrot, y
+              el verde chartreuse neón de <code>Theme.java</code> para Buscaminas — mientras el chrome de la
+              ventana se mantiene siempre Platinum.</p>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle" data-resize="win-identity" aria-hidden="true"></div>
+    </div>
+
+    <!-- PROCESS WINDOW (Especial) -->
+    <div class="window hidden" id="win-process" data-win="win-process"
+      style="--win-x:260px; --win-y:130px; --win-w:640px; --win-h:600px;">
+      <div class="titlebar" data-drag="win-process">
+        <button class="mac-box close" data-close="win-process" aria-label="Cerrar"></button>
+        <span class="t-title">Proceso</span>
+        <span class="mac-box-group">
+          <button class="mac-box minimize" data-minimize="win-process" aria-label="Minimizar"></button>
+          <button class="mac-box zoom" data-zoom="win-process" aria-label="Pantalla completa"></button>
+        </span>
+      </div>
+      <div class="window-body">
+        <div id="browser-toolbar-process" class="mini-toolbar">
+          <div class="mini-addr">eduardo.os/proceso</div>
+        </div>
+        <div class="site-identity">
+          <span class="site-num">EDUARDO.OS — PROCESO CREATIVO Y DE DESARROLLO</span>
+          <h3>Construido a base de iteración</h3>
+          <p>Este escritorio no salió así a la primera. Empezó como un concepto HTML estático con tres proyectos
+            de relleno, y se fue reescribiendo por completo en varias pasadas, cada una a partir de feedback
+            directo sobre lo que ya estaba construido.</p>
+
+          <div class="site-section">
+            <h4>DEL CONCEPTO A LOS 5 PROYECTOS REALES</h4>
+            <p>Se sustituyeron los proyectos placeholder por los cinco reales — SafeGram, NutroVia, Angular Task
+              Manager, el generador de Mandelbrot y Buscaminas — con sus imágenes, stack y enlaces reales a
+              GitHub y a las demos en producción.</p>
+          </div>
+          <div class="site-section">
+            <h4>EL GESTOR DE VENTANAS</h4>
+            <p>Escrito desde cero con Pointer Events: arrastre, redimensionado desde la esquina, zoom a pantalla
+              completa y un minimizado con animación "genie" que encoge la ventana hasta su icono en la barra
+              inferior — y la restaura con la animación inversa al volver a hacer clic.</p>
+          </div>
+          <div class="site-section">
+            <h4>SELECCIÓN Y PAPELERA</h4>
+            <p>Arrastrar sobre el escritorio abre una selección tipo marquee sobre los iconos, igual que en
+              cualquier escritorio de verdad; arrastrar la selección hasta la papelera cierra las apps
+              seleccionadas que estén abiertas.</p>
+          </div>
+          <div class="site-section">
+            <h4>UN PIVOTE A MITAD DE CAMINO</h4>
+            <p>La primera pasada del escritorio tenía una estética más Windows 9x. A mitad de proceso se decidió
+              pivotar por completo a Mac OS 9.2 — barra de menú Apple arriba, ventanas Platinum, los tres
+              botones clásicos — y de ahí salió la versión actual.</p>
+          </div>
+          <div class="site-section">
+            <h4>TERMINAL Y CONTACTO REALES</h4>
+            <p>La Terminal responde a comandos reales (<code>help</code>, <code>projects</code>,
+              <code>open &lt;proyecto&gt;</code>...) y el formulario de CONTACTO.EXE envía los mensajes de
+              verdad a través de Web3Forms, sin backend propio.</p>
+          </div>
+          <div class="site-section">
+            <h4>IDENTIDAD VISUAL PARA CADA PROYECTO</h4>
+            <p>Los tres proyectos que quedaban con texto "PENDIENTE" —Angular Task Manager, el generador de
+              Mandelbrot y Buscaminas— se resolvieron entrando en su código fuente real: la paleta
+              naranja/azul y el cristal de Angular salen de su propio <code>styles.css</code>, el negro/azul/
+              rojo de Mandelbrot sale directamente de la función que colorea cada píxel, y el verde
+              chartreuse de Buscaminas sale de su <code>Theme.java</code>. Nada de esto se inventó a mano —
+              se documentó lo que cada proyecto ya era.</p>
+          </div>
+        </div>
+      </div>
+      <div class="resize-handle" data-resize="win-process" aria-hidden="true"></div>
+    </div>
+
+  </div>
+
   <script src="contact-config.js" defer></script>
   <script src="dist/main.js" defer></script>
 </body>

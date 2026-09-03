@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eduardo.OS — concepto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-desktop:#0B1220;
+    --bg-desktop-2:#111a2c;
+    --chrome-light:#D7DEE6;
+    --chrome-mid:#A9B4C0;
+    --chrome-dark:#3D4552;
+    --accent:#39FF88;
+    --accent-dim:#1f8f52;
+    --hazard:#FF5D3A;
+    --text-dark:#0B1220;
+    --text-light:#E7ECF2;
+    --scanline:rgba(0,0,0,0.15);
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;height:100%;
+    font-family:'IBM Plex Mono',monospace;
+    background:var(--bg-desktop);
+    color:var(--text-light);
+    overflow:hidden;
+    user-select:none;
+  }
+  .pixel{font-family:'Press Start 2P',monospace;}
+
+  /* ---------- BOOT SCREEN ---------- */
+  #boot{
+    position:fixed;inset:0;background:#000;color:var(--accent);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    z-index:9999;gap:18px;
+    transition:opacity .6s ease;
+  }
+  #boot.hide{opacity:0;pointer-events:none;}
+  #boot .logo{font-size:13px;letter-spacing:2px;}
+  #boot .bar-track{width:280px;height:10px;border:2px solid var(--accent);padding:2px;}
+  #boot .bar-fill{height:100%;width:0%;background:var(--accent);transition:width 2.4s linear;}
+  #boot .hint{font-size:10px;opacity:.6;letter-spacing:1px;}
+
+  /* ---------- DESKTOP ---------- */
+  #desktop{
+    position:relative;
+    width:100%;height:100%;
+    background:
+      radial-gradient(circle at 20% 15%, #16233d 0%, transparent 40%),
+      repeating-linear-gradient(180deg, var(--scanline) 0px, transparent 1px, transparent 3px),
+      linear-gradient(180deg,var(--bg-desktop) 0%, var(--bg-desktop-2) 100%);
+  }
+  .crt-vignette{
+    position:absolute;inset:0;pointer-events:none;
+    box-shadow: inset 0 0 160px rgba(0,0,0,0.65);
+  }
+
+  /* icons */
+  .icons{
+    position:absolute; top:24px; left:24px;
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .icon{
+    width:82px; display:flex; flex-direction:column; align-items:center; gap:6px;
+    cursor:pointer;
+  }
+  .icon .glyph{
+    width:46px;height:46px; border:2px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px; background:rgba(57,255,136,0.06);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+  }
+  .icon:hover .glyph{ background:rgba(57,255,136,0.18); }
+  .icon .label{
+    font-size:9px; text-align:center; line-height:1.4;
+    background:rgba(0,0,0,0.35); padding:2px 4px;
+  }
+
+  /* ---------- WINDOWS ---------- */
+  .window{
+    position:absolute;
+    min-width:260px;
+    background:var(--chrome-light);
+    border:2px solid var(--chrome-dark);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.55);
+    display:flex;flex-direction:column;
+    color:var(--text-dark);
+  }
+  .window.hidden{display:none;}
+  .titlebar{
+    background:repeating-linear-gradient(90deg, var(--chrome-dark) 0 2px, #2b323d 2px 4px);
+    color:var(--text-light);
+    padding:6px 8px;
+    display:flex;align-items:center;justify-content:space-between;
+    cursor:grab; font-size:10px; letter-spacing:.5px;
+  }
+  .titlebar:active{cursor:grabbing;}
+  .titlebar .t-left{display:flex;align-items:center;gap:6px;}
+  .titlebar .t-btns{display:flex;gap:4px;}
+  .tbtn{
+    width:14px;height:14px;border:1px solid var(--text-light);
+    background:var(--chrome-mid); font-size:8px; line-height:12px; text-align:center;
+    cursor:pointer; color:var(--text-dark);
+  }
+  .tbtn.close{background:var(--hazard); color:#1a0500;}
+  .window-body{
+    padding:14px; font-size:12px; line-height:1.6; overflow:auto;
+  }
+  .window-body h3{margin:0 0 8px; font-size:11px; letter-spacing:.5px;}
+  .window-body a{color:var(--accent-dim);}
+  .project-tag{
+    display:inline-block; font-size:9px; padding:2px 6px; margin:2px 4px 2px 0;
+    background:var(--chrome-dark); color:var(--accent); font-family:'Press Start 2P',monospace;
+  }
+
+  /* terminal window specifics */
+  #win-terminal .window-body{
+    background:#050a08; color:var(--accent); padding:10px;
+    font-size:12px; height:260px; display:flex; flex-direction:column;
+  }
+  #term-output{flex:1; overflow-y:auto; white-space:pre-wrap; padding-bottom:4px;}
+  #term-line{display:flex; align-items:center; gap:6px;}
+  #term-line .prompt{color:var(--accent);}
+  #term-input{
+    flex:1; background:transparent; border:none; outline:none;
+    color:var(--accent); font-family:'IBM Plex Mono',monospace; font-size:12px;
+  }
+  .cursor-blink{animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- BROWSER WINDOW ---------- */
+  #win-browser .window-body{padding:0;}
+  #browser-toolbar{
+    display:flex; align-items:center; gap:6px; padding:6px 8px;
+    background:var(--chrome-mid); border-bottom:1px solid var(--chrome-dark);
+  }
+  .nav-btn{
+    width:20px;height:20px; display:flex;align-items:center;justify-content:center;
+    background:var(--chrome-light); border:1px solid var(--chrome-dark);
+    font-size:10px; cursor:pointer;
+  }
+  #addr-bar{
+    flex:1; background:var(--chrome-light); border:1px solid var(--chrome-dark);
+    padding:4px 8px; font-size:10px; color:var(--text-dark);
+    display:flex; align-items:center; gap:6px;
+  }
+  #addr-bar .lock{font-size:9px;}
+  #tab-strip{display:flex; gap:2px; padding:4px 6px 0; background:var(--chrome-mid);}
+  .tab{
+    padding:6px 12px; font-size:9px; cursor:pointer;
+    border:1px solid var(--chrome-dark); border-bottom:none;
+    background:#6b7684; color:#dfe4e9;
+    position:relative; top:1px;
+  }
+  .tab.active{ font-weight:600; }
+  .tab[data-tab="safegram"].active{ background:#0d1f14; color:#39FF88; }
+  .tab[data-tab="nutrovia"].active{ background:#2b1608; color:#FFB27A; }
+  .tab[data-tab="vigilia"].active{ background:#0d1526; color:#7AC7FF; }
+  #browser-content{
+    height:190px; padding:16px; overflow:auto; font-size:12px; line-height:1.6;
+    transition:background .15s ease;
+  }
+  #browser-loading{
+    height:2px; background:var(--accent); width:0%;
+  }
+  .site-safegram{ background:#0d1f14; color:#c9ffe0; }
+  .site-nutrovia{ background:#2b1608; color:#ffe3c9; }
+  .site-vigilia{ background:#0d1526; color:#cfe9ff; }
+  #browser-content h3{margin:0 0 8px; font-size:11px; letter-spacing:.5px;}
+
+  /* ---------- TASKBAR ---------- */
+  #taskbar{
+    position:absolute; bottom:0; left:0; right:0; height:38px;
+    background:var(--chrome-dark);
+    border-top:2px solid #1c222b;
+    display:flex; align-items:center; padding:0 8px; gap:8px;
+    z-index:500;
+  }
+  #start-btn{
+    background:var(--accent); color:#03150a; border:2px solid #0b3a1f;
+    font-family:'Press Start 2P',monospace; font-size:9px;
+    padding:8px 10px; cursor:pointer;
+  }
+  .task-tabs{display:flex; gap:6px; flex:1;}
+  .task-tab{
+    background:var(--chrome-mid); border:1px solid #1c222b;
+    color:var(--text-dark); font-size:9px; padding:6px 10px; cursor:pointer;
+  }
+  .task-tab.active{background:var(--chrome-light);}
+  #clock{font-size:10px; color:var(--text-light);}
+</style>
+</head>
+<body>
+
+<div id="boot">
+  <div class="logo pixel">EDUARDO.OS v1.0</div>
+  <div class="bar-track"><div class="bar-fill" id="bootbar"></div></div>
+  <div class="hint pixel">CARGANDO INTERFAZ...</div>
+</div>
+
+<div id="desktop">
+  <div class="crt-vignette"></div>
+
+  <div class="icons">
+    <div class="icon" data-win="win-about" ondblclick="openWin('win-about')">
+      <div class="glyph">☺</div><div class="label pixel">SOBRE_MI</div>
+    </div>
+    <div class="icon" data-win="win-browser" ondblclick="openWin('win-browser')">
+      <div class="glyph">▣</div><div class="label pixel">PROYECTOS</div>
+    </div>
+    <div class="icon" data-win="win-terminal" ondblclick="openWin('win-terminal')">
+      <div class="glyph">&gt;_</div><div class="label pixel">TERMINAL.EXE</div>
+    </div>
+    <div class="icon" data-win="win-contact" ondblclick="openWin('win-contact')">
+      <div class="glyph">✉</div><div class="label pixel">CONTACTO</div>
+    </div>
+  </div>
+
+  <!-- ABOUT WINDOW -->
+  <div class="window hidden" id="win-about" style="top:70px; left:140px; width:300px;">
+    <div class="titlebar" onmousedown="startDrag(event,'win-about')">
+      <div class="t-left pixel">SOBRE_MI.TXT</div>
+      <div class="t-btns">
+        <div class="tbtn" onclick="closeWin('win-about')">_</div>
+        <div class="tbtn close" onclick="closeWin('win-about')">X</div>
+      </div>
+    </div>
+    <div class="window-body">
+      <h3 class="pixel">EDUARDO H. FERNÁNDEZ</h3>
+      <p>Ingeniero de computadores. Construyo herramientas de ciberseguridad, IA/LLM y productos web — desde el prototipo hasta la línea de comandos.</p>
+      <p>Este es el concepto de un escritorio retro que reemplaza el scroll infinito por ventanas que se abren, se arrastran y se cierran — como un sistema operativo de los 90 con alma de terminal.</p>
+    </div>
+  </div>
+
+  <!-- PROJECTS WINDOW (retro browser with colored tabs) -->
+  <div class="window hidden" id="win-browser" style="top:100px; left:400px; width:360px;">
+    <div class="titlebar" onmousedown="startDrag(event,'win-browser')">
+      <div class="t-left pixel">NAVEGADOR.EXE</div>
+      <div class="t-btns">
+        <div class="tbtn" onclick="closeWin('win-browser')">_</div>
+        <div class="tbtn close" onclick="closeWin('win-browser')">X</div>
+      </div>
+    </div>
+    <div class="window-body">
+      <div id="tab-strip">
+        <div class="tab" data-tab="safegram" onclick="switchTab('safegram')">safegram.exe</div>
+        <div class="tab" data-tab="nutrovia" onclick="switchTab('nutrovia')">nutrovia.exe</div>
+        <div class="tab" data-tab="vigilia" onclick="switchTab('vigilia')">vigilia.exe</div>
+      </div>
+      <div id="browser-toolbar">
+        <div class="nav-btn">◀</div>
+        <div class="nav-btn">▶</div>
+        <div class="nav-btn">⟳</div>
+        <div id="addr-bar"><span class="lock">🔒</span><span id="addr-text">eduardo.os/proyectos/safegram.exe</span></div>
+      </div>
+      <div id="browser-loading"></div>
+      <div id="browser-content" class="site-safegram">
+        <h3 class="pixel">SAFEGRAM.EXE</h3>
+        <p>Herramienta de seguridad con estética terminal/hacker. Aquí iría la descripción real, capturas y enlace al proyecto.</p>
+        <span class="project-tag">SECURITY</span><span class="project-tag">CLI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT WINDOW -->
+  <div class="window hidden" id="win-contact" style="top:260px; left:180px; width:280px;">
+    <div class="titlebar" onmousedown="startDrag(event,'win-contact')">
+      <div class="t-left pixel">CONTACTO.EXE</div>
+      <div class="t-btns">
+        <div class="tbtn" onclick="closeWin('win-contact')">_</div>
+        <div class="tbtn close" onclick="closeWin('win-contact')">X</div>
+      </div>
+    </div>
+    <div class="window-body">
+      <h3 class="pixel">NUEVO MENSAJE</h3>
+      <p>Para: eduardo@eduardo-projects.es</p>
+      <p>Asunto: ____________</p>
+      <p style="opacity:.7;">(placeholder — aquí iría un formulario real)</p>
+    </div>
+  </div>
+
+  <!-- TERMINAL WINDOW (flagship interactive) -->
+  <div class="window hidden" id="win-terminal" style="top:90px; left:640px; width:360px;">
+    <div class="titlebar" onmousedown="startDrag(event,'win-terminal')">
+      <div class="t-left pixel">TERMINAL.EXE</div>
+      <div class="t-btns">
+        <div class="tbtn" onclick="closeWin('win-terminal')">_</div>
+        <div class="tbtn close" onclick="closeWin('win-terminal')">X</div>
+      </div>
+    </div>
+    <div class="window-body">
+      <div id="term-output">eduardo.OS [terminal v1.0]
+escribe "help" para ver comandos disponibles
+</div>
+      <div id="term-line">
+        <span class="prompt">visitante@eduardo:~$</span>
+        <input id="term-input" type="text" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div id="taskbar">
+  <div id="start-btn" onclick="openWin('win-about')">☰ INICIO</div>
+  <div class="task-tabs" id="task-tabs"></div>
+  <div id="clock" class="pixel"></div>
+</div>
+
+<script>
+// ---- boot sequence ----
+window.addEventListener('load', ()=>{
+  requestAnimationFrame(()=>{ document.getElementById('bootbar').style.width='100%'; });
+  setTimeout(()=>{
+    document.getElementById('boot').classList.add('hide');
+    openWin('win-about');
+  }, 2500);
+});
+
+// ---- clock ----
+function tick(){
+  const d=new Date();
+  document.getElementById('clock').textContent =
+    d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+}
+tick(); setInterval(tick,1000*30);
+
+// ---- window management ----
+let zTop = 10;
+const openWins = new Set();
+
+function renderTabs(){
+  const box = document.getElementById('task-tabs');
+  box.innerHTML='';
+  openWins.forEach(id=>{
+    const el = document.getElementById(id);
+    const label = el.querySelector('.titlebar .t-left').textContent;
+    const tab = document.createElement('div');
+    tab.className='task-tab';
+    tab.textContent = label;
+    tab.onclick = ()=>focusWin(id);
+    box.appendChild(tab);
+  });
+}
+
+function openWin(id){
+  const el = document.getElementById(id);
+  el.classList.remove('hidden');
+  openWins.add(id);
+  focusWin(id);
+  renderTabs();
+}
+function closeWin(id){
+  document.getElementById(id).classList.add('hidden');
+  openWins.delete(id);
+  renderTabs();
+}
+function focusWin(id){
+  const el = document.getElementById(id);
+  el.classList.remove('hidden');
+  zTop++;
+  el.style.zIndex = zTop;
+}
+
+// ---- dragging ----
+function startDrag(e, id){
+  const el = document.getElementById(id);
+  focusWin(id);
+  const startX = e.clientX, startY = e.clientY;
+  const rect = el.getBoundingClientRect();
+  const parentRect = document.getElementById('desktop').getBoundingClientRect();
+  const origLeft = rect.left - parentRect.left;
+  const origTop = rect.top - parentRect.top;
+
+  function onMove(ev){
+    const dx = ev.clientX - startX;
+    const dy = ev.clientY - startY;
+    el.style.left = (origLeft+dx)+'px';
+    el.style.top = (origTop+dy)+'px';
+  }
+  function onUp(){
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
+
+// ---- terminal app (generative element) ----
+const termOutput = document.getElementById('term-output');
+const termInput = document.getElementById('term-input');
+
+const commands = {
+  help: ()=>`comandos: help, whoami, projects, skills, contact, sudo, clear`,
+  whoami: ()=>`Eduardo Holanda Fernández — ingeniero de computadores.\nCiberseguridad · IA/LLM · productos web.`,
+  projects: ()=>`safegram.exe   [seguridad / CLI]\nnutrovia.exe   [producto / marca]\nvigilia.exe    [saas / cumplimiento]\n\nescribe "open <nombre>" para abrir el icono correspondiente`,
+  skills: ()=>`>> cargando stack...\nseguridad ofensiva · modelos LLM · desarrollo web · automatización`,
+  contact: ()=>`abriendo CONTACTO.EXE...`,
+  sudo: ()=>`Nice try. Este visitante no está en el sudoers file. Este incidente será reportado. 😉`,
+  clear: ()=>{termOutput.textContent=''; return null;}
+};
+
+function typeLine(text){
+  if(text===null) return;
+  termOutput.textContent += '\n'+text+'\n';
+  termOutput.scrollTop = termOutput.scrollHeight;
+}
+
+// ---- browser app: colored tabs per project ----
+const siteData = {
+  safegram: {
+    label:'safegram.exe',
+    url:'eduardo.os/proyectos/safegram.exe',
+    cls:'site-safegram',
+    title:'SAFEGRAM.EXE',
+    body:'Herramienta de seguridad con estética terminal/hacker. Aquí iría la descripción real, capturas y enlace al proyecto.',
+    tags:['SECURITY','CLI']
+  },
+  nutrovia: {
+    label:'nutrovia.exe',
+    url:'eduardo.os/proyectos/nutrovia.exe',
+    cls:'site-nutrovia',
+    title:'NUTROVIA.EXE',
+    body:'Producto con estética cálida/orgánica. Misma estructura de ventana, paleta completamente distinta.',
+    tags:['PRODUCT','BRAND']
+  },
+  vigilia: {
+    label:'vigilia.exe',
+    url:'eduardo.os/proyectos/vigilia.exe',
+    cls:'site-vigilia',
+    title:'VIGILIA.EXE',
+    body:'SaaS de control de gastos y cumplimiento normativo. Paleta fría, tono más "herramienta profesional".',
+    tags:['SAAS','B2B']
+  }
+};
+
+function switchTab(name){
+  const data = siteData[name];
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.tab === name);
+  });
+  document.getElementById('addr-text').textContent = data.url;
+
+  const bar = document.getElementById('browser-loading');
+  bar.style.width='0%';
+  bar.style.transition='none';
+  requestAnimationFrame(()=>{
+    bar.style.transition='width .25s ease';
+    bar.style.width='100%';
+  });
+
+  const content = document.getElementById('browser-content');
+  setTimeout(()=>{
+    content.className = data.cls;
+    content.innerHTML = `<h3 class="pixel">${data.title}</h3><p>${data.body}</p>` +
+      data.tags.map(t=>`<span class="project-tag">${t}</span>`).join('');
+    setTimeout(()=>{ bar.style.width='0%'; }, 200);
+  }, 120);
+}
+
+termInput.addEventListener('keydown', (e)=>{
+  if(e.key==='Enter'){
+    const raw = termInput.value.trim();
+    termOutput.textContent += `\nvisitante@eduardo:~$ ${raw}`;
+    const cmd = raw.toLowerCase();
+    if(cmd.startsWith('open ')){
+      const target = cmd.split(' ')[1];
+      if(siteData[target]){
+        openWin('win-browser'); switchTab(target);
+        typeLine(`abriendo ${target}...`);
+      } else if(target==='contact'){ openWin('win-contact'); typeLine('abriendo contacto...'); }
+      else if(target==='about'){ openWin('win-about'); typeLine('abriendo sobre_mi...'); }
+      else typeLine(`ventana no encontrada: ${target}`);
+    } else if(commands[cmd]){
+      typeLine(commands[cmd]());
+      if(cmd==='contact') openWin('win-contact');
+    } else if(cmd===''){
+      // no-op
+    } else {
+      typeLine(`comando no reconocido: "${raw}" — escribe "help"`);
+    }
+    termInput.value='';
+    termOutput.scrollTop = termOutput.scrollHeight;
+  }
+});
+
+switchTab('safegram');
+</script>
+</body>
+</html>
