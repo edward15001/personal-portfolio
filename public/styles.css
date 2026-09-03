@@ -862,15 +862,41 @@ a { color: var(--mac-blue-dim); }
 
 /* ---------- MOBILE LAYOUT ---------- */
 @media (max-width: 860px) {
+  :root { --mobile-dock-h: 60px; }
+
   .icons {
     top: 12px; left: 12px; gap: 16px;
     display: grid; grid-template-columns: repeat(2, 1fr); width: calc(100% - 24px);
   }
   .icon { width: auto; }
 
+  /* Bottom dock: a real full-width bar (not a floating pill), so it never
+     overlaps app content — windows leave room for it below (see .window). */
+  #control-strip {
+    left: 0; right: 0; top: auto;
+    bottom: 0;
+    width: 100%; height: calc(var(--mobile-dock-h) + env(safe-area-inset-bottom));
+    padding: 8px 68px calc(8px + env(safe-area-inset-bottom)) 10px;
+    border-radius: 0; border: none; border-top: 1px solid var(--chrome-border);
+    box-shadow: 0 -2px 6px var(--chrome-shadow);
+    justify-content: flex-start;
+  }
+  .cs-apps { flex: 1; min-width: 0; overflow-x: auto; }
+
+  /* Trash rides in the same bar, pinned to the right, instead of collapsing
+     into the desktop icon grid like the other launcher icons do. */
+  .icon--trash {
+    left: auto; right: 6px; bottom: 0;
+    width: 56px; height: calc(var(--mobile-dock-h) + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+  }
+  .icon--trash .glyph { width: 30px; height: 30px; }
+  .icon--trash .label { display: none; }
+
   .window {
     position: fixed;
-    inset: var(--menubar-h) 0 0 0;
+    inset: var(--menubar-h) 0 calc(var(--mobile-dock-h) + env(safe-area-inset-bottom)) 0;
     width: 100% !important;
     max-width: 100%;
     border-radius: 0;
